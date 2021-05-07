@@ -1,42 +1,42 @@
 /**
 * matter-js 0.12.0 by @liabru 2017-02-02
 * http://brm.io/matter-js/
-* License MIT
+* Licencia MIT
 */
 
 /**
- * The MIT License (MIT)
+ * La Licencia MIT (MIT)
  * 
- * Copyright (c) 2014 Liam Brummitt
+ * Derechos de autor (c) 2014 por Liam Brummitt
  * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
+ * Por la presente se otorga permiso, sin cargo, a cualquier persona que obtenga una copia 
+ * de este software, y los archivos de documentación asociados (el "Software"), para utilizar
+ * el Software sin restricciones, incluidos, entre otros, los derechos
+ * para usar, copiar, modificar, fusionar, publicar, distribuir, sublicenciar y / o vender
+ * copias del Software, y para permitir a las personas a las que se destina el Software
+ * adaptado para ello, sujeto a las siguientes condiciones:
+ *
+ * El aviso de derechos de auto anterior y este aviso de permiso se incluirán en
+ * todas las copias o partes sustanciales del Software.
  * 
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * EL SOFTWARE SE PROPORCIONA "TAL CUAL", SIN GARANTÍA DE NINGÚN TIPO, EXPRESA O
+ * IMPLÍCITA, INCLUYENDO PERO NO LIMITADO A LAS GARANTÍAS DE COMERCIABILIDAD,
+ * APTITUD PARA UN PROPÓSITO PARTICULAR Y NO INFRACCIÓN. EN NINGÚN CASO
+ * LOS AUTORES O TITULARES DE LOS DERECHOS DE AUTOR SERÁN RESPONSABLES DE CUALQUIER RECLAMO, DAÑOS U OTRAS
+ * RESPONSABILIDADES, YA SEA EN UNA ACCIÓN DE CONTRATO, AGRAVIO O DE OTRO MODO, QUE SURJA DE,
+ * FUERA O EN RELACIÓN CON EL SOFTWARE O EL USO U OTROS ASUNTOS EN
+ * EL SOFTWARE.
  */
 
 (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.Matter = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(_dereq_,module,exports){
 /**
-* The `Matter.Body` module contains methods for creating and manipulating body models.
-* A `Matter.Body` is a rigid body that can be simulated by a `Matter.Engine`.
-* Factories for commonly used body configurations (such as rectangles, circles and other polygons) can be found in the module `Matter.Bodies`.
+* El módulo`Matter.Body` contiene métodos para crear y manipular modelos corporales.
+* Un cuerpo `Matter.Body` es un cuerpo rígido que puede ser simulado por un `Matter.Engine`.
+* El almacén para configuraciones corporales de uso común (como rectángulos, círculos y otros polígonos), se pueden encontrar en el módulo `Matter.Bodies`.
 *
-* See the included usage [examples](https://github.com/liabru/matter-js/tree/master/examples).
+* Ver cómo se utiliza [ejemplos](https://github.com/liabru/matter-js/tree/master/examples).
 
-* @class Body
+* @class Body - @clase Cuerpo
 */
 
 var Body = {};
@@ -59,13 +59,13 @@ var Axes = _dereq_('../geometry/Axes');
     Body._nextCategory = 0x0001;
 
     /**
-     * Creates a new rigid body model. The options parameter is an object that specifies any properties you wish to override the defaults.
-     * All properties have default values, and many are pre-calculated automatically based on other properties.
-     * Vertices must be specified in clockwise order.
-     * See the properties section below for detailed information on what you can pass via the `options` object.
-     * @method create
-     * @param {} options
-     * @return {body} body
+     * Crea un nuevo modelo de cuerpo rígido. El parámetro de opciones es un objeto que especifica las propiedades que desees para anular los valores predeterminados.
+     * Todas las propiedades tienen valores predeterminados y muchas se precalculan automáticamente en función de otras propiedades.
+     * Los vértices deben especificarse en el orden de las manecillas del reloj.
+     * Consulte la sección de propiedades a continuación para obtener información detallada sobre lo que puede pasar a través del objeto `options`.
+     * @method create - crear
+     * @param {} options  - opciones
+     * @return {body} body - cuerpo
      */
     Body.create = function(options) {
         var defaults = {
@@ -124,12 +124,12 @@ var Axes = _dereq_('../geometry/Axes');
     };
 
     /**
-     * Returns the next unique group index for which bodies will collide.
-     * If `isNonColliding` is `true`, returns the next unique group index for which bodies will _not_ collide.
-     * See `body.collisionFilter` for more information.
+     * Devuelve el siguiente índice de grupo único para el que colisionarán los cuerpos.
+     * Si `isNonColliding` es` true`, devuelve el siguiente índice de grupo único para el que los cuerpos _no_ colisionarán.
+     * Consulte `body.collisionFilter` para obtener más información.
      * @method nextGroup
      * @param {bool} [isNonColliding=false]
-     * @return {Number} Unique group index
+     * @return {Number} Índice de grupo único
      */
     Body.nextGroup = function(isNonColliding) {
         if (isNonColliding)
@@ -139,10 +139,10 @@ var Axes = _dereq_('../geometry/Axes');
     };
 
     /**
-     * Returns the next unique category bitfield (starting after the initial default category `0x0001`).
-     * There are 32 available. See `body.collisionFilter` for more information.
+     * Regresa el siguiente campo de bits de categoría única (comenzando después de la categoría inicial predeterminada `0x0001`).
+     * Hay 32 disponibles. Consulta `body.collisionFilter` para obtener más información.
      * @method nextCategory
-     * @return {Number} Unique category bitfield
+     * @return {Number} Campo de bits de categoría única
      */
     Body.nextCategory = function() {
         Body._nextCategory = Body._nextCategory << 1;
@@ -150,16 +150,16 @@ var Axes = _dereq_('../geometry/Axes');
     };
 
     /**
-     * Initialises body properties.
+     * Inicializa las propiedades corporales.
      * @method _initProperties
      * @private
-     * @param {body} body
+     * @param {body} body - cuerpo
      * @param {} [options]
      */
     var _initProperties = function(body, options) {
         options = options || {};
 
-        // init required properties (order is important)
+        // propiedades requeridas por init (el orden es importante)
         Body.set(body, {
             bounds: body.bounds || Bounds.create(body.vertices),
             positionPrev: body.positionPrev || Vector.clone(body.position),
@@ -175,7 +175,7 @@ var Axes = _dereq_('../geometry/Axes');
         Axes.rotate(body.axes, body.angle);
         Bounds.update(body.bounds, body.vertices, body.velocity);
 
-        // allow options to override the automatically calculated properties
+        // permite que las opciones anulen las propiedades calculadas automáticamente
         Body.set(body, {
             axes: options.axes || body.axes,
             area: options.area || body.area,
@@ -183,7 +183,7 @@ var Axes = _dereq_('../geometry/Axes');
             inertia: options.inertia || body.inertia
         });
 
-        // render properties
+        // renderiza las propiedades
         var defaultFillStyle = (body.isStatic ? '#2e2b44' : Common.choose(['#006BA6', '#0496FF', '#FFBC42', '#D81159', '#8F2D56'])),
             defaultStrokeStyle = Common.shadeColor(defaultFillStyle, -20);
         body.render.fillStyle = body.render.fillStyle || defaultFillStyle;
@@ -193,12 +193,12 @@ var Axes = _dereq_('../geometry/Axes');
     };
 
     /**
-     * Given a property and a value (or map of), sets the property(s) on the body, using the appropriate setter functions if they exist.
-     * Prefer to use the actual setter functions in performance critical situations.
-     * @method set
-     * @param {body} body
-     * @param {} settings A property name (or map of properties and values) to set on the body.
-     * @param {} value The value to set if `settings` is a single property name.
+     * Dada una propiedad y un valor (o mapa de), establece la(s) propiedad (s) en el cuerpo, usando las funciones de establecimiento apropiadas si existen.
+     * Preferentement utiliza las funciones reales de la incubadora en situaciones críticas de rendimiento.
+     * @method set - establecer
+     * @param {body} body - cuerpo
+     * @param {} settings Un nombre de propiedad (o mapa de propiedades y valores) para establecer en el cuerpo.
+     * @param {} value El valor para establecer si `settings` es un solo nombre de propiedad.
      */
     Body.set = function(body, settings, value) {
         var property;
@@ -258,9 +258,9 @@ var Axes = _dereq_('../geometry/Axes');
     };
 
     /**
-     * Sets the body as static, including isStatic flag and setting mass and inertia to Infinity.
+     * Establece el cuerpo como estático, incluido el indicador isStatic y establece la masa y la inercia en Infinito.
      * @method setStatic
-     * @param {body} body
+     * @param {body} body - cuerpo
      * @param {bool} isStatic
      */
     Body.setStatic = function(body, isStatic) {
@@ -306,10 +306,10 @@ var Axes = _dereq_('../geometry/Axes');
     };
 
     /**
-     * Sets the mass of the body. Inverse mass and density are automatically updated to reflect the change.
+     * Establece la masa del cuerpo. La masa y la densidad inversas se actualizan automáticamente para reflejar el cambio.
      * @method setMass
-     * @param {body} body
-     * @param {number} mass
+     * @param {body} body - cuerpo
+     * @param {number} mass - masa
      */
     Body.setMass = function(body, mass) {
         body.mass = mass;
@@ -318,10 +318,10 @@ var Axes = _dereq_('../geometry/Axes');
     };
 
     /**
-     * Sets the density of the body. Mass is automatically updated to reflect the change.
+     * Establece la densidad del cuerpo. La masa se actualiza automáticamente para reflejar el cambio.
      * @method setDensity
-     * @param {body} body
-     * @param {number} density
+     * @param {body} body - cuerpo
+     * @param {number} density - densidad
      */
     Body.setDensity = function(body, density) {
         Body.setMass(body, density * body.area);
@@ -329,11 +329,11 @@ var Axes = _dereq_('../geometry/Axes');
     };
 
     /**
-     * Sets the moment of inertia (i.e. second moment of area) of the body of the body. 
-     * Inverse inertia is automatically updated to reflect the change. Mass is not changed.
+     * Establece el momento de inercia (es decir, segundo momento de área) del cuerpo.
+     * La inercia inversa se actualiza automáticamente para reflejar el cambio. La masa no se cambia.
      * @method setInertia
-     * @param {body} body
-     * @param {number} inertia
+     * @param {body} body - cuerpo
+     * @param {number} inertia - innercia 
      */
     Body.setInertia = function(body, inertia) {
         body.inertia = inertia;
@@ -341,16 +341,16 @@ var Axes = _dereq_('../geometry/Axes');
     };
 
     /**
-     * Sets the body's vertices and updates body properties accordingly, including inertia, area and mass (with respect to `body.density`).
-     * Vertices will be automatically transformed to be orientated around their centre of mass as the origin.
-     * They are then automatically translated to world space based on `body.position`.
+     * Establece los vértices del cuerpo y actualiza las propiedades del cuerpo en consecuencia, incluida la inercia, el área y la masa (con respecto a `body.density`).
+     * Los vértices se transformarán automáticamente para orientarse alrededor de su centro de masa como origen.
+     * A continuación, se traducen automáticamente al espacio mundial en función de "body.position".
      *
-     * The `vertices` argument should be passed as an array of `Matter.Vector` points (or a `Matter.Vertices` array).
-     * Vertices must form a convex hull, concave hulls are not supported.
+     * El argumento `vértices` debe pasarse como una formación de puntos` Matter.Vector` puntos (o una formación `Matter.Vertices`).
+     * Los vértices deben formar un casco convexo, los cascos cóncavos no son compatibles.
      *
      * @method setVertices
-     * @param {body} body
-     * @param {vector[]} vertices
+     * @param {body} body - cuerpo
+     * @param {vector[]} vertices - vértices
      */
     Body.setVertices = function(body, vertices) {
         // change vertices
@@ -360,37 +360,37 @@ var Axes = _dereq_('../geometry/Axes');
             body.vertices = Vertices.create(vertices, body);
         }
 
-        // update properties
+        // actualizar propiedades
         body.axes = Axes.fromVertices(body.vertices);
         body.area = Vertices.area(body.vertices);
         Body.setMass(body, body.density * body.area);
 
-        // orient vertices around the centre of mass at origin (0, 0)
+        // orientar los vértices alrededor del centro de masa en el origen (0, 0)
         var centre = Vertices.centre(body.vertices);
         Vertices.translate(body.vertices, centre, -1);
 
-        // update inertia while vertices are at origin (0, 0)
+        // actualizar la inercia mientras los vértices están en el origen (0, 0)
         Body.setInertia(body, Body._inertiaScale * Vertices.inertia(body.vertices, body.mass));
 
-        // update geometry
+        // actualizar geometría
         Vertices.translate(body.vertices, body.position);
         Bounds.update(body.bounds, body.vertices, body.velocity);
     };
 
     /**
-     * Sets the parts of the `body` and updates mass, inertia and centroid.
-     * Each part will have its parent set to `body`.
-     * By default the convex hull will be automatically computed and set on `body`, unless `autoHull` is set to `false.`
-     * Note that this method will ensure that the first part in `body.parts` will always be the `body`.
+     * Establece las partes del `body` y actualiza la masa, la inercia y el centroide.
+     * Cada parte tendrá su padre establecido en `body`.
+     * De forma predeterminada, el casco convexo se calculará automáticamente y se establecerá en `body`, a menos que` autoHull` se establezca en `false`.
+     * Ten en cuenta que este método garantizará que la primera parte de `body.parts` sea siempre el ` body`.
      * @method setParts
-     * @param {body} body
-     * @param [body] parts
+     * @param {body} body - cuerpo
+     * @param [body] parts - partes
      * @param {bool} [autoHull=true]
      */
     Body.setParts = function(body, parts, autoHull) {
         var i;
 
-        // add all the parts, ensuring that the first part is always the parent body
+        // agregue todas las partes, asegurándose de que la primera parte sea siempre el cuerpo padre.
         parts = parts.slice(0);
         body.parts.length = 0;
         body.parts.push(body);
@@ -409,7 +409,7 @@ var Axes = _dereq_('../geometry/Axes');
 
         autoHull = typeof autoHull !== 'undefined' ? autoHull : true;
 
-        // find the convex hull of all parts to set on the parent body
+        // encontrar el envolvente convexa de todas las partes para colocar en el cuerpo principal
         if (autoHull) {
             var vertices = [];
             for (i = 0; i < parts.length; i++) {
@@ -425,7 +425,7 @@ var Axes = _dereq_('../geometry/Axes');
             Vertices.translate(body.vertices, hullCentre);
         }
 
-        // sum the properties of all compound parts of the parent body
+        // sumar las propiedades de todas las partes compuestas del cuerpo padre
         var total = _totalProperties(body);
 
         body.area = total.area;
@@ -441,10 +441,10 @@ var Axes = _dereq_('../geometry/Axes');
     };
 
     /**
-     * Sets the position of the body instantly. Velocity, angle, force etc. are unchanged.
+     * Establece la posición del cuerpo al instante. La velocidad, el ángulo, la fuerza, etc. no se modifican.
      * @method setPosition
-     * @param {body} body
-     * @param {vector} position
+     * @param {body} body - cuerpo
+     * @param {vector} position - posición
      */
     Body.setPosition = function(body, position) {
         var delta = Vector.sub(position, body.position);
@@ -461,10 +461,10 @@ var Axes = _dereq_('../geometry/Axes');
     };
 
     /**
-     * Sets the angle of the body instantly. Angular velocity, position, force etc. are unchanged.
+     * Establece el ángulo del cuerpo al instante. La velocidad angular, la posición, la fuerza, etc. no se modifican.
      * @method setAngle
-     * @param {body} body
-     * @param {number} angle
+     * @param {body} body - cuerpo
+     * @param {number} angle - ángulo
      */
     Body.setAngle = function(body, angle) {
         var delta = angle - body.angle;
@@ -483,10 +483,10 @@ var Axes = _dereq_('../geometry/Axes');
     };
 
     /**
-     * Sets the linear velocity of the body instantly. Position, angle, force etc. are unchanged. See also `Body.applyForce`.
+     * Establece la velocidad lineal del cuerpo al instante. La posición, el ángulo, la fuerza, etc. no se modifican. Consulta también `Body.applyForce`.
      * @method setVelocity
-     * @param {body} body
-     * @param {vector} velocity
+     * @param {body} body - cuerpo
+     * @param {vector} velocity - velocidad
      */
     Body.setVelocity = function(body, velocity) {
         body.positionPrev.x = body.position.x - velocity.x;
@@ -497,10 +497,10 @@ var Axes = _dereq_('../geometry/Axes');
     };
 
     /**
-     * Sets the angular velocity of the body instantly. Position, angle, force etc. are unchanged. See also `Body.applyForce`.
+     * Establece la velocidad angular del cuerpo al instante. La posición, el ángulo, la fuerza, etc. no se modifican. Consulte también `Body.applyForce`.
      * @method setAngularVelocity
-     * @param {body} body
-     * @param {number} velocity
+     * @param {body} body - cuerpo
+     * @param {number} velocity - velocidad
      */
     Body.setAngularVelocity = function(body, velocity) {
         body.anglePrev = body.angle - velocity;
@@ -509,17 +509,17 @@ var Axes = _dereq_('../geometry/Axes');
     };
 
     /**
-     * Moves a body by a given vector relative to its current position, without imparting any velocity.
+     * Mueve un cuerpo por un vector dado en relación con su posición actual, sin impartir alguna velocidad.
      * @method translate
-     * @param {body} body
-     * @param {vector} translation
+     * @param {body} body - cuerpo
+     * @param {vector} translation - traducción
      */
     Body.translate = function(body, translation) {
         Body.setPosition(body, Vector.add(body.position, translation));
     };
 
     /**
-     * Rotates a body by a given angle relative to its current angle, without imparting any angular velocity.
+     * Gira un cuerpo en un ángulo dado en relación con su ángulo actual, sin impartir alguna velocidad angular.
      * @method rotate
      * @param {body} body
      * @param {number} rotation
@@ -529,43 +529,43 @@ var Axes = _dereq_('../geometry/Axes');
     };
 
     /**
-     * Scales the body, including updating physical properties (mass, area, axes, inertia), from a world-space point (default is body centre).
+     * Escala el cuerpo, incluida la actualización de las propiedades físicas (masa, área, ejes, inercia), desde un punto del espacio del mundo (el valor predeterminado es el centro del cuerpo).
      * @method scale
-     * @param {body} body
-     * @param {number} scaleX
-     * @param {number} scaleY
+     * @param {body} body - cuerpo
+     * @param {number} scaleX - escala en X
+     * @param {number} scaleY - escala en Y
      * @param {vector} [point]
      */
     Body.scale = function(body, scaleX, scaleY, point) {
         for (var i = 0; i < body.parts.length; i++) {
             var part = body.parts[i];
 
-            // scale vertices
+            // escalar vértices
             Vertices.scale(part.vertices, scaleX, scaleY, body.position);
 
-            // update properties
+            // actualizar propiedades
             part.axes = Axes.fromVertices(part.vertices);
 
             if (!body.isStatic) {
                 part.area = Vertices.area(part.vertices);
                 Body.setMass(part, body.density * part.area);
 
-                // update inertia (requires vertices to be at origin)
+                // actualizar la inercia (requiere que los vértices estén en el origen)
                 Vertices.translate(part.vertices, { x: -part.position.x, y: -part.position.y });
                 Body.setInertia(part, Vertices.inertia(part.vertices, part.mass));
                 Vertices.translate(part.vertices, { x: part.position.x, y: part.position.y });
             }
 
-            // update bounds
+            // actualizar límites
             Bounds.update(part.bounds, part.vertices, body.velocity);
         }
 
-        // handle circles
+        // manipular circulos 
         if (body.circleRadius) { 
             if (scaleX === scaleY) {
                 body.circleRadius *= scaleX;
             } else {
-                // body is no longer a circle
+                // el cuerpo ya no es un círculo
                 body.circleRadius = null;
             }
         }
@@ -579,22 +579,22 @@ var Axes = _dereq_('../geometry/Axes');
     };
 
     /**
-     * Performs a simulation step for the given `body`, including updating position and angle using Verlet integration.
+     * Realiza un paso de simulación para el `body` dado, incluida la actualización de la posición y el ángulo mediante la integración de Verlet.
      * @method update
-     * @param {body} body
-     * @param {number} deltaTime
-     * @param {number} timeScale
-     * @param {number} correction
+     * @param {body} body - cuerpo
+     * @param {number} deltaTime 
+     * @param {number} timeScale 
+     * @param {number} correction - correción 
      */
     Body.update = function(body, deltaTime, timeScale, correction) {
         var deltaTimeSquared = Math.pow(deltaTime * timeScale * body.timeScale, 2);
 
-        // from the previous step
+        // del paso anterior
         var frictionAir = 1 - body.frictionAir * timeScale * body.timeScale,
             velocityPrevX = body.position.x - body.positionPrev.x,
             velocityPrevY = body.position.y - body.positionPrev.y;
 
-        // update velocity with Verlet integration
+        // actualizar la velocidad con la integración de Verlet
         body.velocity.x = (velocityPrevX * frictionAir * correction) + (body.force.x / body.mass) * deltaTimeSquared;
         body.velocity.y = (velocityPrevY * frictionAir * correction) + (body.force.y / body.mass) * deltaTimeSquared;
 
@@ -603,16 +603,16 @@ var Axes = _dereq_('../geometry/Axes');
         body.position.x += body.velocity.x;
         body.position.y += body.velocity.y;
 
-        // update angular velocity with Verlet integration
+        // actualizar la velocidad angular con la integración de Verlet
         body.angularVelocity = ((body.angle - body.anglePrev) * frictionAir * correction) + (body.torque / body.inertia) * deltaTimeSquared;
         body.anglePrev = body.angle;
         body.angle += body.angularVelocity;
 
-        // track speed and acceleration
+        // registro de velocidad y aceleración
         body.speed = Vector.magnitude(body.velocity);
         body.angularSpeed = Math.abs(body.angularVelocity);
 
-        // transform the body geometry
+        // transformar la geometría del cuerpo
         for (var i = 0; i < body.parts.length; i++) {
             var part = body.parts[i];
 
@@ -636,11 +636,11 @@ var Axes = _dereq_('../geometry/Axes');
     };
 
     /**
-     * Applies a force to a body from a given world-space position, including resulting torque.
-     * @method applyForce
-     * @param {body} body
-     * @param {vector} position
-     * @param {vector} force
+     * Aplica una fuerza a un cuerpo desde una determinada posición en el espacio del mundo, incluido el torque resultante.
+     * @method applyForce 
+     * @param {body} body - cuerpo
+     * @param {vector} position - posición
+     * @param {vector} force - fuerza
      */
     Body.applyForce = function(body, position, force) {
         body.force.x += force.x;
@@ -650,10 +650,10 @@ var Axes = _dereq_('../geometry/Axes');
     };
 
     /**
-     * Returns the sums of the properties of all compound parts of the parent body.
+     * Devuelve las sumas de las propiedades de todas las partes compuestas del cuerpo padre.
      * @method _totalProperties
      * @private
-     * @param {body} body
+     * @param {body} body - cuerpo
      * @return {}
      */
     var _totalProperties = function(body) {
@@ -667,7 +667,7 @@ var Axes = _dereq_('../geometry/Axes');
             centre: { x: 0, y: 0 }
         };
 
-        // sum the properties of all compound parts of the parent body
+        // sumar las propiedades de todas las partes compuestas del cuerpo padre
         for (var i = body.parts.length === 1 ? 0 : 1; i < body.parts.length; i++) {
             var part = body.parts[i];
             properties.mass += part.mass;
@@ -685,45 +685,45 @@ var Axes = _dereq_('../geometry/Axes');
 
     /*
     *
-    *  Events Documentation
+    *  Documentación de Eventos
     *
     */
 
     /**
-    * Fired when a body starts sleeping (where `this` is the body).
+    * Se dispara cuando un cuerpo comienza a dormir (donde `this` es el cuerpo).
     *
     * @event sleepStart
-    * @this {body} The body that has started sleeping
-    * @param {} event An event object
-    * @param {} event.source The source object of the event
-    * @param {} event.name The name of the event
+    * @this {body} The body that has started sleeping - El cuerpo que ha comenzado a dormir 
+    * @param {} event An event object - Un objeto de evento
+    * @param {} event.source The source object of the event - El objeto fuente del evento
+    * @param {} event.name The name of the event - El nombre del evento
     */
 
     /**
-    * Fired when a body ends sleeping (where `this` is the body).
+    * Se dispara cuando un cuerpo termina durmiendo (donde `this` es el cuerpo).
     *
     * @event sleepEnd
-    * @this {body} The body that has ended sleeping
-    * @param {} event An event object
-    * @param {} event.source The source object of the event
-    * @param {} event.name The name of the event
+    * @this {body} The body that has ended sleeping - El cuerpo que ha terminado durmiendo
+    * @param {} event An event object - Un objeto de evento
+    * @param {} event.source The source object of the event - El objeto fuente del evento
+    * @param {} event.name The name of the event - El nombre del evento
     */
 
     /*
     *
-    *  Properties Documentation
+    *  Documentación de Propiedades
     *
     */
 
     /**
-     * An integer `Number` uniquely identifying number generated in `Body.create` by `Common.nextId`.
+     * Un número entero de identificación única generado en `Body.create` by `Common.nextId`.
      *
      * @property id
      * @type number
      */
 
     /**
-     * A `String` denoting the type of object.
+     *Una `Cadena` que indica el tipo de objeto.
      *
      * @property type
      * @type string
@@ -732,7 +732,7 @@ var Axes = _dereq_('../geometry/Axes');
      */
 
     /**
-     * An arbitrary `String` name to help the user identify and manage bodies.
+     * Un nombre de `Cadena` arbitrario para ayudar al usuario a identificar y administrar los cuerpos.
      *
      * @property label
      * @type string
@@ -740,35 +740,35 @@ var Axes = _dereq_('../geometry/Axes');
      */
 
     /**
-     * An array of bodies that make up this body. 
-     * The first body in the array must always be a self reference to the current body instance.
-     * All bodies in the `parts` array together form a single rigid compound body.
-     * Parts are allowed to overlap, have gaps or holes or even form concave bodies.
-     * Parts themselves should never be added to a `World`, only the parent body should be.
-     * Use `Body.setParts` when setting parts to ensure correct updates of all properties.
+     * Una serie de cuerpos que componen este cuerpo.
+     * El primer cuerpo de la matriz siempre debe ser una referencia propia a la instancia del cuerpo actual.
+     * Todos los cuerpos de la matriz `parts` juntos forman un solo cuerpo compuesto rígido.
+     * Se permite que las piezas se superpongan, tengan huecos o agujeros o incluso formen cuerpos cóncavos.
+     * Las partes en sí mismas nunca deben agregarse a un `Mundo`, solo debe agregarse el cuerpo padre.
+     * Utilice `Body.setParts` cuando configure las piezas para garantizar las actualizaciones correctas de todas las propiedades.
      *
      * @property parts
      * @type body[]
      */
 
     /**
-     * An object reserved for storing plugin-specific properties.
+     * Un objeto reservado para almacenar propiedades específicas del complemento.
      *
      * @property plugin
      * @type {}
      */
 
     /**
-     * A self reference if the body is _not_ a part of another body.
-     * Otherwise this is a reference to the body that this is a part of.
-     * See `body.parts`.
+     * Una autorreferencia si el cuerpo _not_ es parte de otro cuerpo.
+     * De lo contrario, esta es una referencia al cuerpo del que forma parte.
+     * Ve `body.parts`.
      *
      * @property parent
      * @type body
      */
 
     /**
-     * A `Number` specifying the angle of the body, in radians.
+     * Un `Número` que especifica el ángulo del cuerpo, en radianes.
      *
      * @property angle
      * @type number
@@ -776,23 +776,23 @@ var Axes = _dereq_('../geometry/Axes');
      */
 
     /**
-     * An array of `Vector` objects that specify the convex hull of the rigid body.
-     * These should be provided about the origin `(0, 0)`. E.g.
+     * Una matriz de objetos `Vector` que especifican el envolvente convexo del cuerpo rígido.
+     * Estos deben proporcionarse sobre el origen `(0, 0)`. P.ej.
      *
      *     [{ x: 0, y: 0 }, { x: 25, y: 50 }, { x: 50, y: 0 }]
      *
-     * When passed via `Body.create`, the vertices are translated relative to `body.position` (i.e. world-space, and constantly updated by `Body.update` during simulation).
-     * The `Vector` objects are also augmented with additional properties required for efficient collision detection. 
+     * Cuando se pasa a través de `Body.create`, los vértices se traducen en relación con `body.position` (es decir, espacio del mundo, y `Body.update` lo actualiza constantemente durante la simulación).
+     * Los objetos `Vector` también se incrementan con propiedades adicionales necesarias para una detección de colisiones eficiente.
      *
-     * Other properties such as `inertia` and `bounds` are automatically calculated from the passed vertices (unless provided via `options`).
-     * Concave hulls are not currently supported. The module `Matter.Vertices` contains useful methods for working with vertices.
+     * Otras propiedades como `inercia` y `límmites` se calculan automáticamente a partir de los vértices pasados ​​(a menos que se proporcionen mediante `options`).
+     * Los envolventes cóncavos no son compatibles actualmente. El módulo `Matter.Vertices` contiene métodos útiles para trabajar con vértices.
      *
      * @property vertices
      * @type vector[]
      */
 
     /**
-     * A `Vector` that specifies the current world-space position of the body.
+     * Un `Vector` que especifica la posición actual del cuerpo en el espacio del mundo.
      *
      * @property position
      * @type vector
@@ -800,7 +800,7 @@ var Axes = _dereq_('../geometry/Axes');
      */
 
     /**
-     * A `Vector` that specifies the force to apply in the current step. It is zeroed after every `Body.update`. See also `Body.applyForce`.
+     * Un `Vector` que especifica la fuerza que se aplicará en el paso actual. Se pone a cero después de cada `Body.update`. Consulte también `Body.applyForce`.
      *
      * @property force
      * @type vector
@@ -808,7 +808,7 @@ var Axes = _dereq_('../geometry/Axes');
      */
 
     /**
-     * A `Number` that specifies the torque (turning force) to apply in the current step. It is zeroed after every `Body.update`.
+     * Un `Número`  que especifica el torque (fuerza de giro) que se aplicará en el paso actual. Se pone a cero después de cada `Body.update`.
      *
      * @property torque
      * @type number
@@ -816,8 +816,8 @@ var Axes = _dereq_('../geometry/Axes');
      */
 
     /**
-     * A `Number` that _measures_ the current speed of the body after the last `Body.update`. It is read-only and always positive (it's the magnitude of `body.velocity`).
-     *
+     * Un `Número` _ measures_ (mide) la velocidad actual del cuerpo después de la última ` Body.update`. Es de solo lectura y siempre positivo (es la magnitud de `body.velocity`).
+     * 
      * @readOnly
      * @property speed
      * @type number
@@ -825,222 +825,222 @@ var Axes = _dereq_('../geometry/Axes');
      */
 
     /**
-     * A `Number` that _measures_ the current angular speed of the body after the last `Body.update`. It is read-only and always positive (it's the magnitude of `body.angularVelocity`).
+     * Un `Número` que _ measures_ (mide) la velocidad angular actual del cuerpo después de la última ` Body.update`. Es de solo lectura y siempre positivo (es la magnitud de `body.angularVelocity`).
      *
      * @readOnly
-     * @property angularSpeed
-     * @type number
+     * @property angularSpeed 
+     * @type number - número
      * @default 0
      */
 
     /**
-     * A `Vector` that _measures_ the current velocity of the body after the last `Body.update`. It is read-only. 
-     * If you need to modify a body's velocity directly, you should either apply a force or simply change the body's `position` (as the engine uses position-Verlet integration).
+     * Un `Vector` que _ measures_ (mide) la velocidad actual del cuerpo después de la última` Body.update`. Es de solo lectura. 
+     * Si necesitas modificar la velocidad de un cuerpo directamente, debes aplicar una fuerza o simplemente cambiar la `posición` del cuerpo (ya que el motor utiliza la integración de Verlet en la posición).
      *
      * @readOnly
-     * @property velocity
+     * @property velocity - velocidad
      * @type vector
      * @default { x: 0, y: 0 }
      */
 
     /**
-     * A `Number` that _measures_ the current angular velocity of the body after the last `Body.update`. It is read-only. 
-     * If you need to modify a body's angular velocity directly, you should apply a torque or simply change the body's `angle` (as the engine uses position-Verlet integration).
+     * Un `Número` que _measures_ (mide) la velocidad angular actual del cuerpo después de la última ` Body.update`. Es de solo lectura.
+     * Si necesitas modificar la velocidad angular de un cuerpo directamente, debes aplicar un torqe o simplemente cambiar el `angulo` del cuerpo (ya que el motor utiliza la integración de Verlet en la posición).
      *
      * @readOnly
      * @property angularVelocity
-     * @type number
+     * @type number - número
      * @default 0
      */
 
     /**
-     * A flag that indicates whether a body is considered static. A static body can never change position or angle and is completely fixed.
-     * If you need to set a body as static after its creation, you should use `Body.setStatic` as this requires more than just setting this flag.
+     * Una marca que indica si un cuerpo se considera estático. Un cuerpo estático nunca puede cambiar de posición o ángulo y está completamente fijo.
+     * Si necesitas configurar un cuerpo como estático después de su creación, debes usar `Body.setStatic` ya que esto requiere más que solo configurar esta marca.
      *
      * @property isStatic
      * @type boolean
-     * @default false
+     * @default false - falso
      */
 
     /**
-     * A flag that indicates whether a body is a sensor. Sensor triggers collision events, but doesn't react with colliding body physically.
+     * Una marca que indica si un cuerpo es un sensor. El sensor desencadena eventos de colisión, pero no reacciona físicamente con el cuerpo que choca.
      *
      * @property isSensor
      * @type boolean
-     * @default false
+     * @default false - falso
      */
 
     /**
-     * A flag that indicates whether the body is considered sleeping. A sleeping body acts similar to a static body, except it is only temporary and can be awoken.
-     * If you need to set a body as sleeping, you should use `Sleeping.set` as this requires more than just setting this flag.
+     * Una marca que indica si el cuerpo se considera dormido. Un cuerpo dormido actúa de manera similar a un cuerpo estático, excepto que es solo temporal y puede despertarse.
+     * Si necesitas configurar un cuerpo como durmiente, debes usar `Sleeping.set` ya que esto requiere más que solo configurar esta marca.
      *
      * @property isSleeping
      * @type boolean
-     * @default false
+     * @default false - falso
      */
 
     /**
-     * A `Number` that _measures_ the amount of movement a body currently has (a combination of `speed` and `angularSpeed`). It is read-only and always positive.
-     * It is used and updated by the `Matter.Sleeping` module during simulation to decide if a body has come to rest.
+     * Un `Número` que _ measures_ (mide) la cantidad de movimiento que tiene un cuerpo actualmente (una combinación de ` velocidad` y `velocidad angular`). Es de solo lectura y siempre positivo.
+     * Es utilizado y actualizado por el módulo `Matter.Sleeping` durante la simulación para decidir si un cuerpo se ha detenido.
      *
      * @readOnly
      * @property motion
-     * @type number
+     * @type number - número
      * @default 0
      */
 
     /**
-     * A `Number` that defines the number of updates in which this body must have near-zero velocity before it is set as sleeping by the `Matter.Sleeping` module (if sleeping is enabled by the engine).
+     * Un "Número" que define el número de actualizaciones en las que este cuerpo debe tener una velocidad cercana a cero antes de que el módulo "Matter.Sleeping" lo establezca como inactivo (si el motor habilita el modo inactivo).
      *
      * @property sleepThreshold
-     * @type number
+     * @type number número
      * @default 60
      */
 
     /**
-     * A `Number` that defines the density of the body, that is its mass per unit area.
-     * If you pass the density via `Body.create` the `mass` property is automatically calculated for you based on the size (area) of the object.
-     * This is generally preferable to simply setting mass and allows for more intuitive definition of materials (e.g. rock has a higher density than wood).
+     * Un `Número` que define la densidad del cuerpo, es decir, su masa por unidad de área.
+     * Si pasas la densidad a través de `Body.create`, la propiedad ` masa` se calcula automáticamente según el tamaño (área) del objeto.
+     * Por lo general, esto es preferible a simplemente establecer la masa y permite una definición más intuitiva de los materiales (por ejemplo, la roca tiene una densidad más alta que la madera).
      *
-     * @property density
-     * @type number
+     * @property density - densidad
+     * @type number - número
      * @default 0.001
      */
 
     /**
-     * A `Number` that defines the mass of the body, although it may be more appropriate to specify the `density` property instead.
-     * If you modify this value, you must also modify the `body.inverseMass` property (`1 / mass`).
+     * Un `Número` que define la masa del cuerpo, aunque puede ser más apropiado especificar la propiedad `densidad` en su lugar.
+     * Si modificas este valor, también debes modificar la propiedad `body.inverseMass` (` 1 / mass`).
      *
-     * @property mass
-     * @type number
+     * @property mass - masa
+     * @type number - número
      */
 
     /**
-     * A `Number` that defines the inverse mass of the body (`1 / mass`).
-     * If you modify this value, you must also modify the `body.mass` property.
+     * Un `Número` que define la masa inversa del cuerpo ("1 / masa").
+     * Si modificas este valor, también debes modificar la propiedad `body.mass`.
      *
      * @property inverseMass
-     * @type number
+     * @type number - número
      */
 
     /**
-     * A `Number` that defines the moment of inertia (i.e. second moment of area) of the body.
-     * It is automatically calculated from the given convex hull (`vertices` array) and density in `Body.create`.
-     * If you modify this value, you must also modify the `body.inverseInertia` property (`1 / inertia`).
+     * Un `Número` que define el momento de inercia (es decir, segundo momento de área) del cuerpo.
+     * Se calcula automáticamente a partir del envolvente convexo dado (matriz `vértices`) y la densidad en `Body.create`.
+     * Si modificas este valor, también debes modificar la propiedad `body.inverseInertia` (`1 / inercia`).
      *
-     * @property inertia
-     * @type number
+     * @property inertia - inercia
+     * @type number - número
      */
 
     /**
-     * A `Number` that defines the inverse moment of inertia of the body (`1 / inertia`).
-     * If you modify this value, you must also modify the `body.inertia` property.
+     * Un `Número` que define el momento inverso de inercia del cuerpo ("1 / inercia").
+     * Si modificas este valor, también debes modificar la propiedad `body.inertia`.
      *
      * @property inverseInertia
      * @type number
      */
 
     /**
-     * A `Number` that defines the restitution (elasticity) of the body. The value is always positive and is in the range `(0, 1)`.
-     * A value of `0` means collisions may be perfectly inelastic and no bouncing may occur. 
-     * A value of `0.8` means the body may bounce back with approximately 80% of its kinetic energy.
-     * Note that collision response is based on _pairs_ of bodies, and that `restitution` values are _combined_ with the following formula:
+     * Un `Número` que define la restitución (elasticidad) del cuerpo. El valor es siempre positivo y está en el rango "(0, 1)".
+     * Un valor de "0" significa que las colisiones pueden ser perfectamente inelásticas y no pueden producirse rebotes.
+     * Un valor de "0.8" significa que el cuerpo puede recuperarse con aproximadamente el 80% de su energía cinética.
+     * Ten en cuenta que la respuesta de colisión se basa en _pairs_ (pars) de cuerpos, y que los valores de `restitución`  se _combined_ (combinan) con la siguiente fórmula:
      *
      *     Math.max(bodyA.restitution, bodyB.restitution)
      *
-     * @property restitution
-     * @type number
+     * @property restitution - restitución
+     * @type number - número
      * @default 0
      */
 
     /**
-     * A `Number` that defines the friction of the body. The value is always positive and is in the range `(0, 1)`.
-     * A value of `0` means that the body may slide indefinitely.
-     * A value of `1` means the body may come to a stop almost instantly after a force is applied.
+     * Un `Número` que define la fricción del cuerpo. El valor es siempre positivo y está en el rango "(0, 1)".
+     * Un valor de "0" significa que el cuerpo puede deslizarse indefinidamente.
+     * Un valor de "1" significa que el cuerpo puede detenerse casi instantáneamente después de aplicar una fuerza.
      *
-     * The effects of the value may be non-linear. 
-     * High values may be unstable depending on the body.
-     * The engine uses a Coulomb friction model including static and kinetic friction.
-     * Note that collision response is based on _pairs_ of bodies, and that `friction` values are _combined_ with the following formula:
+     * Los efectos del valor pueden no ser lineales. 
+     * Los valores altos pueden ser inestables según el cuerpo.
+     * El motor utiliza un modelo de fricción de Coulomb que incluye fricción estática y cinética.
+     * Ten en cuenta que la respuesta a la colisión se basa en _pairs_ (pares) de cuerpos, y que los valores de `fricción` se _combined_ (combinan) con la siguiente fórmula:
      *
      *     Math.min(bodyA.friction, bodyB.friction)
      *
-     * @property friction
-     * @type number
+     * @property friction - fricción
+     * @type number - número
      * @default 0.1
      */
 
     /**
-     * A `Number` that defines the static friction of the body (in the Coulomb friction model). 
-     * A value of `0` means the body will never 'stick' when it is nearly stationary and only dynamic `friction` is used.
-     * The higher the value (e.g. `10`), the more force it will take to initially get the body moving when nearly stationary.
-     * This value is multiplied with the `friction` property to make it easier to change `friction` and maintain an appropriate amount of static friction.
+     * Un "Número" que define la fricción estática del cuerpo (en el modelo de fricción de Coulomb). 
+     * Un valor de `0` significa que el cuerpo nunca se 'fijará' cuando esté casi estacionario y solo se utiliza la `fricción` dinámica.
+     * Cuanto mayor sea el valor (por ejemplo, `10`), más fuerza se necesitará para que el cuerpo se mueva inicialmente cuando esté casi parado.
+     * Este valor se multiplica por la propiedad de `fricción` para facilitar el cambio de `fricción` y mantener una cantidad adecuada de fricción estática.
      *
      * @property frictionStatic
-     * @type number
+     * @type number - número
      * @default 0.5
      */
 
     /**
-     * A `Number` that defines the air friction of the body (air resistance). 
-     * A value of `0` means the body will never slow as it moves through space.
-     * The higher the value, the faster a body slows when moving through space.
-     * The effects of the value are non-linear. 
+     * Un `Número` que define la fricción del aire del cuerpo (resistencia del aire).
+     * Un valor de `0` significa que el cuerpo nunca se ralentizará mientras se mueve por el espacio.
+     * Cuanto mayor sea el valor, más rápido se ralentiza un cuerpo cuando se mueve por el espacio.
+     * Los efectos del valor no son lineales.
      *
      * @property frictionAir
-     * @type number
+     * @type number - número
      * @default 0.01
      */
 
     /**
-     * An `Object` that specifies the collision filtering properties of this body.
+     * Un `Objeto` que especifica las propiedades de filtrado de colisiones de este cuerpo.
      *
-     * Collisions between two bodies will obey the following rules:
-     * - If the two bodies have the same non-zero value of `collisionFilter.group`,
-     *   they will always collide if the value is positive, and they will never collide
-     *   if the value is negative.
-     * - If the two bodies have different values of `collisionFilter.group` or if one
-     *   (or both) of the bodies has a value of 0, then the category/mask rules apply as follows:
+     * Las colisiones entre dos cuerpos obedecerán las siguientes reglas:
+     * - Si los dos cuerpos tienen el mismo valor distinto de cero de `collisionFilter.group`,
+     *   siempre chocarán si el valor es positivo, y nunca chocarán* siempre chocarán si el valor es positivo, y nunca chocarán
+     *   si el valor es negativo.
+     * - Si los dos cuerpos tienen valores diferentes de `collisionFilter.group` o si uno
+     *   (o ambos) de los cuerpos tiene un valor de 0, entonces las reglas de categoría / máscara se aplican de la siguiente manera:
      *
-     * Each body belongs to a collision category, given by `collisionFilter.category`. This
-     * value is used as a bit field and the category should have only one bit set, meaning that
-     * the value of this property is a power of two in the range [1, 2^31]. Thus, there are 32
-     * different collision categories available.
+     * Cada cuerpo pertenece a una categoría de colisión, dada por `collisionFilter.category`. Este
+     * valor se utiliza como un campo de bits y la categoría debe tener solo un bit establecido, lo que significa que
+     * el valor de esta propiedad es una potencia de dos en el rango [1,2^31]. Por lo tanto, hay 32
+     * diferentes categorías de colisión disponibles.
      *
-     * Each body also defines a collision bitmask, given by `collisionFilter.mask` which specifies
-     * the categories it collides with (the value is the bitwise AND value of all these categories).
+     * Cada cuerpo también define una máscara de bits de colisión, dada por `collisionFilter.mask` que especifica
+     * las categorías con las que colisiona (el valor es la operación bit a bit AND de todas las categorías).
      *
-     * Using the category/mask rules, two bodies `A` and `B` collide if each includes the other's
-     * category in its mask, i.e. `(categoryA & maskB) !== 0` and `(categoryB & maskA) !== 0`
-     * are both true.
+     * Usando las reglas de categoría / máscara, dos cuerpos `A` y` B` chocan si cada uno incluye al otro.
+     * categoría en su máscara, es decir, `(categoryA y maskB)! == 0` y` (categoryB y maskA)! == 0`
+     * ambas son ciertas
      *
      * @property collisionFilter
      * @type object
      */
 
     /**
-     * An Integer `Number`, that specifies the collision group this body belongs to.
-     * See `body.collisionFilter` for more information.
+     * Un `Número` entero que especifica el grupo de colisión al que pertenece este cuerpo.
+     * Consulta `body.collisionFilter` para obtener más información.
      *
      * @property collisionFilter.group
-     * @type object
+     * @type object - objeto
      * @default 0
      */
 
     /**
-     * A bit field that specifies the collision category this body belongs to.
-     * The category value should have only one bit set, for example `0x0001`.
-     * This means there are up to 32 unique collision categories available.
-     * See `body.collisionFilter` for more information.
+     * Un campo de bits que especifica la categoría de colisión a la que pertenece este cuerpo.
+     * El valor de la categoría debe tener solo un bit establecido, por ejemplo, `0x0001`.
+     * Esto significa que hay hasta 32 categorías de colisión únicas disponibles.
+     * Consulta `body.collisionFilter` para obtener más información.
      *
      * @property collisionFilter.category
-     * @type object
+     * @type object - objeto
      * @default 1
      */
 
     /**
-     * A bit mask that specifies the collision categories this body may collide with.
-     * See `body.collisionFilter` for more information.
+     * Una máscara de bits que especifica las categorías de colisión con las que este cuerpo puede colisionar.
+     * Consulte `body.collisionFilter` para obtener más información.
      *
      * @property collisionFilter.mask
      * @type object
@@ -1048,154 +1048,154 @@ var Axes = _dereq_('../geometry/Axes');
      */
 
     /**
-     * A `Number` that specifies a tolerance on how far a body is allowed to 'sink' or rotate into other bodies.
-     * Avoid changing this value unless you understand the purpose of `slop` in physics engines.
-     * The default should generally suffice, although very large bodies may require larger values for stable stacking.
+     * Un `Número` que especifica una tolerancia sobre hasta qué punto se permite que un cuerpo se 'sink' o gire hacia otros cuerpos.
+     * Evita cambiar este valor a menos que comprenda el propósito de `slop` en los motores físicos.
+     * Generalmente, el valor predeterminado debería ser suficiente, aunque los cuerpos muy grandes pueden requerir valores mayores para un apilamiento estable.
      *
      * @property slop
-     * @type number
+     * @type number - número
      * @default 0.05
      */
 
     /**
-     * A `Number` that allows per-body time scaling, e.g. a force-field where bodies inside are in slow-motion, while others are at full speed.
+     * Un `Número` que permite escalar el tiempo por cuerpo, p. Ej. un campo de fuerza en el que los cuerpos del interior están en cámara lenta, mientras que otros lo hacen a toda velocidad.
      *
      * @property timeScale
-     * @type number
+     * @type number - número
      * @default 1
      */
 
     /**
-     * An `Object` that defines the rendering properties to be consumed by the module `Matter.Render`.
+     * Un `Objeto` que define las propiedades de renderizado que consumirá el módulo `Matter.Render`.
      *
-     * @property render
-     * @type object
+     * @property render - renderizar
+     * @type object - objeto
      */
 
     /**
-     * A flag that indicates if the body should be rendered.
+     * Una marca que indica si se debe renderizar el cuerpo.
      *
      * @property render.visible
      * @type boolean
-     * @default true
+     * @default true - verdadero
      */
 
     /**
-     * Sets the opacity to use when rendering.
+     * Establece la opacidad que se utilizará al renderizar.
      *
      * @property render.opacity
-     * @type number
+     * @type number - número
      * @default 1
     */
 
     /**
-     * An `Object` that defines the sprite properties to use when rendering, if any.
+     * Un `Objeto` que define las propiedades del sprite que se usarán al renderizar, si las hay.
      *
      * @property render.sprite
-     * @type object
+     * @type object - objeto
      */
 
     /**
-     * An `String` that defines the path to the image to use as the sprite texture, if any.
+     * Una `Cadena` que define la ruta a la imagen que se utilizará como textura del sprite, si corresponde.
      *
      * @property render.sprite.texture
-     * @type string
+     * @type string - cadena
      */
      
     /**
-     * A `Number` that defines the scaling in the x-axis for the sprite, if any.
+     * Un `Número` que define la escala en el eje x del sprite, si lo hubiera.
      *
      * @property render.sprite.xScale
-     * @type number
+     * @type number - número
      * @default 1
      */
 
     /**
-     * A `Number` that defines the scaling in the y-axis for the sprite, if any.
+     * Un `Número` que define la escala en el eje y del sprite, si lo hay.
      *
      * @property render.sprite.yScale
-     * @type number
+     * @type number - número
      * @default 1
      */
 
      /**
-      * A `Number` that defines the offset in the x-axis for the sprite (normalised by texture width).
+      * Un `Número` que define el desplazamiento en el eje x del sprite (normalizado por el ancho de la textura).
       *
       * @property render.sprite.xOffset
-      * @type number
+      * @type number - número
       * @default 0
       */
 
      /**
-      * A `Number` that defines the offset in the y-axis for the sprite (normalised by texture height).
+      * Un `Número` que define el desplazamiento en el eje y para el objeto (normalizado por la altura de la textura).
       *
       * @property render.sprite.yOffset
-      * @type number
+      * @type number - número
       * @default 0
       */
 
     /**
-     * A `Number` that defines the line width to use when rendering the body outline (if a sprite is not defined).
-     * A value of `0` means no outline will be rendered.
+     * Un `Número` que define el ancho de línea que se utilizará al representar el contorno del cuerpo (si no se define un sprite).
+     * Un valor de `0` significa que no se representará ningún contorno.
      *
      * @property render.lineWidth
-     * @type number
+     * @type number - número
      * @default 1.5
      */
 
     /**
-     * A `String` that defines the fill style to use when rendering the body (if a sprite is not defined).
-     * It is the same as when using a canvas, so it accepts CSS style property values.
+     * Una `Cadena` que define el estilo de relleno que se utilizará al representar el cuerpo (si no se define un sprite).
+     * Es lo mismo que cuando se usa un lienzo, por lo que acepta valores de propiedad de estilo CSS.
      *
      * @property render.fillStyle
-     * @type string
-     * @default a random colour
+     * @type string - cadena
+     * @default a random colour - un color aleatorio	
      */
 
     /**
-     * A `String` that defines the stroke style to use when rendering the body outline (if a sprite is not defined).
-     * It is the same as when using a canvas, so it accepts CSS style property values.
+     * Una `Cadena` que define el estilo de trazo que se utilizará al representar el contorno del cuerpo (si no se define un sprite).
+     * Es lo mismo que cuando se usa un lienzo, por lo que acepta valores de propiedad de estilo CSS.
      *
      * @property render.strokeStyle
-     * @type string
-     * @default a random colour
+     * @type string - cadena
+     * @default a random colour - un color aleatorio
      */
 
     /**
-     * An array of unique axis vectors (edge normals) used for collision detection.
-     * These are automatically calculated from the given convex hull (`vertices` array) in `Body.create`.
-     * They are constantly updated by `Body.update` during the simulation.
+     * Una matriz de vectores de eje únicos (normales  borde) que se utilizan para la detección de colisiones.
+     * Estos se calculan automáticamente a partir del envolvente convexo dado (`vértices` array) en `Body.create`.
+     * Durante la simulación constantemente los actualiza `Body.update`
      *
-     * @property axes
+     * @property axes - ejes
      * @type vector[]
      */
      
     /**
-     * A `Number` that _measures_ the area of the body's convex hull, calculated at creation by `Body.create`.
+     * Un `Número` que _ measures_ (mide) el área del envolvente convexo del cuerpo, calculado en el momento de la creación por `Body.create`.
      *
-     * @property area
-     * @type string
+     * @property area - área
+     * @type string - cadena
      * @default 
      */
 
     /**
-     * A `Bounds` object that defines the AABB region for the body.
-     * It is automatically calculated from the given convex hull (`vertices` array) in `Body.create` and constantly updated by `Body.update` during simulation.
+     * Un objeto "Límites" que define la región AABB del cuerpo.
+     * Se calcula automáticamente a partir del envolvente convexo dado ("vértices" array) en "Body.create" y "Body.update" lo actualiza constantemente durante la simulación.
      *
-     * @property bounds
-     * @type bounds
+     * @property bounds - límites
+     * @type bounds - límites
      */
 
 })();
 
 },{"../core/Common":14,"../core/Sleeping":22,"../geometry/Axes":25,"../geometry/Bounds":26,"../geometry/Vector":28,"../geometry/Vertices":29,"../render/Render":31}],2:[function(_dereq_,module,exports){
 /**
-* The `Matter.Composite` module contains methods for creating and manipulating composite bodies.
+* El módulo `Matter.Composite` contiene métodos para crear y manipular cuerpos compuestos.
 * A composite body is a collection of `Matter.Body`, `Matter.Constraint` and other `Matter.Composite`, therefore composites form a tree structure.
-* It is important to use the functions in this module to modify composites, rather than directly modifying their properties.
-* Note that the `Matter.World` object is also a type of `Matter.Composite` and as such all composite methods here can also operate on a `Matter.World`.
+* Es importante utilizar las funciones de este módulo para modificar compuestos, en lugar de modificar directamente sus propiedades.
+* Ten en cuenta que el objeto `Matter.World` también es un tipo de` Matter.Composite` y, como tal, todos los métodos compuestos aquí también pueden operar en un `Matter.World`.
 *
-* See the included usage [examples](https://github.com/liabru/matter-js/tree/master/examples).
+* Ve el uso incluido [ejemplos](https://github.com/liabru/matter-js/tree/master/examples).
 *
 * @class Composite
 */
@@ -1211,11 +1211,11 @@ var Body = _dereq_('./Body');
 (function() {
 
     /**
-     * Creates a new composite. The options parameter is an object that specifies any properties you wish to override the defaults.
-     * See the properites section below for detailed information on what you can pass via the `options` object.
-     * @method create
+     * Crea un nuevo compuesto. El parámetro de opciones es un objeto que especifica cualquier propiedad que desees anular de los valores predeterminados.
+     * Consulte la sección de propiedades a continuación para obtener información detallada sobre lo que puede pasar a través del objeto `options`.
+     * @method create - crear
      * @param {} [options]
-     * @return {composite} A new composite
+     * @return {composite} A new composite - Un nuevo compuesto
      */
     Composite.create = function(options) {
         return Common.extend({ 
@@ -1232,7 +1232,7 @@ var Body = _dereq_('./Body');
     };
 
     /**
-     * Sets the composite's `isModified` flag. 
+     * Establece la marca 'isModified' del compuesto.
      * If `updateParents` is true, all parents will be set (default: false).
      * If `updateChildren` is true, all children will be set (default: false).
      * @method setModified
@@ -1257,12 +1257,12 @@ var Body = _dereq_('./Body');
     };
 
     /**
-     * Generic add function. Adds one or many body(s), constraint(s) or a composite(s) to the given composite.
-     * Triggers `beforeAdd` and `afterAdd` events on the `composite`.
-     * @method add
-     * @param {composite} composite
-     * @param {} object
-     * @return {composite} The original composite with the objects added
+     * Función de adición genérica. Agrega uno o varios cuerpos, restricciones o un compuesto al compuesto dado.
+     * Activa los eventos `beforeAdd` y `afterAdd` en el `composite`.
+     * @method add - agregar
+     * @param {composite} composite - compuesto
+     * @param {} object - objeto
+     * @return {composite} El compuesto original con los objetos añadidos.
      */
     Composite.add = function(composite, object) {
         var objects = [].concat(object);
@@ -1275,9 +1275,9 @@ var Body = _dereq_('./Body');
             switch (obj.type) {
 
             case 'body':
-                // skip adding compound parts
+                // omitir la adición de partes compuestas
                 if (obj.parent !== obj) {
-                    Common.warn('Composite.add: skipped adding a compound body part (you must add its parent instead)');
+                    Common.warn('Composite.add: omite agregar una parte de cuerpo compuesta (debes agregar su padre en su lugar) ');
                     break;
                 }
 
@@ -1302,14 +1302,14 @@ var Body = _dereq_('./Body');
     };
 
     /**
-     * Generic remove function. Removes one or many body(s), constraint(s) or a composite(s) to the given composite.
-     * Optionally searching its children recursively.
-     * Triggers `beforeRemove` and `afterRemove` events on the `composite`.
-     * @method remove
-     * @param {composite} composite
-     * @param {} object
+     * Función de eliminación genérica. Elimina uno o varios cuerpos, restricciones o un compuesto al compuesto dado.
+     * Opcionalmente buscando a sus elementos secundarios recursivamente.
+     * Activa los eventos `beforeRemove` y `afterRemove` en el `composite`.
+     * @method remove - remover
+     * @param {composite} composite - compuesto
+     * @param {} object - objeto
      * @param {boolean} [deep=false]
-     * @return {composite} The original composite with the objects removed
+     * @return {composite} El compuesto original con los objetos eliminados.
      */
     Composite.remove = function(composite, object, deep) {
         var objects = [].concat(object);
@@ -1343,12 +1343,12 @@ var Body = _dereq_('./Body');
     };
 
     /**
-     * Adds a composite to the given composite.
+     * Agrega un compuesto al compuesto dado.
      * @private
      * @method addComposite
      * @param {composite} compositeA
      * @param {composite} compositeB
-     * @return {composite} The original compositeA with the objects from compositeB added
+     * @return {composite} El compositeA original con los objetos del compositeB agregados
      */
     Composite.addComposite = function(compositeA, compositeB) {
         compositeA.composites.push(compositeB);
@@ -1358,13 +1358,13 @@ var Body = _dereq_('./Body');
     };
 
     /**
-     * Removes a composite from the given composite, and optionally searching its children recursively.
+     * Elimina un compuesto del compuesto dado y, opcionalmente, busca sus elementos secundarios de forma recursiva.
      * @private
      * @method removeComposite
      * @param {composite} compositeA
      * @param {composite} compositeB
      * @param {boolean} [deep=false]
-     * @return {composite} The original compositeA with the composite removed
+     * @return {composite} El compositeA original con el compuesto eliminado
      */
     Composite.removeComposite = function(compositeA, compositeB, deep) {
         var position = Common.indexOf(compositeA.composites, compositeB);
@@ -1383,12 +1383,12 @@ var Body = _dereq_('./Body');
     };
 
     /**
-     * Removes a composite from the given composite.
+     * Elimina un compuesto del compuesto dado.
      * @private
      * @method removeCompositeAt
-     * @param {composite} composite
-     * @param {number} position
-     * @return {composite} The original composite with the composite removed
+     * @param {composite} composite - compuesto
+     * @param {number} position - posición
+     * @return {composite} El compuesto original con el compuesto eliminado
      */
     Composite.removeCompositeAt = function(composite, position) {
         composite.composites.splice(position, 1);
@@ -1397,12 +1397,12 @@ var Body = _dereq_('./Body');
     };
 
     /**
-     * Adds a body to the given composite.
+     * Agrega un cuerpo al compuesto dado.
      * @private
      * @method addBody
-     * @param {composite} composite
-     * @param {body} body
-     * @return {composite} The original composite with the body added
+     * @param {composite} composite - compuesto
+     * @param {body} body - cuerpo
+     * @return {composite} El compuesto original con el cuerpo añadido
      */
     Composite.addBody = function(composite, body) {
         composite.bodies.push(body);
@@ -1411,13 +1411,13 @@ var Body = _dereq_('./Body');
     };
 
     /**
-     * Removes a body from the given composite, and optionally searching its children recursively.
+     * Elimina un cuerpo del compuesto dado y, opcionalmente, busca sus elementos secundarios de forma recursiva.
      * @private
      * @method removeBody
-     * @param {composite} composite
-     * @param {body} body
+     * @param {composite} composite - compuesto
+     * @param {body} body - cuerpo
      * @param {boolean} [deep=false]
-     * @return {composite} The original composite with the body removed
+     * @return {composite} El compuesto original con el cuerpo retirado
      */
     Composite.removeBody = function(composite, body, deep) {
         var position = Common.indexOf(composite.bodies, body);
@@ -1436,12 +1436,12 @@ var Body = _dereq_('./Body');
     };
 
     /**
-     * Removes a body from the given composite.
+     * Elimina un cuerpo del compuesto dado.
      * @private
      * @method removeBodyAt
-     * @param {composite} composite
-     * @param {number} position
-     * @return {composite} The original composite with the body removed
+     * @param {composite} composite - compuesto
+     * @param {number} position - posición
+     * @return {composite} El compuesto original con el cuerpo removido
      */
     Composite.removeBodyAt = function(composite, position) {
         composite.bodies.splice(position, 1);
@@ -1450,12 +1450,12 @@ var Body = _dereq_('./Body');
     };
 
     /**
-     * Adds a constraint to the given composite.
+     * Agrega una restricción al compuesto dado.
      * @private
      * @method addConstraint
-     * @param {composite} composite
-     * @param {constraint} constraint
-     * @return {composite} The original composite with the constraint added
+     * @param {composite} composite - compuesto
+     * @param {constraint} constraint - restricción
+     * @return {composite} El compuesto original con la restricción agregada
      */
     Composite.addConstraint = function(composite, constraint) {
         composite.constraints.push(constraint);
@@ -1464,13 +1464,13 @@ var Body = _dereq_('./Body');
     };
 
     /**
-     * Removes a constraint from the given composite, and optionally searching its children recursively.
+     * Elimina una restricción del compuesto dado y, opcionalmente, busca sus elementos secundarios de forma recursiva.
      * @private
      * @method removeConstraint
-     * @param {composite} composite
-     * @param {constraint} constraint
+     * @param {composite} composite - compuesto
+     * @param {constraint} constraint - restricción
      * @param {boolean} [deep=false]
-     * @return {composite} The original composite with the constraint removed
+     * @return {composite} El compuesto original con la restricción eliminada
      */
     Composite.removeConstraint = function(composite, constraint, deep) {
         var position = Common.indexOf(composite.constraints, constraint);
@@ -1488,12 +1488,12 @@ var Body = _dereq_('./Body');
     };
 
     /**
-     * Removes a body from the given composite.
+     * Elimina un cuerpo del compuesto dado.
      * @private
      * @method removeConstraintAt
-     * @param {composite} composite
-     * @param {number} position
-     * @return {composite} The original composite with the constraint removed
+     * @param {composite} composite - compuesto
+     * @param {number} position - posición
+     * @return {composite} El compuesto original con la restricción eliminada
      */
     Composite.removeConstraintAt = function(composite, position) {
         composite.constraints.splice(position, 1);
@@ -1502,10 +1502,10 @@ var Body = _dereq_('./Body');
     };
 
     /**
-     * Removes all bodies, constraints and composites from the given composite.
-     * Optionally clearing its children recursively.
+     * Elimina todos los cuerpos, restricciones y compuestos del compuesto dado.
+     * Opcionalmente despejando a sus elementos secundarios recursivamente.
      * @method clear
-     * @param {composite} composite
+     * @param {composite} composite - compuesto
      * @param {boolean} keepStatic
      * @param {boolean} [deep=false]
      */
@@ -1530,10 +1530,10 @@ var Body = _dereq_('./Body');
     };
 
     /**
-     * Returns all bodies in the given composite, including all bodies in its children, recursively.
+     * Devuelve todos los cuerpos del compuesto dado, incluidos todos los cuerpos de sus elementos secundarios, de forma recursiva.
      * @method allBodies
-     * @param {composite} composite
-     * @return {body[]} All the bodies
+     * @param {composite} composite - compuesto
+     * @return {body[]} Todos los cuerpos
      */
     Composite.allBodies = function(composite) {
         var bodies = [].concat(composite.bodies);
@@ -1545,10 +1545,10 @@ var Body = _dereq_('./Body');
     };
 
     /**
-     * Returns all constraints in the given composite, including all constraints in its children, recursively.
+     * Devuelve todas las restricciones en el compuesto dado, incluidas todas las restricciones en sus elementos secundarios, de forma recursiva.
      * @method allConstraints
-     * @param {composite} composite
-     * @return {constraint[]} All the constraints
+     * @param {composite} composite - compuesto
+     * @return {constraint[]} Todas las restricciones
      */
     Composite.allConstraints = function(composite) {
         var constraints = [].concat(composite.constraints);
@@ -1560,10 +1560,10 @@ var Body = _dereq_('./Body');
     };
 
     /**
-     * Returns all composites in the given composite, including all composites in its children, recursively.
+     * Devuelve todos los compuestos en el compuesto dado, incluidos todos los compuestos en sus elementos secundarios, de forma recursiva.
      * @method allComposites
-     * @param {composite} composite
-     * @return {composite[]} All the composites
+     * @param {composite} composite - compuesto
+     * @return {composite[]} Todos los compuestos
      */
     Composite.allComposites = function(composite) {
         var composites = [].concat(composite.composites);
@@ -1575,12 +1575,12 @@ var Body = _dereq_('./Body');
     };
 
     /**
-     * Searches the composite recursively for an object matching the type and id supplied, null if not found.
-     * @method get
-     * @param {composite} composite
-     * @param {number} id
-     * @param {string} type
-     * @return {object} The requested object, if found
+     * Busca en el compuesto de forma recursiva un objeto que coincida con el tipo y la identificación suministrados, nulo si no se encuentra.
+     * @method get - obtener
+     * @param {composite} composite - compuesto
+     * @param {number} id - identificación
+     * @param {string} type - tipo
+     * @return {object} El objeto solicitado, si se encuentra
      */
     Composite.get = function(composite, id, type) {
         var objects,
@@ -1609,12 +1609,12 @@ var Body = _dereq_('./Body');
     };
 
     /**
-     * Moves the given object(s) from compositeA to compositeB (equal to a remove followed by an add).
-     * @method move
+     * Mueve los objetos dados de compositeA a compositeB (igual a eliminar seguido de agregar).
+     * @method move - mover
      * @param {compositeA} compositeA
-     * @param {object[]} objects
+     * @param {object[]} objects - objetos
      * @param {compositeB} compositeB
-     * @return {composite} Returns compositeA
+     * @return {composite} Devuelve compositeA
      */
     Composite.move = function(compositeA, objects, compositeB) {
         Composite.remove(compositeA, objects);
@@ -1623,10 +1623,10 @@ var Body = _dereq_('./Body');
     };
 
     /**
-     * Assigns new ids for all objects in the composite, recursively.
+     * Asigna nuevos identificadores para todos los objetos del compuesto, de forma recursiva.
      * @method rebase
-     * @param {composite} composite
-     * @return {composite} Returns composite
+     * @param {composite} composite - compuesto
+     * @return {composite} Devuelve compuesto
      */
     Composite.rebase = function(composite) {
         var objects = Composite.allBodies(composite)
@@ -1643,11 +1643,11 @@ var Body = _dereq_('./Body');
     };
 
     /**
-     * Translates all children in the composite by a given vector relative to their current positions, 
-     * without imparting any velocity.
-     * @method translate
-     * @param {composite} composite
-     * @param {vector} translation
+     * Traslada todos los elementos secundarios en el compuesto por un vector dado en relación con sus posiciones actuales,
+     * sin impartir ninguna velocidad.
+     * @method translate - traslada
+     * @param {composite} composite - compuesto
+     * @param {vector} translation - traslado
      * @param {bool} [recursive=true]
      */
     Composite.translate = function(composite, translation, recursive) {
@@ -1663,11 +1663,11 @@ var Body = _dereq_('./Body');
     };
 
     /**
-     * Rotates all children in the composite by a given angle about the given point, without imparting any angular velocity.
-     * @method rotate
-     * @param {composite} composite
-     * @param {number} rotation
-     * @param {vector} point
+     * Gira a todos los elementos secundarios en el compuesto en un ángulo dado alrededor del punto dado, sin impartir velocidad angular.
+     * @method rotate - rotar
+     * @param {composite} composite - compuesto
+     * @param {number} rotation - rotar
+     * @param {vector} point - punto
      * @param {bool} [recursive=true]
      */
     Composite.rotate = function(composite, rotation, point, recursive) {
@@ -1694,12 +1694,12 @@ var Body = _dereq_('./Body');
     };
 
     /**
-     * Scales all children in the composite, including updating physical properties (mass, area, axes, inertia), from a world-space point.
-     * @method scale
-     * @param {composite} composite
+     * Escala todos los elementos secundarios en el compuesto, incluida la actualización de las propiedades físicas (masa, área, ejes, inercia), desde un punto del espacio del mundo.
+     * @method scale - escala
+     * @param {composite} composite - compuesto
      * @param {number} scaleX
      * @param {number} scaleY
-     * @param {vector} point
+     * @param {vector} point - punto
      * @param {bool} [recursive=true]
      */
     Composite.scale = function(composite, scaleX, scaleY, point, recursive) {
@@ -1725,132 +1725,132 @@ var Body = _dereq_('./Body');
 
     /*
     *
-    *  Events Documentation
+    *  Documentación de eventos
     *
     */
 
     /**
-    * Fired when a call to `Composite.add` is made, before objects have been added.
+    * Se activa cuando se realiza una llamada a `Composite.add`, antes de que se hayan agregado los objetos.
     *
     * @event beforeAdd
-    * @param {} event An event object
-    * @param {} event.object The object(s) to be added (may be a single body, constraint, composite or a mixed array of these)
-    * @param {} event.source The source object of the event
-    * @param {} event.name The name of the event
+    * @param {} event An event object - Un objeto de evento
+    * @param {} event.object Los objetos que se agregarán (pueden ser un solo cuerpo, restricción, compuesto o una matriz mixta de estos)
+    * @param {} event.source El objeto fuente del evento
+    * @param {} event.name El nombre del evento
     */
 
     /**
-    * Fired when a call to `Composite.add` is made, after objects have been added.
+    * Se activa cuando se realiza una llamada a `Composite.add`, después de que se han agregado objetos.
     *
     * @event afterAdd
-    * @param {} event An event object
-    * @param {} event.object The object(s) that have been added (may be a single body, constraint, composite or a mixed array of these)
-    * @param {} event.source The source object of the event
-    * @param {} event.name The name of the event
+    * @param {} event Un objeto de evento
+    * @param {} event.object Los objetos que se han agregado (pueden ser un solo cuerpo, restricción, compuesto o una matriz mixta de estos)
+    * @param {} event.source El objeto fuente del evento
+    * @param {} event.name El nombre del evento
     */
 
     /**
-    * Fired when a call to `Composite.remove` is made, before objects have been removed.
+    * Se activa cuando se realiza una llamada a `Composite.remove`, antes de que se hayan eliminado los objetos.
     *
     * @event beforeRemove
-    * @param {} event An event object
-    * @param {} event.object The object(s) to be removed (may be a single body, constraint, composite or a mixed array of these)
+    * @param {} event Un objeto de evento
+    * @param {} event.object El (los) objeto (s) que se eliminarán (puede ser un solo cuerpo, restricción, compuesto o una matriz mixta de estos)
     * @param {} event.source The source object of the event
-    * @param {} event.name The name of the event
+    * @param {} event.name El nombre del evento
     */
 
     /**
-    * Fired when a call to `Composite.remove` is made, after objects have been removed.
+    * Se activa cuando se realiza una llamada a `Composite.remove`, después de que se hayan eliminado los objetos.
     *
     * @event afterRemove
-    * @param {} event An event object
-    * @param {} event.object The object(s) that have been removed (may be a single body, constraint, composite or a mixed array of these)
-    * @param {} event.source The source object of the event
-    * @param {} event.name The name of the event
+    * @param {} event Un objeto de evento
+    * @param {} event.object Los objetos que se han eliminado (pueden ser un solo cuerpo, restricción, compuesto o una matriz mixta de estos)
+    * @param {} event.source El objeto fuente del evento
+    * @param {} event.name El nombre del evento
     */
 
     /*
     *
-    *  Properties Documentation
+    *  Documentación de propiedades
     *
     */
 
     /**
-     * An integer `Number` uniquely identifying number generated in `Composite.create` by `Common.nextId`.
+     * Un `Número` entero de identificación única generado en `Composite.create` por `Common.nextId`.
      *
-     * @property id
-     * @type number
+     * @property id - identifiación
+     * @type number - número
      */
 
     /**
-     * A `String` denoting the type of object.
+     * Una `Cadena` que indica el tipo de objeto.
      *
-     * @property type
-     * @type string
+     * @property type - tipo
+     * @type string - cadena
      * @default "composite"
      * @readOnly
      */
 
     /**
-     * An arbitrary `String` name to help the user identify and manage composites.
+     * Un nombre de `Cadena` arbitrario para ayudar al usuario a identificar y administrar compuestos.
      *
-     * @property label
-     * @type string
+     * @property label - etiqueta
+     * @type string - cadena
      * @default "Composite"
      */
 
     /**
-     * A flag that specifies whether the composite has been modified during the current step.
-     * Most `Matter.Composite` methods will automatically set this flag to `true` to inform the engine of changes to be handled.
-     * If you need to change it manually, you should use the `Composite.setModified` method.
+     * Una marca que especifica si el compuesto se ha modificado durante el paso actual.
+     * La mayoría de los métodos `Matter.Composite` establecerán automáticamente esta marca en `true` para informar al motor de los cambios que se deben manejar.
+     * Si necesita cambiarlo manualmente, debe usar el método `Composite.setModified`.
      *
      * @property isModified
-     * @type boolean
-     * @default false
+     * @type boolean - booleano
+     * @default false - falso 
      */
 
     /**
-     * The `Composite` that is the parent of this composite. It is automatically managed by the `Matter.Composite` methods.
+     * El `Compuesto` que es el padre de este compuesto. Es administrado automáticamente por los métodos `Matter.Composite`.
      *
-     * @property parent
-     * @type composite
-     * @default null
+     * @property parent - padre
+     * @type composite - compuesto
+     * @default null - nulo 
      */
 
     /**
-     * An array of `Body` that are _direct_ children of this composite.
-     * To add or remove bodies you should use `Composite.add` and `Composite.remove` methods rather than directly modifying this property.
-     * If you wish to recursively find all descendants, you should use the `Composite.allBodies` method.
+     * Una matriz de `Cuerpo` que son elementos secundarios _direct_ (directo) de este compuesto.
+     * Para agregar o eliminar cuerpos, debe usar los métodos `Composite.add` y `Composite.remove` en lugar de modificar directamente esta propiedad.
+     * Si deseas buscar de forma recursiva todos los descendientes, debes utilizar el método `Composite.allBodies`.
      *
-     * @property bodies
+     * @property bodies - cuerpos
      * @type body[]
      * @default []
      */
 
     /**
-     * An array of `Constraint` that are _direct_ children of this composite.
-     * To add or remove constraints you should use `Composite.add` and `Composite.remove` methods rather than directly modifying this property.
-     * If you wish to recursively find all descendants, you should use the `Composite.allConstraints` method.
+     * Una matriz de `Restricción` que son elementos secundarios _direct_ (directos) de este compuesto.
+     * Para agregar o eliminar restricciones, debe usar los métodos `Composite.add` y` Composite.remove` en lugar de modificar directamente esta propiedad.
+     * Si deseas buscar de forma recursiva todos los descendientes, debes utilizar el método `Composite.allConstraints`.
      *
-     * @property constraints
+     * @property constraints - restricciones
      * @type constraint[]
      * @default []
      */
 
     /**
-     * An array of `Composite` that are _direct_ children of this composite.
-     * To add or remove composites you should use `Composite.add` and `Composite.remove` methods rather than directly modifying this property.
-     * If you wish to recursively find all descendants, you should use the `Composite.allComposites` method.
+     * Una matriz de `Compuesto` que son elementos secundarios _direct_ (directos) de este compuesto.
+     * Para agregar o eliminar compuestos, debes usar los métodos `Composite.add` y `Composite.remove` en lugar de modificar directamente esta propiedad.
+     * Si desea buscar de forma recursiva todos los descendientes, debe utilizar el método `Composite.allComposites`.
      *
-     * @property composites
+     * @property composites - compuestos	
      * @type composite[]
      * @default []
      */
 
     /**
-     * An object reserved for storing plugin-specific properties.
+     * Un objeto reservado para almacenar propiedades específicas del complemento.
      *
-     * @property plugin
+     * @property plugin 
      * @type {}
      */
 
@@ -1858,16 +1858,16 @@ var Body = _dereq_('./Body');
 
 },{"../core/Common":14,"../core/Events":16,"./Body":1}],3:[function(_dereq_,module,exports){
 /**
-* The `Matter.World` module contains methods for creating and manipulating the world composite.
-* A `Matter.World` is a `Matter.Composite` body, which is a collection of `Matter.Body`, `Matter.Constraint` and other `Matter.Composite`.
-* A `Matter.World` has a few additional properties including `gravity` and `bounds`.
-* It is important to use the functions in the `Matter.Composite` module to modify the world composite, rather than directly modifying its properties.
-* There are also a few methods here that alias those in `Matter.Composite` for easier readability.
+* El módulo `Matter.World` contiene métodos para crear y manipular el mundo compuesto.
+* Un `Matter.World` es un cuerpo de `Matter.Composite`, que es una colección de `Matter.Body`, `Matter.Constraint` y otros `Matter.Composite`.
+* Un "Matter.World" tiene algunas propiedades adicionales que incluyen "gravedad" y "límites".
+* Es importante utilizar las funciones del módulo `Matter.Composite` para modificar el mundo compuesto, en lugar de modificar directamente sus propiedades.
+* También hay algunos métodos aquí que alias los de `Matter.Composite` para facilitar la lectura.
 *
-* See the included usage [examples](https://github.com/liabru/matter-js/tree/master/examples).
+* Ver el uso incluido [ejemplos](https://github.com/liabru/matter-js/tree/master/examples).
 *
-* @class World
-* @extends Composite
+* @class World - Mundo
+* @extends Composite - compuestos
 */
 
 var World = {};
@@ -1881,12 +1881,12 @@ var Common = _dereq_('../core/Common');
 (function() {
 
     /**
-     * Creates a new world composite. The options parameter is an object that specifies any properties you wish to override the defaults.
-     * See the properties section below for detailed information on what you can pass via the `options` object.
-     * @method create
+     * Crea un nuevo mundo compuesto. El parámetro de opciones es un objeto que especifica las propiedades que desea anular los valores predeterminados.
+     * Consulta la sección de propiedades a continuación para obtener información detallada sobre lo que puede pasar a través del objeto `options`.
+     * @method create - crear
      * @constructor
-     * @param {} options
-     * @return {world} A new world
+     * @param {} options - opciones
+     * @return {world} Un nuevo mundo
      */
     World.create = function(options) {
         var composite = Composite.create();
@@ -1909,88 +1909,88 @@ var Common = _dereq_('../core/Common');
 
     /*
     *
-    *  Properties Documentation
+    *  Documentación de propiedades
     *
     */
 
     /**
-     * The gravity to apply on the world.
+     * La gravedad para aplicar en el mundo.
      *
-     * @property gravity
-     * @type object
+     * @property gravity - gravedad
+     * @type object - objeto
      */
 
     /**
-     * The gravity x component.
+     * El componente de gravedad x.
      *
      * @property gravity.x
-     * @type object
+     * @type object - objeto
      * @default 0
      */
 
     /**
-     * The gravity y component.
+     * El componente de gravedad y.
      *
      * @property gravity.y
-     * @type object
+     * @type object - objeto
      * @default 1
      */
 
     /**
-     * The gravity scale factor.
+     * El factor de escala de gravedad.
      *
      * @property gravity.scale
-     * @type object
+     * @type object - objeto
      * @default 0.001
      */
 
     /**
-     * A `Bounds` object that defines the world bounds for collision detection.
+     * Un objeto `Bounds` que define los límites mundiales para la detección de colisiones.
      *
-     * @property bounds
-     * @type bounds
+     * @property bounds - límites
+     * @type bounds - lìmites
      * @default { min: { x: -Infinity, y: -Infinity }, max: { x: Infinity, y: Infinity } }
      */
 
-    // World is a Composite body
+    // El mundo es un cuerpo compuesto
     // see src/module/Outro.js for these aliases:
     
     /**
-     * An alias for Composite.clear
-     * @method clear
-     * @param {world} world
+     * Un alias para Composite.clear
+     * @method clear - despejar
+     * @param {world} world - mundo
      * @param {boolean} keepStatic
      */
 
     /**
-     * An alias for Composite.add
+     * Un alias para Composite.add
      * @method addComposite
-     * @param {world} world
-     * @param {composite} composite
-     * @return {world} The original world with the objects from composite added
+     * @param {world} world - mundo
+     * @param {composite} composite - compuesto
+     * @return {world} El mundo original con los objetos del compuesto agregados
      */
     
      /**
-      * An alias for Composite.addBody
+      * Un alias para Composite.addBody
       * @method addBody
-      * @param {world} world
-      * @param {body} body
-      * @return {world} The original world with the body added
+      * @param {world} world - mundo
+      * @param {body} body - cuerpo
+      * @return {world} El mundo original con los objetos del compuesto agregados
       */
 
      /**
-      * An alias for Composite.addConstraint
+      * Un alias para Composite.addConstraint
       * @method addConstraint
-      * @param {world} world
-      * @param {constraint} constraint
-      * @return {world} The original world with the constraint added
+      * @param {world} world - mundo
+      * @param {constraint} constraint - restricción
+      * @return {world} El mundo original con la restricción agregada
       */
 
 })();
 
 },{"../constraint/Constraint":12,"../core/Common":14,"./Composite":2}],4:[function(_dereq_,module,exports){
 /**
-* The `Matter.Contact` module contains methods for creating and manipulating collision contacts.
+* El módulo `Matter.Contact` contiene métodos para crear y manipular contactos de colisión.
 *
 * @class Contact
 */
@@ -2002,10 +2002,10 @@ module.exports = Contact;
 (function() {
 
     /**
-     * Creates a new contact.
-     * @method create
-     * @param {vertex} vertex
-     * @return {contact} A new contact
+     * Crea un nuevo contacto.
+     * @method create - crear
+     * @param {vertex} vertex - vértice
+     * @return {contact} Un nuevo contacto.
      */
     Contact.create = function(vertex) {
         return {
@@ -2017,10 +2017,10 @@ module.exports = Contact;
     };
     
     /**
-     * Generates a contact id.
-     * @method id
-     * @param {vertex} vertex
-     * @return {string} Unique contactID
+     * Genera una identificación de contacto.
+     * @method id - identificación
+     * @param {vertex} vertex - vértice
+     * @return {string} contactID único
      */
     Contact.id = function(vertex) {
         return vertex.body.id + '_' + vertex.index;
@@ -2030,12 +2030,12 @@ module.exports = Contact;
 
 },{}],5:[function(_dereq_,module,exports){
 /**
-* The `Matter.Detector` module contains methods for detecting collisions given a set of pairs.
+* El módulo `Matter.Detector` contiene métodos para detectar colisiones dado un conjunto de pares.
 *
-* @class Detector
+* @class Detector - Detector
 */
 
-// TODO: speculative contacts
+// TODO: contactos especulativos
 
 var Detector = {};
 
@@ -2048,11 +2048,11 @@ var Bounds = _dereq_('../geometry/Bounds');
 (function() {
 
     /**
-     * Finds all collisions given a list of pairs.
-     * @method collisions
+     * Encuentra todas las colisiones dada una lista de pares.
+     * @method collisions - colisiones
      * @param {pair[]} broadphasePairs
-     * @param {engine} engine
-     * @return {array} collisions
+     * @param {engine} engine - motor
+     * @return {array} collisions - colisiones
      */
     Detector.collisions = function(broadphasePairs, engine) {
         var collisions = [],
@@ -2070,7 +2070,7 @@ var Bounds = _dereq_('../geometry/Bounds');
                 continue;
 
 
-            // mid phase
+            // fase media
             if (Bounds.overlaps(bodyA.bounds, bodyB.bounds)) {
                 for (var j = bodyA.parts.length > 1 ? 1 : 0; j < bodyA.parts.length; j++) {
                     var partA = bodyA.parts[j];
@@ -2079,7 +2079,7 @@ var Bounds = _dereq_('../geometry/Bounds');
                         var partB = bodyB.parts[k];
 
                         if ((partA === bodyA && partB === bodyB) || Bounds.overlaps(partA.bounds, partB.bounds)) {
-                            // find a previous collision we could reuse
+                            // encontrar una colisión anterior que podamos reutilizar
                             var pairId = Pair.id(partA, partB),
                                 pair = pairsTable[pairId],
                                 previousCollision;
@@ -2090,7 +2090,7 @@ var Bounds = _dereq_('../geometry/Bounds');
                                 previousCollision = null;
                             }
 
-                            // narrow phase
+                            // fase estrecha
                             var collision = SAT.collides(partA, partB, previousCollision);
 
 
@@ -2107,12 +2107,12 @@ var Bounds = _dereq_('../geometry/Bounds');
     };
 
     /**
-     * Returns `true` if both supplied collision filters will allow a collision to occur.
-     * See `body.collisionFilter` for more information.
+     * Devuelve `true` si ambos filtros de colisión suministrados permitirán que ocurra una colisión.
+     * Consulta `body.collisionFilter` para obtener más información.
      * @method canCollide
      * @param {} filterA
      * @param {} filterB
-     * @return {bool} `true` if collision can occur
+     * @return {bool} `true` si puede ocurrir una colisión
      */
     Detector.canCollide = function(filterA, filterB) {
         if (filterA.group === filterB.group && filterA.group !== 0)
@@ -2125,9 +2125,9 @@ var Bounds = _dereq_('../geometry/Bounds');
 
 },{"../geometry/Bounds":26,"./Pair":7,"./SAT":11}],6:[function(_dereq_,module,exports){
 /**
-* The `Matter.Grid` module contains methods for creating and manipulating collision broadphase grid structures.
+* El módulo `Matter.Grid` contiene métodos para crear y manipular estructuras de cuadrícula de fase ancha de colisión.
 *
-* @class Grid
+* @class Cuadrícula
 */
 
 var Grid = {};
@@ -2141,10 +2141,10 @@ var Common = _dereq_('../core/Common');
 (function() {
 
     /**
-     * Creates a new grid.
-     * @method create
-     * @param {} options
-     * @return {grid} A new grid
+     * Crea una nueva cuadrícula.
+     * @method create - crear
+     * @param {} options - opciones
+     * @return {grid} Una nueva cuadricula
      */
     Grid.create = function(options) {
         var defaults = {
@@ -2161,27 +2161,27 @@ var Common = _dereq_('../core/Common');
     };
 
     /**
-     * The width of a single grid bucket.
+     * El ancho del ordenamiento por casilleros de una sola rejilla.
      *
      * @property bucketWidth
-     * @type number
+     * @type number - número
      * @default 48
      */
 
     /**
-     * The height of a single grid bucket.
+     * La altura del ordenamiento por casilleros de una sola rejilla.
      *
      * @property bucketHeight
-     * @type number
+     * @type number - número
      * @default 48
      */
 
     /**
-     * Updates the grid.
-     * @method update
-     * @param {grid} grid
-     * @param {body[]} bodies
-     * @param {engine} engine
+     * Actualiza la cuadrícula.
+     * @method update - actualización
+     * @param {grid} grid - red
+     * @param {body[]} bodies - cuerpos
+     * @param {engine} engine - motor
      * @param {boolean} forceUpdate
      */
     Grid.update = function(grid, bodies, engine, forceUpdate) {
@@ -2199,14 +2199,14 @@ var Common = _dereq_('../core/Common');
             if (body.isSleeping && !forceUpdate)
                 continue;
 
-            // don't update out of world bodies
+            // no actualice los cuerpos del mundo
             if (body.bounds.max.x < world.bounds.min.x || body.bounds.min.x > world.bounds.max.x
                 || body.bounds.max.y < world.bounds.min.y || body.bounds.min.y > world.bounds.max.y)
                 continue;
 
             var newRegion = _getRegion(grid, body);
 
-            // if the body has changed grid region
+            // si el cuerpo ha cambiado la región de la cuadrícula
             if (!body.region || newRegion.id !== body.region.id || forceUpdate) {
 
 
@@ -2215,8 +2215,8 @@ var Common = _dereq_('../core/Common');
 
                 var union = _regionUnion(newRegion, body.region);
 
-                // update grid buckets affected by region change
-                // iterate over the union of both regions
+                // actualizar los depósitos de la cuadrícula afectados por el cambio de región
+                // iterar sobre la unión de ambas regiones
                 for (col = union.startCol; col <= union.endCol; col++) {
                     for (row = union.startRow; row <= union.endRow; row++) {
                         bucketId = _getBucketId(col, row);
@@ -2228,7 +2228,7 @@ var Common = _dereq_('../core/Common');
                         var isInsideOldRegion = (col >= body.region.startCol && col <= body.region.endCol
                                                 && row >= body.region.startRow && row <= body.region.endRow);
 
-                        // remove from old region buckets
+                        // eliminar de los agrupamientos de regiones antiguas
                         if (!isInsideNewRegion && isInsideOldRegion) {
                             if (isInsideOldRegion) {
                                 if (bucket)
@@ -2236,7 +2236,7 @@ var Common = _dereq_('../core/Common');
                             }
                         }
 
-                        // add to new region buckets
+                        // agregar a nuevos agrupamientos de región
                         if (body.region === newRegion || (isInsideNewRegion && !isInsideOldRegion) || forceUpdate) {
                             if (!bucket)
                                 bucket = _createBucket(buckets, bucketId);
@@ -2245,23 +2245,23 @@ var Common = _dereq_('../core/Common');
                     }
                 }
 
-                // set the new region
+                // establecer la nueva región
                 body.region = newRegion;
 
-                // flag changes so we can update pairs
+                // cambios de marca para que podamos actualizar los pares
                 gridChanged = true;
             }
         }
 
-        // update pairs list only if pairs changed (i.e. a body changed region)
+        // actualizar la lista de pares solo si los pares cambiaron (es decir, un cuerpo cambió de región)
         if (gridChanged)
             grid.pairsList = _createActivePairsList(grid);
     };
 
     /**
-     * Clears the grid.
-     * @method clear
-     * @param {grid} grid
+     * Borra la cuadrícula.
+     * @method clear -despejar
+     * @param {grid} grid - cuadricula
      */
     Grid.clear = function(grid) {
         grid.buckets = {};
@@ -2270,12 +2270,12 @@ var Common = _dereq_('../core/Common');
     };
 
     /**
-     * Finds the union of two regions.
+     * Encuentra la unión de dos regiones.
      * @method _regionUnion
      * @private
-     * @param {} regionA
-     * @param {} regionB
-     * @return {} region
+     * @param {} regionA 
+     * @param {} regionB 
+     * @return {} region - región
      */
     var _regionUnion = function(regionA, regionB) {
         var startCol = Math.min(regionA.startCol, regionB.startCol),
@@ -2287,12 +2287,12 @@ var Common = _dereq_('../core/Common');
     };
 
     /**
-     * Gets the region a given body falls in for a given grid.
+     * Obtiene la región en la que cae un cuerpo determinado para una cuadrícula determinada.
      * @method _getRegion
      * @private
-     * @param {} grid
-     * @param {} body
-     * @return {} region
+     * @param {} grid - cuadrícula
+     * @param {} body - cuerpo
+     * @return {} region - región
      */
     var _getRegion = function(grid, body) {
         var bounds = body.bounds,
@@ -2305,14 +2305,14 @@ var Common = _dereq_('../core/Common');
     };
 
     /**
-     * Creates a region.
+     * Crea una región.
      * @method _createRegion
      * @private
      * @param {} startCol
      * @param {} endCol
      * @param {} startRow
      * @param {} endRow
-     * @return {} region
+     * @return {} region - región
      */
     var _createRegion = function(startCol, endCol, startRow, endRow) {
         return { 
@@ -2325,24 +2325,24 @@ var Common = _dereq_('../core/Common');
     };
 
     /**
-     * Gets the bucket id at the given position.
+     * Obtiene la identificación de la agrupación en la posición dada.
      * @method _getBucketId
      * @private
-     * @param {} column
-     * @param {} row
-     * @return {string} bucket id
+     * @param {} column - columna
+     * @param {} row - fila
+     * @return {string} identificación de la agrupación
      */
     var _getBucketId = function(column, row) {
         return 'C' + column + 'R' + row;
     };
 
     /**
-     * Creates a bucket.
+     * Crea una agrupación.
      * @method _createBucket
      * @private
-     * @param {} buckets
-     * @param {} bucketId
-     * @return {} bucket
+     * @param {} buckets - agrupaciones
+     * @param {} bucketId - identificación de la agrupación
+     * @return {} bucket - agrupación
      */
     var _createBucket = function(buckets, bucketId) {
         var bucket = buckets[bucketId] = [];
@@ -2350,23 +2350,23 @@ var Common = _dereq_('../core/Common');
     };
 
     /**
-     * Adds a body to a bucket.
+     * Agrega un cuerpo a una agrupación.
      * @method _bucketAddBody
      * @private
-     * @param {} grid
-     * @param {} bucket
-     * @param {} body
+     * @param {} grid - cuadrícula
+     * @param {} bucket - agrupación
+     * @param {} body - cuerpo
      */
     var _bucketAddBody = function(grid, bucket, body) {
-        // add new pairs
+        // agregar nuevos pares
         for (var i = 0; i < bucket.length; i++) {
             var bodyB = bucket[i];
 
             if (body.id === bodyB.id || (body.isStatic && bodyB.isStatic))
                 continue;
 
-            // keep track of the number of buckets the pair exists in
-            // important for Grid.update to work
+            // realizar un seguimiento del número de agrupamientos en los que existe el par
+            // importante para que Grid.update funcione
             var pairId = Pair.id(body, bodyB),
                 pair = grid.pairs[pairId];
 
@@ -2377,26 +2377,26 @@ var Common = _dereq_('../core/Common');
             }
         }
 
-        // add to bodies (after pairs, otherwise pairs with self)
+        // agregar a los cuerpos (después de pares, de lo contrario se empareja con uno mismo)
         bucket.push(body);
     };
 
     /**
-     * Removes a body from a bucket.
+     * Saca un cuerpo de una agrupación.
      * @method _bucketRemoveBody
      * @private
-     * @param {} grid
-     * @param {} bucket
-     * @param {} body
+     * @param {} grid - cuadrícula
+     * @param {} bucket - agrupamiento
+     * @param {} body - cuerpo
      */
     var _bucketRemoveBody = function(grid, bucket, body) {
-        // remove from bucket
+        // retirar de la agrupación
         bucket.splice(Common.indexOf(bucket, body), 1);
 
-        // update pair counts
+        // actualizar recuentos de pares
         for (var i = 0; i < bucket.length; i++) {
-            // keep track of the number of buckets the pair exists in
-            // important for _createActivePairsList to work
+            // realizar un seguimiento del número de agrupamientos en los que existe el par
+            // importante para que _createActivePairsList funcione
             var bodyB = bucket[i],
                 pairId = Pair.id(body, bodyB),
                 pair = grid.pairs[pairId];
@@ -2407,26 +2407,26 @@ var Common = _dereq_('../core/Common');
     };
 
     /**
-     * Generates a list of the active pairs in the grid.
+     * Genera una lista de los pares activos en la cuadrícula.
      * @method _createActivePairsList
      * @private
-     * @param {} grid
-     * @return [] pairs
+     * @param {} grid - cuadricula
+     * @return [] pairs - pares
      */
     var _createActivePairsList = function(grid) {
         var pairKeys,
             pair,
             pairs = [];
 
-        // grid.pairs is used as a hashmap
+        // grid.pairs es usado como hashmap
         pairKeys = Common.keys(grid.pairs);
 
-        // iterate over grid.pairs
+        // iterar sobre grid.pairs
         for (var k = 0; k < pairKeys.length; k++) {
             pair = grid.pairs[pairKeys[k]];
 
-            // if pair exists in at least one bucket
-            // it is a pair that needs further collision testing so push it
+            // si existe un par en al menos una agrupación
+            // es un par que necesita más pruebas de colisión, así que empújalo
             if (pair[2] > 0) {
                 pairs.push(pair);
             } else {
@@ -2441,9 +2441,9 @@ var Common = _dereq_('../core/Common');
 
 },{"../core/Common":14,"./Detector":5,"./Pair":7}],7:[function(_dereq_,module,exports){
 /**
-* The `Matter.Pair` module contains methods for creating and manipulating collision pairs.
+* El módulo `Matter.Pair` contiene métodos para crear y manipular pares de colisiones.
 *
-* @class Pair
+* @class Pair - Par
 */
 
 var Pair = {};
@@ -2455,11 +2455,11 @@ var Contact = _dereq_('./Contact');
 (function() {
     
     /**
-     * Creates a pair.
-     * @method create
-     * @param {collision} collision
+     * Crea un par.
+     * @method create - crear
+     * @param {collision} collision - colisión 
      * @param {number} timestamp
-     * @return {pair} A new pair
+     * @return {pair} Un nuevo par
      */
     Pair.create = function(collision, timestamp) {
         var bodyA = collision.bodyA,
@@ -2491,10 +2491,10 @@ var Contact = _dereq_('./Contact');
     };
 
     /**
-     * Updates a pair given a collision.
-     * @method update
-     * @param {pair} pair
-     * @param {collision} collision
+     * Actualiza un par en caso de colisión.
+     * @method update - actualización
+     * @param {pair} pair - par
+     * @param {collision} collision - collisión
      * @param {number} timestamp
      */
     Pair.update = function(pair, collision, timestamp) {
@@ -2534,10 +2534,10 @@ var Contact = _dereq_('./Contact');
     };
     
     /**
-     * Set a pair as active or inactive.
+     * Configure un par como activo o inactivo.
      * @method setActive
-     * @param {pair} pair
-     * @param {bool} isActive
+     * @param {pair} pair - par
+     * @param {bool} isActive 
      * @param {number} timestamp
      */
     Pair.setActive = function(pair, isActive, timestamp) {
@@ -2551,11 +2551,11 @@ var Contact = _dereq_('./Contact');
     };
 
     /**
-     * Get the id for the given pair.
-     * @method id
+     * Obtenga la identificación del par dado.
+     * @method id - identificación
      * @param {body} bodyA
-     * @param {body} bodyB
-     * @return {string} Unique pairId
+     * @param {body} bodyB 
+     * @return {string} Único pairId 
      */
     Pair.id = function(bodyA, bodyB) {
         if (bodyA.id < bodyB.id) {
@@ -2569,9 +2569,9 @@ var Contact = _dereq_('./Contact');
 
 },{"./Contact":4}],8:[function(_dereq_,module,exports){
 /**
-* The `Matter.Pairs` module contains methods for creating and manipulating collision pair sets.
+* El módulo `Matter.Pairs` contiene métodos para crear y manipular conjuntos de pares de colisiones.
 *
-* @class Pairs
+* @class Pairs - Pares
 */
 
 var Pairs = {};
@@ -2586,10 +2586,10 @@ var Common = _dereq_('../core/Common');
     var _pairMaxIdleLife = 1000;
 
     /**
-     * Creates a new pairs structure.
-     * @method create
-     * @param {object} options
-     * @return {pairs} A new pairs structure
+     * Crea una nueva estructura de pares.
+     * @method create - crear
+     * @param {object} options - opciones
+     * @return {pairs} Una nueva estructura de pares
      */
     Pairs.create = function(options) {
         return Common.extend({ 
@@ -2602,10 +2602,10 @@ var Common = _dereq_('../core/Common');
     };
 
     /**
-     * Updates pairs given a list of collisions.
-     * @method update
-     * @param {object} pairs
-     * @param {collision[]} collisions
+     * Pares de actualizaciones dada una lista de colisiones.
+     * @method update - actualización
+     * @param {object} pairs - pares
+     * @param {collision[]} collisions - colisiones
      * @param {number} timestamp
      */
     Pairs.update = function(pairs, collisions, timestamp) {
@@ -2620,7 +2620,7 @@ var Common = _dereq_('../core/Common');
             pair,
             i;
 
-        // clear collision state arrays, but maintain old reference
+        // borrar matrices de estado de colisión, pero mantener la referencia anterior
         collisionStart.length = 0;
         collisionEnd.length = 0;
         collisionActive.length = 0;
@@ -2635,30 +2635,30 @@ var Common = _dereq_('../core/Common');
                 pair = pairsTable[pairId];
                 
                 if (pair) {
-                    // pair already exists (but may or may not be active)
+                    // el par ya existe (pero puede estar activo o no)
                     if (pair.isActive) {
-                        // pair exists and is active
+                        // par existe y está activo
                         collisionActive.push(pair);
                     } else {
-                        // pair exists but was inactive, so a collision has just started again
+                        // El par existe pero estaba inactivo, por lo que una colisión acaba de comenzar de nuevo.
                         collisionStart.push(pair);
                     }
 
-                    // update the pair
+                    // actualizar el par
                     Pair.update(pair, collision, timestamp);
                 } else {
-                    // pair did not exist, create a new pair
+                    // par no existía, crea un nuevo par
                     pair = Pair.create(collision, timestamp);
                     pairsTable[pairId] = pair;
 
-                    // push the new pair
+                    // presiona el nuevo par
                     collisionStart.push(pair);
                     pairsList.push(pair);
                 }
             }
         }
 
-        // deactivate previously active pairs that are now inactive
+        // desactivar pares previamente activos que ahora están inactivos
         for (i = 0; i < pairsList.length; i++) {
             pair = pairsList[i];
             if (pair.isActive && Common.indexOf(activePairIds, pair.id) === -1) {
@@ -2669,9 +2669,9 @@ var Common = _dereq_('../core/Common');
     };
     
     /**
-     * Finds and removes pairs that have been inactive for a set amount of time.
+     * Busca y elimina pares que han estado inactivos durante un período de tiempo determinado.
      * @method removeOld
-     * @param {object} pairs
+     * @param {object} pairs - pares
      * @param {number} timestamp
      */
     Pairs.removeOld = function(pairs, timestamp) {
@@ -2687,19 +2687,19 @@ var Common = _dereq_('../core/Common');
             pair = pairsList[i];
             collision = pair.collision;
             
-            // never remove sleeping pairs
+            // nunca quite los pares para dormir
             if (collision.bodyA.isSleeping || collision.bodyB.isSleeping) {
                 pair.timeUpdated = timestamp;
                 continue;
             }
 
-            // if pair is inactive for too long, mark it to be removed
+            // si el par está inactivo durante demasiado tiempo, márquelo para eliminarlo
             if (timestamp - pair.timeUpdated > _pairMaxIdleLife) {
                 indexesToRemove.push(i);
             }
         }
 
-        // remove marked pairs
+        // eliminar pares marcados
         for (i = 0; i < indexesToRemove.length; i++) {
             pairIndex = indexesToRemove[i] - i;
             pair = pairsList[pairIndex];
@@ -2709,10 +2709,10 @@ var Common = _dereq_('../core/Common');
     };
 
     /**
-     * Clears the given pairs structure.
-     * @method clear
-     * @param {pairs} pairs
-     * @return {pairs} pairs
+     * Borra la estructura de pares dada.
+     * @method clear - claro
+     * @param {pairs} pairs - pares
+     * @return {pairs} pairs - pares
      */
     Pairs.clear = function(pairs) {
         pairs.table = {};
@@ -2727,11 +2727,11 @@ var Common = _dereq_('../core/Common');
 
 },{"../core/Common":14,"./Pair":7}],9:[function(_dereq_,module,exports){
 /**
-* The `Matter.Query` module contains methods for performing collision queries.
+* El módulo `Matter.Query` contiene métodos para realizar consultas de colisión.
 *
-* See the included usage [examples](https://github.com/liabru/matter-js/tree/master/examples).
+* Ve el uso incluido [ejemplos](https://github.com/liabru/matter-js/tree/master/examples).
 *
-* @class Query
+* @class Query - consulta
 */
 
 var Query = {};
@@ -2747,13 +2747,13 @@ var Vertices = _dereq_('../geometry/Vertices');
 (function() {
 
     /**
-     * Casts a ray segment against a set of bodies and returns all collisions, ray width is optional. Intersection points are not provided.
-     * @method ray
-     * @param {body[]} bodies
-     * @param {vector} startPoint
+     * Proyecta un segmento de rayo contra un conjunto de cuerpos y devuelve todas las colisiones; el ancho del rayo es opcional. No se proporcionan puntos de intersección.
+     * @method ray - rayo
+     * @param {body[]} bodies - cuerpos
+     * @param {vector} startPoint 
      * @param {vector} endPoint
      * @param {number} [rayWidth]
-     * @return {object[]} Collisions
+     * @return {object[]} Collisions - colisiones
      */
     Query.ray = function(bodies, startPoint, endPoint, rayWidth) {
         rayWidth = rayWidth || 1e-100;
@@ -2788,12 +2788,12 @@ var Vertices = _dereq_('../geometry/Vertices');
     };
 
     /**
-     * Returns all bodies whose bounds are inside (or outside if set) the given set of bounds, from the given set of bodies.
-     * @method region
-     * @param {body[]} bodies
-     * @param {bounds} bounds
+     * Devuelve todos los cuerpos cuyos límites están dentro (o fuera si están establecidos) del conjunto de límites dado, del conjunto de cuerpos dado.
+     * @method region - región
+     * @param {body[]} bodies - cuerpo
+     * @param {bounds} bounds - límites
      * @param {bool} [outside=false]
-     * @return {body[]} The bodies matching the query
+     * @return {body[]} Los cuerpos que coinciden con la consulta
      */
     Query.region = function(bodies, bounds, outside) {
         var result = [];
@@ -2809,11 +2809,11 @@ var Vertices = _dereq_('../geometry/Vertices');
     };
 
     /**
-     * Returns all bodies whose vertices contain the given point, from the given set of bodies.
-     * @method point
-     * @param {body[]} bodies
-     * @param {vector} point
-     * @return {body[]} The bodies matching the query
+     * Devuelve todos los cuerpos cuyos vértices contienen el punto dado, del conjunto de cuerpos dado.
+     * @method point - punto
+     * @param {body[]} bodies - cuerpos
+     * @param {vector} point - punto
+     * @return {body[]} Los cuerpos que coinciden con la consulta
      */
     Query.point = function(bodies, point) {
         var result = [];
@@ -2841,9 +2841,9 @@ var Vertices = _dereq_('../geometry/Vertices');
 
 },{"../factory/Bodies":23,"../geometry/Bounds":26,"../geometry/Vector":28,"../geometry/Vertices":29,"./SAT":11}],10:[function(_dereq_,module,exports){
 /**
-* The `Matter.Resolver` module contains methods for resolving collision pairs.
+* El módulo `Matter.Resolver` contiene métodos para resolver pares de colisiones.
 *
-* @class Resolver
+* @class Resolver 
 */
 
 var Resolver = {};
@@ -2864,16 +2864,16 @@ var Bounds = _dereq_('../geometry/Bounds');
     Resolver._frictionNormalMultiplier = 5;
 
     /**
-     * Prepare pairs for position solving.
+     * Prepare parejas para resolver posiciones.
      * @method preSolvePosition
-     * @param {pair[]} pairs
+     * @param {pair[]} pairs - pares
      */
     Resolver.preSolvePosition = function(pairs) {
         var i,
             pair,
             activeCount;
 
-        // find total contacts on each body
+        // encontrar contactos totales en cada cuerpo
         for (i = 0; i < pairs.length; i++) {
             pair = pairs[i];
             
@@ -2887,10 +2887,10 @@ var Bounds = _dereq_('../geometry/Bounds');
     };
 
     /**
-     * Find a solution for pair positions.
+     * Encuentre una solución para las posiciones de los pares.
      * @method solvePosition
-     * @param {pair[]} pairs
-     * @param {number} timeScale
+     * @param {pair[]} pairs - pares
+     * @param {number} timeScale 
      */
     Resolver.solvePosition = function(pairs, timeScale) {
         var i,
@@ -2908,7 +2908,7 @@ var Bounds = _dereq_('../geometry/Bounds');
             tempC = Vector._temp[2],
             tempD = Vector._temp[3];
 
-        // find impulses required to resolve penetration
+        // encontrar los impulsos necesarios para resolver la penetración
         for (i = 0; i < pairs.length; i++) {
             pair = pairs[i];
             
@@ -2920,7 +2920,7 @@ var Bounds = _dereq_('../geometry/Bounds');
             bodyB = collision.parentB;
             normal = collision.normal;
 
-            // get current separation between body edges involved in collision
+            // obtener la separación actual entre los bordes del cuerpo involucrados en la colisión
             bodyBtoA = Vector.sub(Vector.add(bodyB.positionImpulse, bodyB.position, tempA), 
                                     Vector.add(bodyA.positionImpulse, 
                                         Vector.sub(bodyB.position, collision.penetration, tempB), tempC), tempD);
@@ -2958,19 +2958,19 @@ var Bounds = _dereq_('../geometry/Bounds');
     };
 
     /**
-     * Apply position resolution.
+     * Aplicar resolución de posición.
      * @method postSolvePosition
-     * @param {body[]} bodies
+     * @param {body[]} bodies - cuerpos
      */
     Resolver.postSolvePosition = function(bodies) {
         for (var i = 0; i < bodies.length; i++) {
             var body = bodies[i];
 
-            // reset contact count
+            // restablecer el recuento de contactos
             body.totalContacts = 0;
 
             if (body.positionImpulse.x !== 0 || body.positionImpulse.y !== 0) {
-                // update body geometry
+                // actualizar la geometría del cuerpo
                 for (var j = 0; j < body.parts.length; j++) {
                     var part = body.parts[j];
                     Vertices.translate(part.vertices, body.positionImpulse);
@@ -2979,16 +2979,16 @@ var Bounds = _dereq_('../geometry/Bounds');
                     part.position.y += body.positionImpulse.y;
                 }
 
-                // move the body without changing velocity
+                // mueve el cuerpo sin cambiar la velocidad
                 body.positionPrev.x += body.positionImpulse.x;
                 body.positionPrev.y += body.positionImpulse.y;
 
                 if (Vector.dot(body.positionImpulse, body.velocity) < 0) {
-                    // reset cached impulse if the body has velocity along it
+                    // restablecer el impulso en caché si el cuerpo tiene velocidad a lo largo de él
                     body.positionImpulse.x = 0;
                     body.positionImpulse.y = 0;
                 } else {
-                    // warm the next iteration
+                    // calentar la próxima iteración
                     body.positionImpulse.x *= Resolver._positionWarming;
                     body.positionImpulse.y *= Resolver._positionWarming;
                 }
@@ -2997,9 +2997,9 @@ var Bounds = _dereq_('../geometry/Bounds');
     };
 
     /**
-     * Prepare pairs for velocity solving.
+     * Prepare parejas para resolver velocidades.
      * @method preSolveVelocity
-     * @param {pair[]} pairs
+     * @param {pair[]} pairs - pares
      */
     Resolver.preSolveVelocity = function(pairs) {
         var i,
@@ -3032,7 +3032,7 @@ var Bounds = _dereq_('../geometry/Bounds');
             normal = collision.normal;
             tangent = collision.tangent;
 
-            // resolve each contact
+            // resolver cada contacto
             for (j = 0; j < contacts.length; j++) {
                 contact = contacts[j];
                 contactVertex = contact.vertex;
@@ -3040,11 +3040,11 @@ var Bounds = _dereq_('../geometry/Bounds');
                 tangentImpulse = contact.tangentImpulse;
 
                 if (normalImpulse !== 0 || tangentImpulse !== 0) {
-                    // total impulse from contact
+                    // impulso total de contacto
                     impulse.x = (normal.x * normalImpulse) + (tangent.x * tangentImpulse);
                     impulse.y = (normal.y * normalImpulse) + (tangent.y * tangentImpulse);
                     
-                    // apply impulse from contact
+                    // aplicar el impulso del contacto
                     if (!(bodyA.isStatic || bodyA.isSleeping)) {
                         offset = Vector.sub(contactVertex, bodyA.position, tempA);
                         bodyA.positionPrev.x += impulse.x * bodyA.inverseMass;
@@ -3064,10 +3064,10 @@ var Bounds = _dereq_('../geometry/Bounds');
     };
 
     /**
-     * Find a solution for pair velocities.
-     * @method solveVelocity
-     * @param {pair[]} pairs
-     * @param {number} timeScale
+     * Encuentre una solución para las velocidades de los pares.
+     * @method solveVelocity 		
+     * @param {pair[]} pairs - pares
+     * @param {number} timeScale 
      */
     Resolver.solveVelocity = function(pairs, timeScale) {
         var timeScaleSquared = timeScale * timeScale,
@@ -3092,7 +3092,7 @@ var Bounds = _dereq_('../geometry/Bounds');
                 contacts = pair.activeContacts,
                 contactShare = 1 / contacts.length;
 
-            // update body velocities
+            // actualizar las velocidades de los cuerpos
             bodyA.velocity.x = bodyA.position.x - bodyA.positionPrev.x;
             bodyA.velocity.y = bodyA.position.y - bodyA.positionPrev.y;
             bodyB.velocity.x = bodyB.position.x - bodyB.positionPrev.x;
@@ -3100,7 +3100,7 @@ var Bounds = _dereq_('../geometry/Bounds');
             bodyA.angularVelocity = bodyA.angle - bodyA.anglePrev;
             bodyB.angularVelocity = bodyB.angle - bodyB.anglePrev;
 
-            // resolve each contact
+            // resolver cada contacto
             for (var j = 0; j < contacts.length; j++) {
                 var contact = contacts[j],
                     contactVertex = contact.vertex,
@@ -3115,11 +3115,11 @@ var Bounds = _dereq_('../geometry/Bounds');
                     tangentSpeed = Math.abs(tangentVelocity),
                     tangentVelocityDirection = Common.sign(tangentVelocity);
 
-                // raw impulses
+                // impulsos en bruto
                 var normalImpulse = (1 + pair.restitution) * normalVelocity,
                     normalForce = Common.clamp(pair.separation + normalVelocity, 0, 1) * Resolver._frictionNormalMultiplier;
 
-                // coulomb friction
+                // fricción de coulomb
                 var tangentImpulse = tangentVelocity,
                     maxFriction = Infinity;
 
@@ -3131,7 +3131,7 @@ var Bounds = _dereq_('../geometry/Bounds');
                     );
                 }
 
-                // modify impulses accounting for mass, inertia and offset
+                // modificar los impulsos teniendo en cuenta la masa, la inercia y la compensación
                 var oAcN = Vector.cross(offsetA, normal),
                     oBcN = Vector.cross(offsetB, normal),
                     share = contactShare / (bodyA.inverseMass + bodyB.inverseMass + bodyA.inverseInertia * oAcN * oAcN  + bodyB.inverseInertia * oBcN * oBcN);
@@ -3139,35 +3139,35 @@ var Bounds = _dereq_('../geometry/Bounds');
                 normalImpulse *= share;
                 tangentImpulse *= share;
 
-                // handle high velocity and resting collisions separately
+                // manejar las colisiones de alta velocidad y en reposo por separado
                 if (normalVelocity < 0 && normalVelocity * normalVelocity > Resolver._restingThresh * timeScaleSquared) {
-                    // high normal velocity so clear cached contact normal impulse
+                    // alta velocidad normal, por lo tanto, borre el impulso normal de contacto en caché
                     contact.normalImpulse = 0;
                 } else {
-                    // solve resting collision constraints using Erin Catto's method (GDC08)
-                    // impulse constraint tends to 0
+                    // resolver las restricciones de colisión en reposo utilizando el método de Erin Catto (GDC08)
+                    // la restricción de impulso tiende a 0
                     var contactNormalImpulse = contact.normalImpulse;
                     contact.normalImpulse = Math.min(contact.normalImpulse + normalImpulse, 0);
                     normalImpulse = contact.normalImpulse - contactNormalImpulse;
                 }
 
-                // handle high velocity and resting collisions separately
+                // manejar las colisiones de alta velocidad y en reposo por separado
                 if (tangentVelocity * tangentVelocity > Resolver._restingThreshTangent * timeScaleSquared) {
-                    // high tangent velocity so clear cached contact tangent impulse
+                    // alta velocidad tangente, por lo tanto, borre el impulso tangente de contacto en caché
                     contact.tangentImpulse = 0;
                 } else {
-                    // solve resting collision constraints using Erin Catto's method (GDC08)
-                    // tangent impulse tends to -tangentSpeed or +tangentSpeed
+                    // resolver las restricciones de colisión en reposo utilizando el método de Erin Catto (GDC08)
+                    // impulso tangente tiende a -tangentSpeed ​​o + tangentSpeed
                     var contactTangentImpulse = contact.tangentImpulse;
                     contact.tangentImpulse = Common.clamp(contact.tangentImpulse + tangentImpulse, -maxFriction, maxFriction);
                     tangentImpulse = contact.tangentImpulse - contactTangentImpulse;
                 }
 
-                // total impulse from contact
+                // impulso total de contacto
                 impulse.x = (normal.x * normalImpulse) + (tangent.x * tangentImpulse);
                 impulse.y = (normal.y * normalImpulse) + (tangent.y * tangentImpulse);
                 
-                // apply impulse from contact
+                // aplicar el impulso del contacto
                 if (!(bodyA.isStatic || bodyA.isSleeping)) {
                     bodyA.positionPrev.x += impulse.x * bodyA.inverseMass;
                     bodyA.positionPrev.y += impulse.y * bodyA.inverseMass;
@@ -3187,12 +3187,12 @@ var Bounds = _dereq_('../geometry/Bounds');
 
 },{"../core/Common":14,"../geometry/Bounds":26,"../geometry/Vector":28,"../geometry/Vertices":29}],11:[function(_dereq_,module,exports){
 /**
-* The `Matter.SAT` module contains methods for detecting collisions using the Separating Axis Theorem.
+* El módulo `Matter.SAT` contiene métodos para detectar colisiones usando el teorema del eje de separación.
 *
 * @class SAT
 */
 
-// TODO: true circles and curves
+// TODO: circulos y curvas verdaderas
 
 var SAT = {};
 
@@ -3204,12 +3204,12 @@ var Vector = _dereq_('../geometry/Vector');
 (function() {
 
     /**
-     * Detect collision between two bodies using the Separating Axis Theorem.
-     * @method collides
-     * @param {body} bodyA
-     * @param {body} bodyB
+     * Detecta la colisión entre dos cuerpos usando el teorema del eje de separación.
+     * @method collides - colisiona
+     * @param {body} bodyA 
+     * @param {body} bodyB 
      * @param {collision} previousCollision
-     * @return {collision} collision
+     * @return {collision} collision - colisión
      */
     SAT.collides = function(bodyA, bodyB, previousCollision) {
         var overlapAB,
@@ -3219,25 +3219,25 @@ var Vector = _dereq_('../geometry/Vector');
             canReusePrevCol = false;
 
         if (previousCollision) {
-            // estimate total motion
+            // estimar el movimiento total
             var parentA = bodyA.parent,
                 parentB = bodyB.parent,
                 motion = parentA.speed * parentA.speed + parentA.angularSpeed * parentA.angularSpeed
                        + parentB.speed * parentB.speed + parentB.angularSpeed * parentB.angularSpeed;
 
-            // we may be able to (partially) reuse collision result 
-            // but only safe if collision was resting
+            // es posible que podamos reutilizar (parcialmente) el resultado de la colisión 
+            // pero solo es seguro si la colisión estaba descansando.
             canReusePrevCol = previousCollision && previousCollision.collided && motion < 0.2;
 
-            // reuse collision object
+            // reutilizar objeto de colisión
             collision = previousCollision;
         } else {
             collision = { collided: false, bodyA: bodyA, bodyB: bodyB };
         }
 
         if (previousCollision && canReusePrevCol) {
-            // if we can reuse the collision result
-            // we only need to test the previously found axis
+            // si podemos reutilizar el resultado de la colisión
+            // solo necesitamos probar el eje previamente encontrado
             var axisBodyA = collision.axisBody,
                 axisBodyB = axisBodyA === bodyA ? bodyB : bodyA,
                 axes = [axisBodyA.axes[previousCollision.axisNumber]];
@@ -3250,7 +3250,7 @@ var Vector = _dereq_('../geometry/Vector');
                 return collision;
             }
         } else {
-            // if we can't reuse a result, perform a full SAT test
+            // si no podemos reutilizar un resultado, realice una prueba SAT completa
 
             overlapAB = _overlapAxes(bodyA.vertices, bodyB.vertices, bodyA.axes);
 
@@ -3274,7 +3274,7 @@ var Vector = _dereq_('../geometry/Vector');
                 collision.axisBody = bodyB;
             }
 
-            // important for reuse later
+            // importante para reutilizar más tarde
             collision.axisNumber = minOverlap.axisNumber;
         }
 
@@ -3288,7 +3288,7 @@ var Vector = _dereq_('../geometry/Vector');
         bodyA = collision.bodyA;
         bodyB = collision.bodyB;
 
-        // ensure normal is facing away from bodyA
+        // asegúrese de que lo normal esté de espaldas al cuerpoA
         if (Vector.dot(minOverlap.axis, Vector.sub(bodyB.position, bodyA.position)) < 0) {
             collision.normal = {
                 x: minOverlap.axis.x,
@@ -3307,18 +3307,18 @@ var Vector = _dereq_('../geometry/Vector');
         collision.penetration.x = collision.normal.x * collision.depth;
         collision.penetration.y = collision.normal.y * collision.depth; 
 
-        // find support points, there is always either exactly one or two
+        // encontre puntos de apoyo, siempre hay exactamente uno o dos
         var verticesB = _findSupports(bodyA, bodyB, collision.normal),
             supports = [];
 
-        // find the supports from bodyB that are inside bodyA
+        // encontre los soportes de bodyB que están dentro de bodyA
         if (Vertices.contains(bodyA.vertices, verticesB[0]))
             supports.push(verticesB[0]);
 
         if (Vertices.contains(bodyA.vertices, verticesB[1]))
             supports.push(verticesB[1]);
 
-        // find the supports from bodyA that are inside bodyB
+        // encontre los soportes del bodyA que están dentro del bodyB
         if (supports.length < 2) {
             var verticesA = _findSupports(bodyB, bodyA, Vector.neg(collision.normal));
                 
@@ -3329,7 +3329,7 @@ var Vector = _dereq_('../geometry/Vector');
                 supports.push(verticesA[1]);
         }
 
-        // account for the edge case of overlapping but no vertex containment
+        // ten en cuenta el caso límite de superposición pero sin contención de vértices
         if (supports.length < 1)
             supports = [verticesB[0]];
         
@@ -3339,13 +3339,13 @@ var Vector = _dereq_('../geometry/Vector');
     };
 
     /**
-     * Find the overlap between two sets of vertices.
+     * Encuentra la superposición entre dos conjuntos de vértices.
      * @method _overlapAxes
      * @private
-     * @param {} verticesA
-     * @param {} verticesB
-     * @param {} axes
-     * @return result
+     * @param {} verticesA 
+     * @param {} verticesB 
+     * @param {} axes - ejes
+     * @return result - resultado
      */
     var _overlapAxes = function(verticesA, verticesB, axes) {
         var projectionA = Vector._temp[0], 
@@ -3378,12 +3378,12 @@ var Vector = _dereq_('../geometry/Vector');
     };
 
     /**
-     * Projects vertices on an axis and returns an interval.
+     * Proyecta vértices en un eje y devuelve un intervalo.
      * @method _projectToAxis
      * @private
-     * @param {} projection
-     * @param {} vertices
-     * @param {} axis
+     * @param {} projection - proyección
+     * @param {} vertices - vértices
+     * @param {} axis - ejes
      */
     var _projectToAxis = function(projection, vertices, axis) {
         var min = Vector.dot(vertices[0], axis),
@@ -3404,12 +3404,12 @@ var Vector = _dereq_('../geometry/Vector');
     };
     
     /**
-     * Finds supporting vertices given two bodies along a given direction using hill-climbing.
+     * Encuentra vértices de soporte dados dos cuerpos a lo largo de una dirección dada usando escalada.
      * @method _findSupports
      * @private
-     * @param {} bodyA
-     * @param {} bodyB
-     * @param {} normal
+     * @param {} bodyA 
+     * @param {} bodyB 
+     * @param {} normal - normal
      * @return [vector]
      */
     var _findSupports = function(bodyA, bodyB, normal) {
@@ -3422,7 +3422,7 @@ var Vector = _dereq_('../geometry/Vector');
             vertexA,
             vertexB;
 
-        // find closest vertex on bodyB
+        // encontrar el vértice más cercano en bodyB
         for (var i = 0; i < vertices.length; i++) {
             vertex = vertices[i];
             vertexToBody.x = vertex.x - bodyAPosition.x;
@@ -3435,7 +3435,7 @@ var Vector = _dereq_('../geometry/Vector');
             }
         }
 
-        // find next closest vertex using the two connected to it
+        // encuentra el siguiente vértice más cercano usando los dos conectados a él
         var prevIndex = vertexA.index - 1 >= 0 ? vertexA.index - 1 : vertices.length - 1;
         vertex = vertices[prevIndex];
         vertexToBody.x = vertex.x - bodyAPosition.x;
@@ -3459,22 +3459,22 @@ var Vector = _dereq_('../geometry/Vector');
 
 },{"../geometry/Vector":28,"../geometry/Vertices":29}],12:[function(_dereq_,module,exports){
 /**
-* The `Matter.Constraint` module contains methods for creating and manipulating constraints.
-* Constraints are used for specifying that a fixed distance must be maintained between two bodies (or a body and a fixed world-space position).
-* The stiffness of constraints can be modified to create springs or elastic.
+* El módulo `Matter.Constraint` contiene métodos para crear y manipular restricciones.
+* Las restricciones se utilizan para especificar que se debe mantener una distancia fija entre dos cuerpos (o un cuerpo y una posición fija en el espacio del mundo).
+* La rigidez de las restricciones se puede modificar para crear resortes o elásticos.
 *
-* See the included usage [examples](https://github.com/liabru/matter-js/tree/master/examples).
+* Ve el uso incluido [ejemplos](https://github.com/liabru/matter-js/tree/master/examples).
 *
-* @class Constraint
+* @class Constraint - Restricción
 */
 
-// TODO: fix instability issues with torque
-// TODO: linked constraints
-// TODO: breakable constraints
-// TODO: collision constraints
-// TODO: allow constrained bodies to sleep
-// TODO: handle 0 length constraints properly
-// TODO: impulse caching and warming
+// TODO: arregla los problemas de inestabilidad con torque
+// TODO: restricciones vinculadas
+// TODO: restricciones rompibles
+// TODO: restricciones de colisión
+// TODO: permitir que los cuerpos con restricciones duerman
+// TODO: manejar correctamente las restricciones de longitud 0
+// TODO: almacenamiento en caché y calentamiento de impulsos
 
 var Constraint = {};
 
@@ -3493,30 +3493,30 @@ var Common = _dereq_('../core/Common');
         _minDifference = 0.001;
 
     /**
-     * Creates a new constraint.
-     * All properties have default values, and many are pre-calculated automatically based on other properties.
-     * See the properties section below for detailed information on what you can pass via the `options` object.
-     * @method create
-     * @param {} options
-     * @return {constraint} constraint
+     * Crea una nueva restricción.
+     * Todas las propiedades tienen valores predeterminados y muchas se precalculan automáticamente en función de otras propiedades.
+     * Consulte la sección de propiedades a continuación para obtener información detallada sobre lo que puede pasar a través del objeto `options`.
+     * @method create - crear
+     * @param {} options - opciones
+     * @return {constraint} constraint - restricción
      */
     Constraint.create = function(options) {
         var constraint = options;
 
-        // if bodies defined but no points, use body centre
+        // si los cuerpos están definidos pero no hay puntos, use el centro del cuerpo
         if (constraint.bodyA && !constraint.pointA)
             constraint.pointA = { x: 0, y: 0 };
         if (constraint.bodyB && !constraint.pointB)
             constraint.pointB = { x: 0, y: 0 };
 
-        // calculate static length using initial world space points
+        // calcula la longitud estática utilizando puntos del espacio mundo iniciales
         var initialPointA = constraint.bodyA ? Vector.add(constraint.bodyA.position, constraint.pointA) : constraint.pointA,
             initialPointB = constraint.bodyB ? Vector.add(constraint.bodyB.position, constraint.pointB) : constraint.pointB,
             length = Vector.magnitude(Vector.sub(initialPointA, initialPointB));
     
         constraint.length = constraint.length || length || _minLength;
 
-        // render
+        // renderizar
         var render = {
             visible: true,
             lineWidth: 2,
@@ -3525,7 +3525,7 @@ var Common = _dereq_('../core/Common');
         
         constraint.render = Common.extend(render, constraint.render);
 
-        // option defaults
+        // opciones predeterminadas
         constraint.id = constraint.id || Common.nextId();
         constraint.label = constraint.label || 'Constraint';
         constraint.type = 'constraint';
@@ -3539,11 +3539,11 @@ var Common = _dereq_('../core/Common');
     };
 
     /**
-     * Solves all constraints in a list of collisions.
+     * Resuelve todas las restricciones en una lista de colisiones.
      * @private
-     * @method solveAll
-     * @param {constraint[]} constraints
-     * @param {number} timeScale
+     * @method solveAll - resuleveTodas
+     * @param {constraint[]} constraints - restricciones
+     * @param {number} timeScale 
      */
     Constraint.solveAll = function(constraints, timeScale) {
         for (var i = 0; i < constraints.length; i++) {
@@ -3552,11 +3552,11 @@ var Common = _dereq_('../core/Common');
     };
 
     /**
-     * Solves a distance constraint with Gauss-Siedel method.
+     * Resuelve una restricción de distancia con el método de Gauss-Seidel.
      * @private
-     * @method solve
-     * @param {constraint} constraint
-     * @param {number} timeScale
+     * @method solve - resolver
+     * @param {constraint} constraint - restricción
+     * @param {number} timeScale 
      */
     Constraint.solve = function(constraint, timeScale) {
         var bodyA = constraint.bodyA,
@@ -3564,13 +3564,13 @@ var Common = _dereq_('../core/Common');
             pointA = constraint.pointA,
             pointB = constraint.pointB;
 
-        // update reference angle
+        // actualizar el ángulo de referencia
         if (bodyA && !bodyA.isStatic) {
             constraint.pointA = Vector.rotate(pointA, bodyA.angle - constraint.angleA);
             constraint.angleA = bodyA.angle;
         }
         
-        // update reference angle
+        // actualizar el ángulo de referencia
         if (bodyB && !bodyB.isStatic) {
             constraint.pointB = Vector.rotate(pointB, bodyB.angle - constraint.angleB);
             constraint.angleB = bodyB.angle;
@@ -3588,16 +3588,16 @@ var Common = _dereq_('../core/Common');
         var delta = Vector.sub(pointAWorld, pointBWorld),
             currentLength = Vector.magnitude(delta);
 
-        // prevent singularity
+        // prevé la singularidad
         if (currentLength === 0)
             currentLength = _minLength;
 
-        // solve distance constraint with Gauss-Siedel method
+        // resuelve la restricción de distancia con el método de Gauss-Seidel
         var difference = (currentLength - constraint.length) / currentLength,
             normal = Vector.div(delta, currentLength),
             force = Vector.mult(delta, difference * 0.5 * constraint.stiffness * timeScale * timeScale);
         
-        // if difference is very small, we can skip
+        // si la diferencia es muy pequeña, podemos omitir
         if (Math.abs(1 - (currentLength / constraint.length)) < _minDifference * timeScale)
             return;
 
@@ -3617,12 +3617,12 @@ var Common = _dereq_('../core/Common');
                 y: pointAWorld.y - bodyA.position.y + force.y
             };
             
-            // update velocity
+            // velocidad actualizada
             bodyA.velocity.x = bodyA.position.x - bodyA.positionPrev.x;
             bodyA.velocity.y = bodyA.position.y - bodyA.positionPrev.y;
             bodyA.angularVelocity = bodyA.angle - bodyA.anglePrev;
             
-            // find point velocity and body mass
+            // encontrar la velocidad puntual y la masa corporal
             velocityPointA = Vector.add(bodyA.velocity, Vector.mult(Vector.perp(offsetA), bodyA.angularVelocity));
             oAn = Vector.dot(offsetA, normal);
             bodyADenom = bodyA.inverseMass + bodyA.inverseInertia * oAn * oAn;
@@ -3632,18 +3632,18 @@ var Common = _dereq_('../core/Common');
         }
             
         if (bodyB && !bodyB.isStatic) {
-            // point body offset
+            // desplazamiento del cuerpo del punto
             offsetB = { 
                 x: pointBWorld.x - bodyB.position.x - force.x, 
                 y: pointBWorld.y - bodyB.position.y - force.y 
             };
             
-            // update velocity
+            // velocidad actualizada
             bodyB.velocity.x = bodyB.position.x - bodyB.positionPrev.x;
             bodyB.velocity.y = bodyB.position.y - bodyB.positionPrev.y;
             bodyB.angularVelocity = bodyB.angle - bodyB.anglePrev;
 
-            // find point velocity and body mass
+            // encontrar la velocidad puntual y la masa corporal
             velocityPointB = Vector.add(bodyB.velocity, Vector.mult(Vector.perp(offsetB), bodyB.angularVelocity));
             oBn = Vector.dot(offsetB, normal);
             bodyBDenom = bodyB.inverseMass + bodyB.inverseInertia * oBn * oBn;
@@ -3667,12 +3667,12 @@ var Common = _dereq_('../core/Common');
         if (bodyA && !bodyA.isStatic) {
             torque = Vector.cross(offsetA, normalVelocity) * bodyA.inverseInertia * (1 - constraint.angularStiffness);
 
-            // keep track of applied impulses for post solving
+            // realiza un seguimiento de los impulsos aplicados para la resolución posterior
             bodyA.constraintImpulse.x -= force.x;
             bodyA.constraintImpulse.y -= force.y;
             bodyA.constraintImpulse.angle += torque;
 
-            // apply forces
+            // aplicar fuerzas
             bodyA.position.x -= force.x;
             bodyA.position.y -= force.y;
             bodyA.angle += torque;
@@ -3681,12 +3681,12 @@ var Common = _dereq_('../core/Common');
         if (bodyB && !bodyB.isStatic) {
             torque = Vector.cross(offsetB, normalVelocity) * bodyB.inverseInertia * (1 - constraint.angularStiffness);
 
-            // keep track of applied impulses for post solving
+            // realiza un seguimiento de los impulsos aplicados para la resolución posterior
             bodyB.constraintImpulse.x += force.x;
             bodyB.constraintImpulse.y += force.y;
             bodyB.constraintImpulse.angle -= torque;
             
-            // apply forces
+            // aplicar fuerzas
             bodyB.position.x += force.x;
             bodyB.position.y += force.y;
             bodyB.angle -= torque;
@@ -3695,10 +3695,10 @@ var Common = _dereq_('../core/Common');
     };
 
     /**
-     * Performs body updates required after solving constraints.
+     * Realiza las actualizaciones corporales necesarias después de resolver las limitaciones.
      * @private
-     * @method postSolveAll
-     * @param {body[]} bodies
+     * @method postSolveAll 
+     * @param {body[]} bodies - cuerpos
      */
     Constraint.postSolveAll = function(bodies) {
         for (var i = 0; i < bodies.length; i++) {
@@ -3711,7 +3711,7 @@ var Common = _dereq_('../core/Common');
 
             Sleeping.set(body, false);
 
-            // update geometry and reset
+            // actualiza la geometría y restablece
             for (var j = 0; j < body.parts.length; j++) {
                 var part = body.parts[j];
                 
@@ -3741,121 +3741,121 @@ var Common = _dereq_('../core/Common');
 
     /*
     *
-    *  Properties Documentation
+    *  Documentación de propiedades
     *
     */
 
     /**
-     * An integer `Number` uniquely identifying number generated in `Composite.create` by `Common.nextId`.
+     * Un `Número` entero de identificación única generado en`Composite.create` por `Common.nextId`.
      *
-     * @property id
-     * @type number
+     * @property id - identifiación
+     * @type number - número
      */
 
     /**
-     * A `String` denoting the type of object.
+     * Una `Cadena` que indica el tipo de objeto.
      *
-     * @property type
-     * @type string
-     * @default "constraint"
+     * @property type - tipo
+     * @type string - cadena
+     * @default "constraint" - "restricción"
      * @readOnly
      */
 
     /**
-     * An arbitrary `String` name to help the user identify and manage bodies.
+     * Un nombre de `Cadena` arbitrario para ayudar al usuario a identificar y administrar los cuerpos.
      *
-     * @property label
-     * @type string
-     * @default "Constraint"
+     * @property label - etiqueta
+     * @type string - cadena
+     * @default "Constraint" "Restricción"
      */
 
     /**
-     * An `Object` that defines the rendering properties to be consumed by the module `Matter.Render`.
+     * Un `Object` que define las propiedades de renderizado que consumirá el módulo `Matter.Render`.
      *
-     * @property render
-     * @type object
+     * @property render -renderizar
+     * @type object - objeto 
      */
 
     /**
-     * A flag that indicates if the constraint should be rendered.
+     * Una marca que indica si se debe representar la restricción.
      *
      * @property render.visible
      * @type boolean
-     * @default true
+     * @default true - verdadero
      */
 
     /**
-     * A `Number` that defines the line width to use when rendering the constraint outline.
-     * A value of `0` means no outline will be rendered.
+     * Un `Número` que define el ancho de línea que se utilizará al representar el contorno de la restricción.
+     * Un valor de "0" significa que no se representará ningún contorno.
      *
      * @property render.lineWidth
-     * @type number
+     * @type number - número
      * @default 2
      */
 
     /**
-     * A `String` that defines the stroke style to use when rendering the constraint outline.
-     * It is the same as when using a canvas, so it accepts CSS style property values.
+     * Una `Cadena` que define el estilo de trazo que se utilizará al representar el contorno de la restricción.
+     * Es lo mismo que cuando se usa un lienzo, por lo que acepta valores de propiedad de estilo CSS.
      *
      * @property render.strokeStyle
-     * @type string
-     * @default a random colour
+     * @type string - cadena
+     * @default un color al azar
      */
 
     /**
-     * The first possible `Body` that this constraint is attached to.
+     * El primer `Cuerpo` posible al que se adjunta esta restricción.
      *
-     * @property bodyA
-     * @type body
-     * @default null
+     * @property bodyA 
+     * @type body - cuerpo
+     * @default null - nulo 
      */
 
     /**
-     * The second possible `Body` that this constraint is attached to.
+     * El segundo `Cuerpo` posible al que se adjunta esta restricción.
      *
-     * @property bodyB
-     * @type body
-     * @default null
+     * @property bodyB 
+     * @type body - cuerpo
+     * @default null - nulo
      */
 
     /**
-     * A `Vector` that specifies the offset of the constraint from center of the `constraint.bodyA` if defined, otherwise a world-space position.
+     * Un `Vector` que especifica el desplazamiento de la restricción desde el centro de la `constraint.bodyA` si está definida, de lo contrario una posición en el espacio del mundo.
      *
-     * @property pointA
-     * @type vector
+     * @property pointA - puntoA
+     * @type vector - vector
      * @default { x: 0, y: 0 }
      */
 
     /**
-     * A `Vector` that specifies the offset of the constraint from center of the `constraint.bodyA` if defined, otherwise a world-space position.
+     * Un `Vector` que especifica el desplazamiento de la restricción desde el centro de la `constraint.bodyA` si está definida, de lo contrario una posición en el espacio del mundo.
      *
      * @property pointB
-     * @type vector
+     * @type vector - vector
      * @default { x: 0, y: 0 }
      */
 
     /**
-     * A `Number` that specifies the stiffness of the constraint, i.e. the rate at which it returns to its resting `constraint.length`.
-     * A value of `1` means the constraint should be very stiff.
-     * A value of `0.2` means the constraint acts like a soft spring.
+     * Un `Número` que especifica la rigidez de la restricción, es decir, la velocidad a la que vuelve a su `constraint.length` en reposo.
+     * Un valor de `1` significa que la restricción debe ser muy rígida.
+     * Un valor de `0.2` significa que la restricción actúa como un resorte blando.
      *
      * @property stiffness
-     * @type number
+     * @type number - número
      * @default 1
      */
 
     /**
-     * A `Number` that specifies the target resting length of the constraint. 
-     * It is calculated automatically in `Constraint.create` from initial positions of the `constraint.bodyA` and `constraint.bodyB`.
+     * Un `Número` que especifica la longitud de reposo objetivo de la restricción. 
+     * Se calcula automáticamente en `Constraint.create` a partir de las posiciones iniciales de` constraint.bodyA` y `constraint.bodyB`.
      *
-     * @property length
-     * @type number
+     * @property length - largo
+     * @type number - número
      */
 
     /**
-     * An object reserved for storing plugin-specific properties.
+     * Un objeto reservado para almacenar propiedades específicas del complemento.
      *
-     * @property plugin
+     * @property plugin - conectar
      * @type {}
      */
 
@@ -3863,12 +3863,12 @@ var Common = _dereq_('../core/Common');
 
 },{"../core/Common":14,"../core/Sleeping":22,"../geometry/Axes":25,"../geometry/Bounds":26,"../geometry/Vector":28,"../geometry/Vertices":29}],13:[function(_dereq_,module,exports){
 /**
-* The `Matter.MouseConstraint` module contains methods for creating mouse constraints.
-* Mouse constraints are used for allowing user interaction, providing the ability to move bodies via the mouse or touch.
+* El módulo `Matter.MouseConstraint` contiene métodos para crear restricciones del ratón.
+* Las restricciones del ratón se utilizan para permitir la interacción del usuario, proporcionando la capacidad de mover cuerpos mediante el ratón o el tacto.
 *
-* See the included usage [examples](https://github.com/liabru/matter-js/tree/master/examples).
+* Ve el uso incluido [ejemplos](https://github.com/liabru/matter-js/tree/master/examples).
 *
-* @class MouseConstraint
+* @class MouseConstraint 
 */
 
 var MouseConstraint = {};
@@ -3888,13 +3888,13 @@ var Bounds = _dereq_('../geometry/Bounds');
 (function() {
 
     /**
-     * Creates a new mouse constraint.
-     * All properties have default values, and many are pre-calculated automatically based on other properties.
-     * See the properties section below for detailed information on what you can pass via the `options` object.
-     * @method create
-     * @param {engine} engine
-     * @param {} options
-     * @return {MouseConstraint} A new MouseConstraint
+     * Crea una nueva restricción del ratón.
+     * Todas las propiedades tienen valores predeterminados y muchas se precalculan automáticamente en función de otras propiedades.
+     * Consulte la sección de propiedades a continuación para obtener información detallada sobre lo que puede pasar a través del objeto `options`.
+     * @method create - crear
+     * @param {engine} engine - motor
+     * @param {} options - opciones
+     * @return {MouseConstraint} Una nueva MouseConstraint
      */
     MouseConstraint.create = function(engine, options) {
         var mouse = (engine ? engine.mouse : null) || (options ? options.mouse : null);
@@ -3948,11 +3948,11 @@ var Bounds = _dereq_('../geometry/Bounds');
     };
 
     /**
-     * Updates the given mouse constraint.
+     * Actualiza la restricción del ratón dada.
      * @private
-     * @method update
-     * @param {MouseConstraint} mouseConstraint
-     * @param {body[]} bodies
+     * @method update - actualización
+     * @param {MouseConstraint} mouseConstraint 
+     * @param {body[]} bodies - cuerpos
      */
     MouseConstraint.update = function(mouseConstraint, bodies) {
         var mouse = mouseConstraint.mouse,
@@ -3995,7 +3995,7 @@ var Bounds = _dereq_('../geometry/Bounds');
     };
 
     /**
-     * Triggers mouse constraint events.
+     * Activa eventos de restricción del ratón.
      * @method _triggerEvents
      * @private
      * @param {mouse} mouseConstraint
@@ -4013,122 +4013,122 @@ var Bounds = _dereq_('../geometry/Bounds');
         if (mouseEvents.mouseup)
             Events.trigger(mouseConstraint, 'mouseup', { mouse: mouse });
 
-        // reset the mouse state ready for the next step
+        // restablecer el estado del ratón listo para el siguiente paso
         Mouse.clearSourceEvents(mouse);
     };
 
     /*
     *
-    *  Events Documentation
+    *  Documentación de eventos
     *
     */
 
     /**
-    * Fired when the mouse has moved (or a touch moves) during the last step
+    * Se dispara cuando el ratón se ha movido (o se mueve un toque) durante el último paso
     *
-    * @event mousemove
-    * @param {} event An event object
-    * @param {mouse} event.mouse The engine's mouse instance
-    * @param {} event.source The source object of the event
-    * @param {} event.name The name of the event
+    * @event mousemove 
+    * @param {} event Un objeto de evento
+    * @param {mouse} event.mouse La instancia del ratón del motor
+    * @param {} event.source El objeto fuente del evento
+    * @param {} event.name El nombre del evento
     */
 
     /**
-    * Fired when the mouse is down (or a touch has started) during the last step
+    * Se dispara cuando el ratón está abajo (o se ha iniciado un toque) durante el último paso
     *
     * @event mousedown
-    * @param {} event An event object
-    * @param {mouse} event.mouse The engine's mouse instance
-    * @param {} event.source The source object of the event
-    * @param {} event.name The name of the event
+    * @param {} event Un objeto de evento
+    * @param {mouse} event.mouse La instancia del ratón del motor
+    * @param {} event.source El objeto fuente del evento
+    * @param {} event.name El nombre del evento
     */
 
     /**
-    * Fired when the mouse is up (or a touch has ended) during the last step
+    * Se dispara cuando el ratón está arriba (o un toque ha finalizado) durante el último paso
     *
     * @event mouseup
-    * @param {} event An event object
-    * @param {mouse} event.mouse The engine's mouse instance
-    * @param {} event.source The source object of the event
-    * @param {} event.name The name of the event
+    * @param {} event Un objeto de evento
+    * @param {mouse} event.mouse La instancia del motor del ratón
+    * @param {} event.source El objeto fuente del evento
+    * @param {} event.name El nombre del evento 
     */
 
     /**
-    * Fired when the user starts dragging a body
+    * Se dispara cuando el usuario comienza a arrastrar un cuerpo.
     *
     * @event startdrag
-    * @param {} event An event object
-    * @param {mouse} event.mouse The engine's mouse instance
-    * @param {body} event.body The body being dragged
-    * @param {} event.source The source object of the event
-    * @param {} event.name The name of the event
+    * @param {} event Un objeto de evento
+    * @param {mouse} event.mouse La instancia del motor del ratón.
+    * @param {body} event.body El cuerpo siendo arrastrado
+    * @param {} event.source El objeto fuente del evento
+    * @param {} event.name El nombre del evento
     */
 
     /**
-    * Fired when the user ends dragging a body
+    * Se dispara cuando el usuario termina arrastrando un cuerpo.
     *
     * @event enddrag
-    * @param {} event An event object
-    * @param {mouse} event.mouse The engine's mouse instance
-    * @param {body} event.body The body that has stopped being dragged
-    * @param {} event.source The source object of the event
-    * @param {} event.name The name of the event
+    * @param {} event Un objeto de evento	
+    * @param {mouse} event.mouse La instancia del motor del ratón.
+    * @param {body} event.body El cuerpo que ha dejado de ser arrastrado
+    * @param {} event.source El objeto fuente del evento
+    * @param {} event.name El nombre del evento
     */
 
     /*
     *
-    *  Properties Documentation
+    *  Documentación de propiedades
     *
     */
 
     /**
-     * A `String` denoting the type of object.
+     * Una `Cadena` que indica el tipo de objeto.
      *
-     * @property type
-     * @type string
-     * @default "constraint"
+     * @property type - tipo
+     * @type string - cadena
+     * @default "constraint" - "restricción"
      * @readOnly
      */
 
     /**
-     * The `Mouse` instance in use. If not supplied in `MouseConstraint.create`, one will be created.
+     * La instancia de `Ratón` en uso. Si no se proporciona en `MouseConstraint.create`, se creará uno.
      *
-     * @property mouse
-     * @type mouse
-     * @default mouse
+     * @property mouse - ratón
+     * @type mouse - ratón
+     * @default mouse - ratón
      */
 
     /**
-     * The `Body` that is currently being moved by the user, or `null` if no body.
+     * El  `Cuerpo` que el usuario está moviendo actualmente, o `nulo` si no hay cuerpo.
      *
-     * @property body
-     * @type body
-     * @default null
+     * @property body - cuerpo
+     * @type body - cuerpo
+     * @default null - nulo
      */
 
     /**
-     * The `Constraint` object that is used to move the body during interaction.
+     * Objeto `Restricción` que se utiliza para mover el cuerpo durante la interacción.
      *
-     * @property constraint
-     * @type constraint
+     * @property constraint - restricción
+     * @type constraint - restricción
      */
 
     /**
-     * An `Object` that specifies the collision filter properties.
-     * The collision filter allows the user to define which types of body this mouse constraint can interact with.
-     * See `body.collisionFilter` for more information.
+     * Un `Objeto` que especifica las propiedades del filtro de colisión.
+     * El filtro de colisión permite al usuario definir con qué tipos de cuerpo puede interactuar esta restricción del ratón.
+     * Consulte `body.collisionFilter` para obtener más información.
      *
      * @property collisionFilter
-     * @type object
+     * @type object - objeto
      */
 
 })();
 
 },{"../body/Composite":2,"../collision/Detector":5,"../core/Common":14,"../core/Events":16,"../core/Mouse":19,"../core/Sleeping":22,"../geometry/Bounds":26,"../geometry/Vertices":29,"./Constraint":12}],14:[function(_dereq_,module,exports){
 /**
-* The `Matter.Common` module contains utility functions that are common to all modules.
+* El módulo `Matter.Common` contiene funciones de utilidad que son comunes a todos los módulos.
 *
-* @class Common
+* @class Common - Común
 */
 
 var Common = {};
@@ -4141,11 +4141,11 @@ module.exports = Common;
     Common._seed = 0;
 
     /**
-     * Extends the object in the first argument using the object in the second argument.
-     * @method extend
+     * Extiende el objeto en el primer argumento usando el objeto en el segundo argumento.
+     * @method extend - extender
      * @param {} obj
-     * @param {boolean} deep
-     * @return {} obj extended
+     * @param {boolean} deep - profundo
+     * @return {} obj extended - extendido
      */
     Common.extend = function(obj, deep) {
         var argsStart,
@@ -4183,27 +4183,27 @@ module.exports = Common;
     };
 
     /**
-     * Creates a new clone of the object, if deep is true references will also be cloned.
-     * @method clone
+     * Crea un nuevo clon del objeto, si deep (profundo) es true, también se clonarán las referencias.
+     * @method clone - clon
      * @param {} obj
-     * @param {bool} deep
-     * @return {} obj cloned
+     * @param {bool} deep - profundo
+     * @return {} obj cloned - clonado
      */
     Common.clone = function(obj, deep) {
         return Common.extend({}, deep, obj);
     };
 
     /**
-     * Returns the list of keys for the given object.
-     * @method keys
-     * @param {} obj
-     * @return {string[]} keys
+     * Devuelve la lista de claves para el objeto dado.
+     * @method keys - claves
+     * @param {} obj - objeto
+     * @return {string[]} keys - claves
      */
     Common.keys = function(obj) {
         if (Object.keys)
             return Object.keys(obj);
 
-        // avoid hasOwnProperty for performance
+        // evitar hasOwnProperty (tienePropiedadPropia) para el rendimiento
         var keys = [];
         for (var key in obj)
             keys.push(key);
@@ -4211,10 +4211,10 @@ module.exports = Common;
     };
 
     /**
-     * Returns the list of values for the given object.
-     * @method values
-     * @param {} obj
-     * @return {array} Array of the objects property values
+     * Devuelve la lista de valores para el objeto dado.
+     * @method values - valores
+     * @param {} obj - objeto
+     * @return {array} Matriz de objetos, valores de propiedad
      */
     Common.values = function(obj) {
         var values = [];
@@ -4227,20 +4227,20 @@ module.exports = Common;
             return values;
         }
         
-        // avoid hasOwnProperty for performance
+        // evitar hasOwnProperty (tiene propiedad propia) para el rendimiento
         for (var key in obj)
             values.push(obj[key]);
         return values;
     };
 
     /**
-     * Gets a value from `base` relative to the `path` string.
-     * @method get
-     * @param {} obj The base object
-     * @param {string} path The path relative to `base`, e.g. 'Foo.Bar.baz'
-     * @param {number} [begin] Path slice begin
-     * @param {number} [end] Path slice end
-     * @return {} The object at the given path
+     * Obtiene un valor de `base` relativo a la cadena de `ruta`.
+     * @method get - obtener
+     * @param {} obj El objeto base
+     * @param {string} path La ruta relativa a `base`, p. Ej. 'Foo.Bar.baz'
+     * @param {number} [begin Comienzo del segmento de ruta
+     * @param {number} [end] Final del segmento de ruta
+     * @return {} El objeto en la ruta dada
      */
     Common.get = function(obj, path, begin, end) {
         path = path.split('.').slice(begin, end);
@@ -4253,14 +4253,14 @@ module.exports = Common;
     };
 
     /**
-     * Sets a value on `base` relative to the given `path` string.
-     * @method set
-     * @param {} obj The base object
-     * @param {string} path The path relative to `base`, e.g. 'Foo.Bar.baz'
-     * @param {} val The value to set
-     * @param {number} [begin] Path slice begin
-     * @param {number} [end] Path slice end
-     * @return {} Pass through `val` for chaining
+     * Establece un valor en `base` relativo a la cadena de `ruta` dada.
+     * @method set - configurar
+     * @param {} obj El objeto base
+     * @param {string} path La ruta relativa a `base`, p. Ej. 'Foo.Bar.baz'
+     * @param {} val El valor a establecer
+     * @param {number} [begin] Comienzo del segmento de ruta
+     * @param {number} [end] Final del segmento de ruta
+     * @return {} Pase por `val` para encadenar
      */
     Common.set = function(obj, path, val, begin, end) {
         var parts = path.split('.').slice(begin, end);
@@ -4269,11 +4269,11 @@ module.exports = Common;
     };
 
     /**
-     * Returns a hex colour string made by lightening or darkening color by percent.
+     * Devuelve una cadena de color hexadecimal hecha al aclarar u oscurecer el color en porcentaje.
      * @method shadeColor
-     * @param {string} color
-     * @param {number} percent
-     * @return {string} A hex colour
+     * @param {string} color - color
+     * @param {number} percent - por ciento
+     * @return {string} Un color hexadecimal
      */
     Common.shadeColor = function(color, percent) {   
         // http://stackoverflow.com/questions/5560248/programmatically-lighten-or-darken-a-hex-color
@@ -4288,11 +4288,11 @@ module.exports = Common;
     };
 
     /**
-     * Shuffles the given array in-place.
-     * The function uses a seeded random generator.
-     * @method shuffle
-     * @param {array} array
-     * @return {array} array shuffled randomly
+     * Mezcla la matriz dada en su lugar.
+     * La función utiliza un generador aleatorio sembrado.
+     * @method shuffle - revolver
+     * @param {array} array - formación
+     * @return {array} matriz aleatoria
      */
     Common.shuffle = function(array) {
         for (var i = array.length - 1; i > 0; i--) {
@@ -4305,21 +4305,21 @@ module.exports = Common;
     };
 
     /**
-     * Randomly chooses a value from a list with equal probability.
-     * The function uses a seeded random generator.
-     * @method choose
-     * @param {array} choices
-     * @return {object} A random choice object from the array
+     * Elige aleatoriamente un valor de una lista con la misma probabilidad.
+     * La función utiliza un generador aleatorio sembrado.
+     * @method choose - escoger
+     * @param {array} choices - escoger
+     * @return {object} Un objeto de elección aleatoria de la matriz
      */
     Common.choose = function(choices) {
         return choices[Math.floor(Common.random() * choices.length)];
     };
 
     /**
-     * Returns true if the object is a HTMLElement, otherwise false.
+     * Devuelve verdadero si el objeto es un HTMLElement (elemento HTML); de lo contrario, es falso.
      * @method isElement
      * @param {object} obj
-     * @return {boolean} True if the object is a HTMLElement, otherwise false
+     * @return {boolean} Verdadero si el objeto es un elemento HTMLE; de lo contrario, es falso
      */
     Common.isElement = function(obj) {
         // http://stackoverflow.com/questions/384286/javascript-isdom-how-do-you-check-if-a-javascript-object-is-a-dom-object
@@ -4334,52 +4334,52 @@ module.exports = Common;
     };
 
     /**
-     * Returns true if the object is an array.
+     * Devuelve verdadero si el objeto es una matriz.
      * @method isArray
      * @param {object} obj
-     * @return {boolean} True if the object is an array, otherwise false
+     * @return {boolean} Verdadero si el objeto es una matriz, de lo contrario es falso
      */
     Common.isArray = function(obj) {
         return Object.prototype.toString.call(obj) === '[object Array]';
     };
 
     /**
-     * Returns true if the object is a function.
+     * Devuelve verdadero si el objeto es una función.
      * @method isFunction
      * @param {object} obj
-     * @return {boolean} True if the object is a function, otherwise false
+     * @return {boolean} Verdadero si el objeto es una función, de lo contrario es falso
      */
     Common.isFunction = function(obj) {
         return typeof obj === "function";
     };
 
     /**
-     * Returns true if the object is a plain object.
+     * Devuelve verdadero si el objeto es un objeto simple.
      * @method isPlainObject
      * @param {object} obj
-     * @return {boolean} True if the object is a plain object, otherwise false
+     * @return {boolean} Verdadero si el objeto es un objeto simple, de lo contrario es falso
      */
     Common.isPlainObject = function(obj) {
         return typeof obj === 'object' && obj.constructor === Object;
     };
 
     /**
-     * Returns true if the object is a string.
-     * @method isString
+     * Devuelve verdadero si el objeto es una cadena.
+     * @method isString 
      * @param {object} obj
-     * @return {boolean} True if the object is a string, otherwise false
+     * @return {boolean} Verdadero si el objeto es una cadena, de lo contrario es falso
      */
     Common.isString = function(obj) {
         return toString.call(obj) === '[object String]';
     };
     
     /**
-     * Returns the given value clamped between a minimum and maximum value.
-     * @method clamp
-     * @param {number} value
-     * @param {number} min
-     * @param {number} max
-     * @return {number} The value clamped between min and max inclusive
+     * Devuelve el valor dado sujeto entre un valor mínimo y máximo.
+     * @method clamp - sujeto
+     * @param {number} value - valor
+     * @param {number} min - mínimo
+     * @param {number} max - máximo
+     * @return {number} El valor fijado entre mínimo y máximo inclusive
      */
     Common.clamp = function(value, min, max) {
         if (value < min)
@@ -4390,19 +4390,19 @@ module.exports = Common;
     };
     
     /**
-     * Returns the sign of the given value.
-     * @method sign
-     * @param {number} value
-     * @return {number} -1 if negative, +1 if 0 or positive
+     * Devuelve el signo del valor dado.
+     * @method sign - signo
+     * @param {number} value - valor
+     * @return {number} -1 si es negativo, +1 si es 0 o positivo
      */
     Common.sign = function(value) {
         return value < 0 ? -1 : 1;
     };
     
     /**
-     * Returns the current timestamp (high-res if available).
-     * @method now
-     * @return {number} the current timestamp (high-res if available)
+     * Devuelve la marca de tiempo actual (alta resolución si está disponible).
+     * @method now - ahora
+     * @return {number} la marca de tiempo actual (alta resolución si está disponible)
      */
     Common.now = function() {
         // http://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript
@@ -4423,12 +4423,12 @@ module.exports = Common;
     };
     
     /**
-     * Returns a random value between a minimum and a maximum value inclusive.
-     * The function uses a seeded random generator.
-     * @method random
-     * @param {number} min
-     * @param {number} max
-     * @return {number} A random number between min and max inclusive
+     * Devuelve un valor aleatorio entre un valor mínimo y máximo inclusivo.
+     * La función utiliza un generador aleatorio sembrado.
+     * @method random - aleatorio
+     * @param {number} min - mínimo
+     * @param {number} max - máximo
+     * @return {number} Un número aleatorio entre mínimo y máximo inclusivo
      */
     Common.random = function(min, max) {
         min = (typeof min !== "undefined") ? min : 0;
@@ -4443,10 +4443,10 @@ module.exports = Common;
     };
 
     /**
-     * Converts a CSS hex colour string into an integer.
-     * @method colorToNumber
-     * @param {string} colorString
-     * @return {number} An integer representing the CSS hex string
+     * Convierte una cadena de color hexadecimal CSS en un número entero.
+     * @method colorToNumber 
+     * @param {string} colorString 
+     * @return {number} Un número entero que representa la cadena hexadecimal CSS
      */
     Common.colorToNumber = function(colorString) {
         colorString = colorString.replace('#','');
@@ -4461,14 +4461,14 @@ module.exports = Common;
     };
 
     /**
-     * The console logging level to use, where each level includes all levels above and excludes the levels below.
-     * The default level is 'debug' which shows all console messages.  
+     * El nivel de registro de la consola que se utilizará, donde cada nivel incluye todos los niveles superiores y excluye los niveles inferiores.
+     * El nivel predeterminado es 'depuración', que muestra todos los mensajes de la consola.  
      *
-     * Possible level values are:
-     * - 0 = None
-     * - 1 = Debug
-     * - 2 = Info
-     * - 3 = Warn
+     * Los posibles valores de nivel son:
+     * - 0 = ninguno
+     * - 1 = Depurar
+     * - 2 = Información
+     * - 3 = Advertencia
      * - 4 = Error
      * @property Common.logLevel
      * @type {Number}
@@ -4477,10 +4477,10 @@ module.exports = Common;
     Common.logLevel = 1;
 
     /**
-     * Shows a `console.log` message only if the current `Common.logLevel` allows it.
-     * The message will be prefixed with 'matter-js' to make it easily identifiable.
-     * @method log
-     * @param ...objs {} The objects to log.
+     * Muestra un mensaje `console.log` solo si el `Common.logLevel` actual lo permite.
+     * El mensaje tendrá el prefijo 'matter-js' para que sea fácilmente identificable.
+     * @method log - regristro
+     * @param ...objs {} Los objetos a registrar.
      */
     Common.log = function() {
         if (console && Common.logLevel > 0 && Common.logLevel <= 3) {
@@ -4489,10 +4489,10 @@ module.exports = Common;
     };
 
     /**
-     * Shows a `console.info` message only if the current `Common.logLevel` allows it.
-     * The message will be prefixed with 'matter-js' to make it easily identifiable.
-     * @method info
-     * @param ...objs {} The objects to log.
+     * Muestra un mensaje `console.info` solo si el` Common.logLevel` actual lo permite.
+     * El mensaje tendrá el prefijo 'matter-js' para que sea fácilmente identificable.
+     * @method info - información
+     * @param ...objs {} Los objetos a registrar.
      */
     Common.info = function() {
         if (console && Common.logLevel > 0 && Common.logLevel <= 2) {
@@ -4501,10 +4501,10 @@ module.exports = Common;
     };
 
     /**
-     * Shows a `console.warn` message only if the current `Common.logLevel` allows it.
-     * The message will be prefixed with 'matter-js' to make it easily identifiable.
-     * @method warn
-     * @param ...objs {} The objects to log.
+     * Muestra un mensaje `console.warn` solo si el` Common.logLevel` actual lo permite.
+     * El mensaje tendrá el prefijo 'matter-js' para que sea fácilmente identificable.
+     * @method warn - advertencia
+     * @param ...objs {} Los objetos a registrar.
      */
     Common.warn = function() {
         if (console && Common.logLevel > 0 && Common.logLevel <= 3) {
@@ -4513,20 +4513,20 @@ module.exports = Common;
     };
 
     /**
-     * Returns the next unique sequential ID.
-     * @method nextId
-     * @return {Number} Unique sequential ID
+     * Devuelve el siguiente ID secuencial único.
+     * @method nextId 
+     * @return {Number} Unico ID secuencial
      */
     Common.nextId = function() {
         return Common._nextId++;
     };
 
     /**
-     * A cross browser compatible indexOf implementation.
-     * @method indexOf
-     * @param {array} haystack
-     * @param {object} needle
-     * @return {number} The position of needle in haystack, otherwise -1.
+     * Una implementación indexOf compatible con varios navegadores.
+     * @method indexOf 
+     * @param {array} haystack - pajar 
+     * @param {object} needle - aguja
+     * @return {number} La posición de la aguja en el pajar, de lo contrario -1.
      */
     Common.indexOf = function(haystack, needle) {
         if (haystack.indexOf)
@@ -4541,11 +4541,11 @@ module.exports = Common;
     };
 
     /**
-     * A cross browser compatible array map implementation.
-     * @method map
-     * @param {array} list
-     * @param {function} func
-     * @return {array} Values from list transformed by func.
+     * Una implementación de mapa de matriz compatible con varios navegadores.
+     * @method map - mapa
+     * @param {array} list - lista
+     * @param {function} func - función
+     * @return {array} Valores de la lista transformados por func.
      */
     Common.map = function(list, func) {
         if (list.map) {
@@ -4562,11 +4562,11 @@ module.exports = Common;
     };
 
     /**
-     * Takes a directed graph and returns the partially ordered set of vertices in topological order.
-     * Circular dependencies are allowed.
+     * Toma un gráfico dirigido y devuelve el conjunto de vértices parcialmente ordenado en orden topológico.
+     * Se permiten dependencias circulares.
      * @method topologicalSort
-     * @param {object} graph
-     * @return {array} Partially ordered set of vertices in topological order.
+     * @param {object} graph - gráfica
+     * @return {array} Conjunto de vértices parcialmente ordenados en orden topológico.
      */
     Common.topologicalSort = function(graph) {
         // https://mgechev.github.io/javascript-algorithms/graphs_others_topological-sort.js.html
@@ -4607,15 +4607,15 @@ module.exports = Common;
     };
 
     /**
-     * Takes _n_ functions as arguments and returns a new function that calls them in order.
-     * The arguments applied when calling the new function will also be applied to every function passed.
-     * The value of `this` refers to the last value returned in the chain that was not `undefined`.
-     * Therefore if a passed function does not return a value, the previously returned value is maintained.
-     * After all passed functions have been called the new function returns the last returned value (if any).
-     * If any of the passed functions are a chain, then the chain will be flattened.
-     * @method chain
-     * @param ...funcs {function} The functions to chain.
-     * @return {function} A new function that calls the passed functions in order.
+     * Toma _n_ funciones como argumentos y devuelve una nueva función que las llama en orden.
+     * Los argumentos aplicados al llamar a la nueva función también se aplicarán a cada función pasada.
+     * El valor de "esto" se refiere al último valor devuelto en la cadena que no estaba "indefinido".
+     * Por lo tanto, si una función pasada no devuelve un valor, se mantiene el valor devuelto anteriormente.
+     * Después de que se hayan llamado todas las funciones pasadas, la nueva función devuelve el último valor devuelto (si lo hubiera).
+     * Si alguna de las funciones pasadas es una cadena, entonces la cadena se aplanará.
+     * @method chain - cadena
+     * @param ...funcs {function} Las funciones para encadenar.
+     * @return {function} Una nueva función que llama a las funciones pasadas en orden.
      */
     Common.chain = function() {
         var funcs = [];
@@ -4657,13 +4657,13 @@ module.exports = Common;
     };
 
     /**
-     * Chains a function to excute before the original function on the given `path` relative to `base`.
-     * See also docs for `Common.chain`.
+     * Encadena una función para ejecutar antes de la función original en la `path` dada en relación con la` base`.
+     * Consulte también los documentos de `Common.chain`.
      * @method chainPathBefore
-     * @param {} base The base object
-     * @param {string} path The path relative to `base`
-     * @param {function} func The function to chain before the original
-     * @return {function} The chained function that replaced the original
+     * @param {} base El objeto base
+     * @param {string} path La ruta relativa a 'base'
+     * @param {function} func La función de encadenar antes que el original.
+     * @return {function}  La función encadenada que reemplazó al original
      */
     Common.chainPathBefore = function(base, path, func) {
         return Common.set(base, path, Common.chain(
@@ -4673,13 +4673,13 @@ module.exports = Common;
     };
 
     /**
-     * Chains a function to excute after the original function on the given `path` relative to `base`.
-     * See also docs for `Common.chain`.
+     * Encadena una función para ejecutar después de la función original en la `ruta` dada en relación con la `base`.
+     * Consulte también los documentos de `Common.chain`.
      * @method chainPathAfter
-     * @param {} base The base object
-     * @param {string} path The path relative to `base`
-     * @param {function} func The function to chain after the original
-     * @return {function} The chained function that replaced the original
+     * @param {} base El objeto base
+     * @param {string} path La ruta relativa a `base`
+     * @param {function} func La función de encadenar después del original.
+     * @return {function} La función encadenada que reemplazó al original
      */
     Common.chainPathAfter = function(base, path, func) {
         return Common.set(base, path, Common.chain(
@@ -4692,13 +4692,13 @@ module.exports = Common;
 
 },{}],15:[function(_dereq_,module,exports){
 /**
-* The `Matter.Engine` module contains methods for creating and manipulating engines.
-* An engine is a controller that manages updating the simulation of the world.
-* See `Matter.Runner` for an optional game loop utility.
+* El módulo `Matter.Engine` contiene métodos para crear y manipular motores.
+* Un motor es un controlador que gestiona la actualización de la simulación del mundo.
+* Consulte `Matter.Runner` para obtener una utilidad de bucle en un juego opcional.
 *
-* See the included usage [examples](https://github.com/liabru/matter-js/tree/master/examples).
+* Ver el uso incluido [ejemplos](https://github.com/liabru/matter-js/tree/master/examples).
 *
-* @class Engine
+* @class Engine - Motor
 */
 
 var Engine = {};
@@ -4721,15 +4721,15 @@ var Body = _dereq_('../body/Body');
 (function() {
 
     /**
-     * Creates a new engine. The options parameter is an object that specifies any properties you wish to override the defaults.
-     * All properties have default values, and many are pre-calculated automatically based on other properties.
-     * See the properties section below for detailed information on what you can pass via the `options` object.
-     * @method create
+     * Crea un nuevo motor. El parámetro de opciones es un objeto que especifica las propiedades que desees anular de los valores predeterminados.
+     * Todas las propiedades tienen valores predeterminados y muchas se precalculan automáticamente en función de otras propiedades.
+     * Consulte la sección de propiedades a continuación para obtener información detallada sobre lo que puede pasar a través del objeto `options`.
+     * @method create - crear
      * @param {object} [options]
-     * @return {engine} engine
+     * @return {engine} engine - motor
      */
     Engine.create = function(element, options) {
-        // options may be passed as the first (and only) argument
+        // opcion puede pasar como el primer (y único) argumento
         options = Common.isElement(element) ? options : element;
         element = Common.isElement(element) ? element : null;
         options = options || {};
@@ -4786,17 +4786,17 @@ var Body = _dereq_('../body/Body');
     };
 
     /**
-     * Moves the simulation forward in time by `delta` ms.
-     * The `correction` argument is an optional `Number` that specifies the time correction factor to apply to the update.
-     * This can help improve the accuracy of the simulation in cases where `delta` is changing between updates.
-     * The value of `correction` is defined as `delta / lastDelta`, i.e. the percentage change of `delta` over the last step.
-     * Therefore the value is always `1` (no correction) when `delta` constant (or when no correction is desired, which is the default).
-     * See the paper on <a href="http://lonesock.net/article/verlet.html">Time Corrected Verlet</a> for more information.
+     * Avanza la simulación en el tiempo por `delta` ms.
+     * El argumento `corrección` es un `Número` opcional que especifica el factor de corrección de tiempo que se aplicará a la actualización.
+     * Esto puede ayudar a mejorar la precisión de la simulación en los casos en los que `delta` cambia entre actualizaciones.
+     * El valor de `corrección` se define como `delta / lastDelta`, es decir, el cambio porcentual de `delta` en el último paso.
+     * Por lo tanto, el valor es siempre `1` (sin corrección) cuando` delta` es constante (o cuando no se desea ninguna corrección, que es el valor predeterminado).
+     * Consulte el documento en <a href="http://lonesock.net/article/verlet.html"> Time Corrected Verlet </a> para obtener más información.
      *
-     * Triggers `beforeUpdate` and `afterUpdate` events.
-     * Triggers `collisionStart`, `collisionActive` and `collisionEnd` events.
-     * @method update
-     * @param {engine} engine
+     * Activa los eventos `beforeUpdate` y` afterUpdate`.
+     * Activa los eventos `collisionStart`,` collisionActive` y `collisionEnd`.
+     * @method update - actualización
+     * @param {engine} engine - motor
      * @param {number} [delta=16.666]
      * @param {number} [correction=1]
      */
@@ -4810,89 +4810,89 @@ var Body = _dereq_('../body/Body');
             broadphasePairs = [],
             i;
 
-        // increment timestamp
+        // incremento de marca de tiempo
         timing.timestamp += delta * timing.timeScale;
 
-        // create an event object
+        // crea un objeto de evento
         var event = {
             timestamp: timing.timestamp
         };
 
         Events.trigger(engine, 'beforeUpdate', event);
 
-        // get lists of all bodies and constraints, no matter what composites they are in
+        // obten listas de todos los cuerpos y restricciones, sin importar en qué compuestos se encuentren
         var allBodies = Composite.allBodies(world),
             allConstraints = Composite.allConstraints(world);
 
 
-        // if sleeping enabled, call the sleeping controller
+        // si está habilitado sleeping, llame al controlador para ejecutar sleeping
         if (engine.enableSleeping)
             Sleeping.update(allBodies, timing.timeScale);
 
-        // applies gravity to all bodies
+        // aplica gravedad a todos los cuerpos
         _bodiesApplyGravity(allBodies, world.gravity);
 
-        // update all body position and rotation by integration
+        // actualiza toda la posición del cuerpo y la rotación por integración
         _bodiesUpdate(allBodies, delta, timing.timeScale, correction, world.bounds);
 
-        // update all constraints
+        // actualizar todas las restricciones
         for (i = 0; i < engine.constraintIterations; i++) {
             Constraint.solveAll(allConstraints, timing.timeScale);
         }
         Constraint.postSolveAll(allBodies);
 
-        // broadphase pass: find potential collision pairs
+        // pase de fase ancha: encuentra pares de colisión potenciales
         if (broadphase.controller) {
 
-            // if world is dirty, we must flush the whole grid
+            // si el mundo está sucio, debemos limpiar toda la red
             if (world.isModified)
                 broadphase.controller.clear(broadphase);
 
-            // update the grid buckets based on current bodies
+            // actualizar los depósitos de la cuadrícula en función de los cuerpos actuales
             broadphase.controller.update(broadphase, allBodies, engine, world.isModified);
             broadphasePairs = broadphase.pairsList;
         } else {
 
-            // if no broadphase set, we just pass all bodies
+            // si no hay una fase ancha, simplemente pasamos todos los cuerpos
             broadphasePairs = allBodies;
         }
 
-        // clear all composite modified flags
+        // borrar todas las marcas modificadas compuestas
         if (world.isModified) {
             Composite.setModified(world, false, false, true);
         }
 
-        // narrowphase pass: find actual collisions, then create or update collision pairs
+        // Pase de fase estrecha: encuentre colisiones reales, luego cree o actualice pares de colisiones 	
         var collisions = broadphase.detector(broadphasePairs, engine);
 
-        // update collision pairs
+        // actualizar pares de colisiones
         var pairs = engine.pairs,
             timestamp = timing.timestamp;
         Pairs.update(pairs, collisions, timestamp);
         Pairs.removeOld(pairs, timestamp);
 
-        // wake up bodies involved in collisions
+        // Despierta cuerpos involucrados en colisiones.
         if (engine.enableSleeping)
             Sleeping.afterCollisions(pairs.list, timing.timeScale);
 
-        // trigger collision events
+        // desencadena eventos de colisión
         if (pairs.collisionStart.length > 0)
             Events.trigger(engine, 'collisionStart', { pairs: pairs.collisionStart });
 
-        // iteratively resolve position between collisions
+        // resolver iterativamente la posición entre colisiones
         Resolver.preSolvePosition(pairs.list);
         for (i = 0; i < engine.positionIterations; i++) {
             Resolver.solvePosition(pairs.list, timing.timeScale);
         }
         Resolver.postSolvePosition(allBodies);
 
-        // iteratively resolve velocity between collisions
+        // resolver iterativamente la velocidad entre colisiones
         Resolver.preSolveVelocity(pairs.list);
         for (i = 0; i < engine.velocityIterations; i++) {
             Resolver.solveVelocity(pairs.list, timing.timeScale);
         }
 
-        // trigger collision events
+        // desencadenar eventos de colisión
         if (pairs.collisionActive.length > 0)
             Events.trigger(engine, 'collisionActive', { pairs: pairs.collisionActive });
 
@@ -4900,7 +4900,7 @@ var Body = _dereq_('../body/Body');
             Events.trigger(engine, 'collisionEnd', { pairs: pairs.collisionEnd });
 
 
-        // clear force buffers
+        // borrar amortiguadores de fuerza
         _bodiesClearForces(allBodies);
 
         Events.trigger(engine, 'afterUpdate', event);
@@ -4909,10 +4909,10 @@ var Body = _dereq_('../body/Body');
     };
     
     /**
-     * Merges two engines by keeping the configuration of `engineA` but replacing the world with the one from `engineB`.
-     * @method merge
-     * @param {engine} engineA
-     * @param {engine} engineB
+     * Fusiona dos motores manteniendo la configuración de `engineA` pero reemplazando el mundo con el de `engineB`.
+     * @method merge - unir
+     * @param {engine} engineA 
+     * @param {engine} engineB 
      */
     Engine.merge = function(engineA, engineB) {
         Common.extend(engineA, engineB);
@@ -4933,9 +4933,9 @@ var Body = _dereq_('../body/Body');
     };
 
     /**
-     * Clears the engine including the world, pairs and broadphase.
-     * @method clear
-     * @param {engine} engine
+     * Borra el motor incluido el mundo, los pares y la fase ancha.
+     * @method clear - despejar
+     * @param {engine} engine - motor
      */
     Engine.clear = function(engine) {
         var world = engine.world;
@@ -4951,10 +4951,10 @@ var Body = _dereq_('../body/Body');
     };
 
     /**
-     * Zeroes the `body.force` and `body.torque` force buffers.
-     * @method bodiesClearForces
+     * Poner a cero los amortiguadores de fuerza de `body.force` y` body.torque`.
+     * @method bodiesClearForces 
      * @private
-     * @param {body[]} bodies
+     * @param {body[]} bodies - cuerpos
      */
     var _bodiesClearForces = function(bodies) {
         for (var i = 0; i < bodies.length; i++) {
@@ -4968,11 +4968,11 @@ var Body = _dereq_('../body/Body');
     };
 
     /**
-     * Applys a mass dependant force to all given bodies.
+     * Aplica una fuerza dependiente de la masa a todos los cuerpos dados.
      * @method bodiesApplyGravity
      * @private
-     * @param {body[]} bodies
-     * @param {vector} gravity
+     * @param {body[]} bodies - cuerpos
+     * @param {vector} gravity - gravedad
      */
     var _bodiesApplyGravity = function(bodies, gravity) {
         var gravityScale = typeof gravity.scale !== 'undefined' ? gravity.scale : 0.001;
@@ -4994,16 +4994,16 @@ var Body = _dereq_('../body/Body');
     };
 
     /**
-     * Applys `Body.update` to all given `bodies`.
-     * @method updateAll
+     * Aplica `Body.update` a todos los `cuerpos` dados.
+     * @method updateAll 
      * @private
-     * @param {body[]} bodies
-     * @param {number} deltaTime 
-     * The amount of time elapsed between updates
+     * @param {body[]} bodies - cuerpos
+     * @param {number} deltaTime
+     * La cantidad de tiempo transcurrido entre actualizaciones.
      * @param {number} timeScale
-     * @param {number} correction 
-     * The Verlet correction factor (deltaTime / lastDeltaTime)
-     * @param {bounds} worldBounds
+     * @param {number} correction - correción
+     * El factor de corrección de Verlet (deltaTime / lastDeltaTime)
+     * @param {bounds} worldBounds 
      */
     var _bodiesUpdate = function(bodies, deltaTime, timeScale, correction, worldBounds) {
         for (var i = 0; i < bodies.length; i++) {
@@ -5017,165 +5017,165 @@ var Body = _dereq_('../body/Body');
     };
 
     /**
-     * An alias for `Runner.run`, see `Matter.Runner` for more information.
-     * @method run
-     * @param {engine} engine
+     * Un alias para `Runner.run`, consulte` Matter.Runner` para obtener más información.
+     * @method run - correr
+     * @param {engine} engine - motor
      */
 
     /**
-    * Fired just before an update
+    * Disparado justo antes de una actualización
     *
     * @event beforeUpdate
-    * @param {} event An event object
-    * @param {number} event.timestamp The engine.timing.timestamp of the event
-    * @param {} event.source The source object of the event
-    * @param {} event.name The name of the event
+    * @param {} event Un objeto de evento
+    * @param {number} event.timestamp El engine.timing.timestamp del evento
+    * @param {} event.source El objeto fuente del evento
+    * @param {} event.name El nombre del evento
     */
 
     /**
-    * Fired after engine update and all collision events
+    * Disparado después de la actualización del motor y todos los eventos de colisión
     *
     * @event afterUpdate
-    * @param {} event An event object
-    * @param {number} event.timestamp The engine.timing.timestamp of the event
-    * @param {} event.source The source object of the event
-    * @param {} event.name The name of the event
+    * @param {} event Un objeto de evento
+    * @param {number} event.timestamp El engine.timing.timestamp del evento
+    * @param {} event.source El objeto fuente del evento
+    * @param {} event.name El nombre del evento
     */
 
     /**
-    * Fired after engine update, provides a list of all pairs that have started to collide in the current tick (if any)
+    * Activado después de la actualización del motor, proporciona una lista de todos los pares que han comenzado a colisionar en el tick actual (si corresponde)
     *
     * @event collisionStart
-    * @param {} event An event object
-    * @param {} event.pairs List of affected pairs
-    * @param {number} event.timestamp The engine.timing.timestamp of the event
-    * @param {} event.source The source object of the event
-    * @param {} event.name The name of the event
+    * @param {} event Un objeto de evento
+    * @param {} event.pairs Lista de parejas afectadas
+    * @param {number} event.timestamp El engine.timing.timestamp del evento
+    * @param {} event.source El objeto fuente del evento
+    * @param {} event.name El nombre del evento
     */
 
     /**
-    * Fired after engine update, provides a list of all pairs that are colliding in the current tick (if any)
+    * Activado después de la actualización del motor, proporciona una lista de todos los pares que están colisionando en el tick actual (si corresponde)
     *
     * @event collisionActive
-    * @param {} event An event object
-    * @param {} event.pairs List of affected pairs
-    * @param {number} event.timestamp The engine.timing.timestamp of the event
-    * @param {} event.source The source object of the event
-    * @param {} event.name The name of the event
+    * @param {} event Un objeto de evento
+    * @param {} event.pairs Lista de parejas afectadas
+    * @param {number} event.timestamp El engine.timing.timestamp del evento
+    * @param {} event.source El objeto fuente del evento
+    * @param {} event.name El nombre del evento
     */
 
     /**
-    * Fired after engine update, provides a list of all pairs that have ended collision in the current tick (if any)
+    * Activado después de la actualización del motor, proporciona una lista de todos los pares que han terminado la colisión en el tick actual (si corresponde)
     *
-    * @event collisionEnd
-    * @param {} event An event object
-    * @param {} event.pairs List of affected pairs
-    * @param {number} event.timestamp The engine.timing.timestamp of the event
-    * @param {} event.source The source object of the event
-    * @param {} event.name The name of the event
-    */
+    * @event collisionEnd 
+    * @param {} event Un objeto de evento
+    * @param {} event.pairs Lista de parejas afectadas
+    * @param {number} event.timestamp El engine.timing.timestamp del evento
+    * @param {} event.source El objeto fuente del evento
+    * @param {} event.name El nombre del evento
+    */ 
 
     /*
     *
-    *  Properties Documentation
+    *  Documentación de propiedades
     *
     */
 
     /**
-     * An integer `Number` that specifies the number of position iterations to perform each update.
-     * The higher the value, the higher quality the simulation will be at the expense of performance.
+     * Un `Número` entero que especifica el número de iteraciones de posición para realizar cada actualización.
+     * Cuanto mayor sea el valor, mayor calidad tendrá la simulación a expensas del rendimiento.
      *
      * @property positionIterations
-     * @type number
+     * @type number - número
      * @default 6
      */
 
     /**
-     * An integer `Number` that specifies the number of velocity iterations to perform each update.
-     * The higher the value, the higher quality the simulation will be at the expense of performance.
+     * Un `Número` entero que especifica el número de iteraciones de velocidad para realizar cada actualización.
+     * Cuanto mayor sea el valor, mayor calidad tendrá la simulación a expensas del rendimiento.
      *
      * @property velocityIterations
-     * @type number
+     * @type number - número
      * @default 4
      */
 
     /**
-     * An integer `Number` that specifies the number of constraint iterations to perform each update.
-     * The higher the value, the higher quality the simulation will be at the expense of performance.
-     * The default value of `2` is usually very adequate.
+     * Un `Número` entero que especifica el número de iteraciones de restricción para realizar cada actualización.
+     * Cuanto mayor sea el valor, mayor calidad tendrá la simulación a expensas del rendimiento.
+     * El valor predeterminado de `2` suele ser muy adecuado.
      *
      * @property constraintIterations
-     * @type number
+     * @type number - número
      * @default 2
      */
 
     /**
-     * A flag that specifies whether the engine should allow sleeping via the `Matter.Sleeping` module.
-     * Sleeping can improve stability and performance, but often at the expense of accuracy.
+     * Una marca que especifica si el motor debe dormir a través del módulo `Matter.Sleeping`.
+     * Dormir puede mejorar la estabilidad y el rendimiento, pero a menudo a costa de la precisión.
      *
      * @property enableSleeping
-     * @type boolean
-     * @default false
+     * @type boolean - booleano
+     * @default false - falso
      */
 
     /**
-     * An `Object` containing properties regarding the timing systems of the engine. 
+     * Un `Objeto` que contiene propiedades relativas a los sistemas de sincronización del motor.
      *
-     * @property timing
-     * @type object
+     * @property timing - sincronización
+     * @type object - objeto
      */
 
     /**
-     * A `Number` that specifies the global scaling factor of time for all bodies.
-     * A value of `0` freezes the simulation.
-     * A value of `0.1` gives a slow-motion effect.
-     * A value of `1.2` gives a speed-up effect.
+     * Un `Número` que especifica el factor de escala global de tiempo para todos los cuerpos.
+     * Un valor de '0' congela la simulación.
+     * Un valor de '0.1' da un efecto de cámara lenta.
+     * Un valor de '1.2' da un efecto de aceleración.
      *
      * @property timing.timeScale
-     * @type number
+     * @type number - número
      * @default 1
      */
 
     /**
-     * A `Number` that specifies the current simulation-time in milliseconds starting from `0`. 
+     * Un `Número` que especifica el tiempo de simulación actual en milisegundos a partir de `0`.
      * It is incremented on every `Engine.update` by the given `delta` argument. 
      *
      * @property timing.timestamp
-     * @type number
+     * @type number - número
      * @default 0
      */
 
     /**
-     * An instance of a `Render` controller. The default value is a `Matter.Render` instance created by `Engine.create`.
-     * One may also develop a custom renderer module based on `Matter.Render` and pass an instance of it to `Engine.create` via `options.render`.
+     * Una instancia de un controlador `Render`. El valor predeterminado es una instancia de `Matter.Render` creada por `Engine.create`.
+     * También se puede desarrollar un módulo de renderizado personalizado basado en `Matter.Render` y pasar una instancia del mismo a `Engine.create` a través de `options.render`.
      *
-     * A minimal custom renderer object must define at least three functions: `create`, `clear` and `world` (see `Matter.Render`).
-     * It is also possible to instead pass the _module_ reference via `options.render.controller` and `Engine.create` will instantiate one for you.
+     * Un objeto renderizador personalizado mínimo debe definir al menos tres funciones: `create`, `clear` y `world` (consulta `Matter.Render`).
+     * También es posible pasar la referencia de _module_ (módulo) a través de `options.render.controller` y` Engine.create` creará una instancia por ti.
      *
-     * @property render
-     * @type render
-     * @deprecated see Demo.js for an example of creating a renderer
-     * @default a Matter.Render instance
+     * @property render - renderizar
+     * @type render - renderizar
+     * @deprecated see Demo.js para un ejemplo de creación de un renderizador
+     * @default a Matter.Render instance - isntancia
      */
 
     /**
-     * An instance of a broadphase controller. The default value is a `Matter.Grid` instance created by `Engine.create`.
+     * Una instancia de un controlador de fase ancha. El valor predeterminado es una instancia de `Matter.Grid` creada por `Engine.create`.
      *
      * @property broadphase
-     * @type grid
-     * @default a Matter.Grid instance
+     * @type grid - cuadrícula
+     * @default a Matter.Grid instance - instancia
      */
 
     /**
-     * A `World` composite object that will contain all simulated bodies and constraints.
+     * Un objeto compuesto `World` que contendrá todos los cuerpos y restricciones simulados.
      *
-     * @property world
-     * @type world
-     * @default a Matter.World instance
+     * @property world - mundo
+     * @type world - mundo
+     * @default a Matter.World instance - instancia
      */
 
     /**
-     * An object reserved for storing plugin-specific properties.
+     * Un objeto reservado para almacenar propiedades específicas del complemento.
      *
      * @property plugin
      * @type {}
@@ -5185,11 +5185,11 @@ var Body = _dereq_('../body/Body');
 
 },{"../body/Body":1,"../body/Composite":2,"../body/World":3,"../collision/Grid":6,"../collision/Pairs":8,"../collision/Resolver":10,"../constraint/Constraint":12,"../render/Render":31,"./Common":14,"./Events":16,"./Metrics":18,"./Sleeping":22}],16:[function(_dereq_,module,exports){
 /**
-* The `Matter.Events` module contains methods to fire and listen to events on other objects.
+* El módulo `Matter.Events` contiene métodos para disparar y escuchar eventos en otros objetos.
 *
-* See the included usage [examples](https://github.com/liabru/matter-js/tree/master/examples).
+* Ver el uso incluido [ejemplos](https://github.com/liabru/matter-js/tree/master/examples).
 *
-* @class Events
+* @class Eventos
 */
 
 var Events = {};
@@ -5201,11 +5201,11 @@ var Common = _dereq_('./Common');
 (function() {
 
     /**
-     * Subscribes a callback function to the given object's `eventName`.
-     * @method on
-     * @param {} object
-     * @param {string} eventNames
-     * @param {function} callback
+     * Suscribe una función de devolución de llamada al 'eventName' del objeto dado.
+     * @method on - encendido
+     * @param {} object - objeto
+     * @param {string} eventNames 
+     * @param {function} callback 
      */
     Events.on = function(object, eventNames, callback) {
         var names = eventNames.split(' '),
@@ -5222,11 +5222,11 @@ var Common = _dereq_('./Common');
     };
 
     /**
-     * Removes the given event callback. If no callback, clears all callbacks in `eventNames`. If no `eventNames`, clears all events.
-     * @method off
-     * @param {} object
-     * @param {string} eventNames
-     * @param {function} callback
+     * Elimina la devolución de llamada de evento dada. Si no hay devolución de llamada, borra todas las devoluciones de llamada en `Nombresdeeventos`. Si no hay `Nombresdeeventos`, borra todos los eventos.
+     * @method off - apagado
+     * @param {} object - objeto
+     * @param {string} eventNames 
+     * @param {function} callback 
      */
     Events.off = function(object, eventNames, callback) {
         if (!eventNames) {
@@ -5234,7 +5234,7 @@ var Common = _dereq_('./Common');
             return;
         }
 
-        // handle Events.off(object, callback)
+        // manejar Events.off(object, callback)
         if (typeof eventNames === 'function') {
             callback = eventNames;
             eventNames = Common.keys(object.events).join(' ');
@@ -5258,11 +5258,11 @@ var Common = _dereq_('./Common');
     };
 
     /**
-     * Fires all the callbacks subscribed to the given object's `eventName`, in the order they subscribed, if any.
-     * @method trigger
-     * @param {} object
-     * @param {string} eventNames
-     * @param {} event
+     * Activa todas las devoluciones de llamada suscritas al `Nombredeevento` del objeto dado, en el orden en que se suscribieron, si las hay.
+     * @method trigger - desencadenar
+     * @param {} object - objeto
+     * @param {string} eventNames 
+     * @param {} event - evento
      */
     Events.trigger = function(object, eventNames, event) {
         var names,
@@ -5297,9 +5297,9 @@ var Common = _dereq_('./Common');
 
 },{"./Common":14}],17:[function(_dereq_,module,exports){
 /**
-* The `Matter` module is the top level namespace. It also includes a function for installing plugins on top of the library.
+* El módulo `Asunto` es el espacio de nombres de nivel superior. También incluye una función para instalar complementos en la parte superior de la biblioteca.
 *
-* @class Matter
+* @class Asunto
 */
 
 var Matter = {};
@@ -5312,43 +5312,43 @@ var Common = _dereq_('./Common');
 (function() {
 
     /**
-     * The library name.
-     * @property name
+     * El nombre de la biblioteca.
+     * @property name - nombre
      * @readOnly
      * @type {String}
      */
     Matter.name = 'matter-js';
 
     /**
-     * The library version.
-     * @property version
+     * El nombre de la biblioteca.
+     * @property version - versión
      * @readOnly
      * @type {String}
      */
     Matter.version = '0.12.0';
 
     /**
-     * A list of plugin dependencies to be installed. These are normally set and installed through `Matter.use`.
-     * Alternatively you may set `Matter.uses` manually and install them by calling `Plugin.use(Matter)`.
-     * @property uses
+     * Una lista de las dependencias de complementos que se instalarán. Normalmente se configuran e instalan a través de `Matter.use`.
+     * Alternativamente, puede configurar `Matter.uses` manualmente e instalarlos llamando a `Plugin.use (Matter) `.
+     * @property uses - usos
      * @type {Array}
      */
     Matter.uses = [];
 
     /**
-     * The plugins that have been installed through `Matter.Plugin.install`. Read only.
-     * @property used
+     * Los complementos que se han instalado a través de `Matter.Plugin.install`. Solo de lectura.
+     * @property used - usado
      * @readOnly
      * @type {Array}
      */
     Matter.used = [];
 
     /**
-     * Installs the given plugins on the `Matter` namespace.
-     * This is a short-hand for `Plugin.use`, see it for more information.
-     * Call this function once at the start of your code, with all of the plugins you wish to install as arguments.
-     * Avoid calling this function multiple times unless you intend to manually control installation order.
-     * @method use
+     * Instala los complementos en el espacio de nombres de `Matter`.
+     * Esta es una abreviatura de `Plugin.use`, véalo para obtener más información.
+     * Llame a esta función una vez al comienzo de su código, con todos los complementos que desea instalar como argumentos.
+     * Evite llamar a esta función varias veces a menos que desee controlar manualmente el orden de instalación.
+     * @method use - uso
      * @param ...plugin {Function} The plugin(s) to install on `base` (multi-argument).
      */
     Matter.use = function() {
@@ -5356,12 +5356,12 @@ var Common = _dereq_('./Common');
     };
 
     /**
-     * Chains a function to excute before the original function on the given `path` relative to `Matter`.
-     * See also docs for `Common.chain`.
-     * @method before
-     * @param {string} path The path relative to `Matter`
-     * @param {function} func The function to chain before the original
-     * @return {function} The chained function that replaced the original
+     * Encadena una función para ejecutar antes de la función original en la `Ruta` dada en relación con el `Asunto`.
+     * Consulte también los documentos de `Common.chain`.
+     * @method before - antes
+     * @param {string} path La ruta relativa a "Asunto"
+     * @param {function} func La función a encadenar antes que el original.
+     * @return {function} La función encadenada que reemplazó al original
      */
     Matter.before = function(path, func) {
         path = path.replace(/^Matter./, '');
@@ -5369,12 +5369,12 @@ var Common = _dereq_('./Common');
     };
 
     /**
-     * Chains a function to excute after the original function on the given `path` relative to `Matter`.
-     * See also docs for `Common.chain`.
-     * @method after
-     * @param {string} path The path relative to `Matter`
-     * @param {function} func The function to chain after the original
-     * @return {function} The chained function that replaced the original
+     * Encadena una función para ejecutar después de la función original en la `ruta` dada en relación con el `Asunto`.
+     * Consulte también los documentos de `Common.chain`.
+     * @method after - después
+     * @param {string} path La ruta relativa a "Asunto"
+     * @param {function} func La función de encadenar después del original.
+     * @return {function} La función encadenada que reemplazó al original
      */
     Matter.after = function(path, func) {
         path = path.replace(/^Matter./, '');
@@ -5387,9 +5387,9 @@ var Common = _dereq_('./Common');
 
 },{"../body/Composite":2,"./Common":14}],19:[function(_dereq_,module,exports){
 /**
-* The `Matter.Mouse` module contains methods for creating and manipulating mouse inputs.
+* El módulo `Matter.Mouse` contiene métodos para crear y manipular las entradas del mouse.
 *
-* @class Mouse
+* @class Ratón
 */
 
 var Mouse = {};
@@ -5401,10 +5401,10 @@ var Common = _dereq_('../core/Common');
 (function() {
 
     /**
-     * Creates a mouse input.
-     * @method create
-     * @param {HTMLElement} element
-     * @return {mouse} A new mouse
+     * Crea una entrada de mouse.
+     * @method create - crear
+     * @param {HTMLElement} element - elemento
+     * @return {mouse} Un nuevo ratón
      */
     Mouse.create = function(element) {
         var mouse = {};
@@ -5496,10 +5496,10 @@ var Common = _dereq_('../core/Common');
     };
 
     /**
-     * Sets the element the mouse is bound to (and relative to).
+     * Establece el elemento al que está vinculado el ratón (y al que está relacionado).
      * @method setElement
-     * @param {mouse} mouse
-     * @param {HTMLElement} element
+     * @param {mouse} mouse - ratón
+     * @param {HTMLElement} element - elemento
      */
     Mouse.setElement = function(mouse, element) {
         mouse.element = element;
@@ -5517,9 +5517,9 @@ var Common = _dereq_('../core/Common');
     };
 
     /**
-     * Clears all captured source events.
+     * Borra todos los eventos de origen capturados.
      * @method clearSourceEvents
-     * @param {mouse} mouse
+     * @param {mouse} mouse - ratón
      */
     Mouse.clearSourceEvents = function(mouse) {
         mouse.sourceEvents.mousemove = null;
@@ -5530,10 +5530,10 @@ var Common = _dereq_('../core/Common');
     };
 
     /**
-     * Sets the mouse position offset.
+     * Establece el desplazamiento de la posición del ratón.
      * @method setOffset
-     * @param {mouse} mouse
-     * @param {vector} offset
+     * @param {mouse} mouse - ratón
+     * @param {vector} offset - distancia 
      */
     Mouse.setOffset = function(mouse, offset) {
         mouse.offset.x = offset.x;
@@ -5543,10 +5543,10 @@ var Common = _dereq_('../core/Common');
     };
 
     /**
-     * Sets the mouse position scale.
+     * Establece la escala de posición del ratón.
      * @method setScale
-     * @param {mouse} mouse
-     * @param {vector} scale
+     * @param {mouse} mouse - ratón
+     * @param {vector} scale - escala
      */
     Mouse.setScale = function(mouse, scale) {
         mouse.scale.x = scale.x;
@@ -5556,12 +5556,12 @@ var Common = _dereq_('../core/Common');
     };
     
     /**
-     * Gets the mouse position relative to an element given a screen pixel ratio.
+     * Obtiene la posición del ratón relativa a un elemento dada una proporción de píxeles de la pantalla.
      * @method _getRelativeMousePosition
      * @private
-     * @param {} event
-     * @param {} element
-     * @param {number} pixelRatio
+     * @param {} event - evento
+     * @param {} element - elemento
+     * @param {number} pixelRatio 
      * @return {}
      */
     var _getRelativeMousePosition = function(event, element, pixelRatio) {
@@ -5590,9 +5590,9 @@ var Common = _dereq_('../core/Common');
 
 },{"../core/Common":14}],20:[function(_dereq_,module,exports){
 /**
-* The `Matter.Plugin` module contains functions for registering and installing plugins on modules.
+* El módulo `Matter.Plugin` contiene funciones para registrar e instalar complementos en los módulos.
 *
-* @class Plugin
+* @class Plugin - complemento
 */
 
 var Plugin = {};
@@ -5606,10 +5606,10 @@ var Common = _dereq_('./Common');
     Plugin._registry = {};
 
     /**
-     * Registers a plugin object so it can be resolved later by name.
-     * @method register
-     * @param plugin {} The plugin to register.
-     * @return {object} The plugin.
+     * Registra un objeto de complemento para que pueda resolverse más tarde por su nombre.
+     * @method register - registro
+     * @param plugin {} El complemento para registrarse
+     * @return {object} El complemento
      */
     Plugin.register = function(plugin) {
         if (!Plugin.isPlugin(plugin)) {
@@ -5637,59 +5637,59 @@ var Common = _dereq_('./Common');
     };
 
     /**
-     * Resolves a dependency to a plugin object from the registry if it exists. 
-     * The `dependency` may contain a version, but only the name matters when resolving.
-     * @method resolve
-     * @param dependency {string} The dependency.
-     * @return {object} The plugin if resolved, otherwise `undefined`.
+     * Resuelve una dependencia a un objeto de complemento del registro, si existe.
+     * La `dependencia` puede contener una versión, pero solo el nombre importa al resolver.
+     * @method resolve - resolver
+     * @param dependency {string} The dependency. - La dependencia
+     * @return {object} El complemento si se resuelve, de lo contrario, `indefinido`.
      */
     Plugin.resolve = function(dependency) {
         return Plugin._registry[Plugin.dependencyParse(dependency).name];
     };
 
     /**
-     * Returns a pretty printed plugin name and version.
+     * Devuelve un nombre y una versión impresos del complemento.
      * @method toString
-     * @param plugin {} The plugin.
-     * @return {string} Pretty printed plugin name and version.
+     * @param plugin {} The plugin. - El complemento
+     * @return {string} Nombre y versión impresos del complemento.
      */
     Plugin.toString = function(plugin) {
         return typeof plugin === 'string' ? plugin : (plugin.name || 'anonymous') + '@' + (plugin.version || plugin.range || '0.0.0');
     };
 
     /**
-     * Returns `true` if the object meets the minimum standard to be considered a plugin.
-     * This means it must define the following properties:
-     * - `name`
-     * - `version`
-     * - `install`
+     * Devuelve "verdadero" si el objeto cumple con el estándar mínimo para ser considerado un complemento.
+     * Esto significa que debe definir las siguientes propiedades:
+     * - `nombre`
+     * - `versión`
+     * - `instalación`
      * @method isPlugin
-     * @param obj {} The obj to test.
-     * @return {boolean} `true` if the object can be considered a plugin otherwise `false`.
+     * @param obj {} El objeto a probar.
+     * @return {boolean} `true` si el objeto puede considerarse un complemento; de lo contrario, es` false`.
      */
     Plugin.isPlugin = function(obj) {
         return obj && obj.name && obj.version && obj.install;
     };
 
     /**
-     * Returns `true` if a plugin with the given `name` been installed on `module`.
-     * @method isUsed
-     * @param module {} The module.
-     * @param name {string} The plugin name.
-     * @return {boolean} `true` if a plugin with the given `name` been installed on `module`, otherwise `false`.
+     * Devuelve `verdadero` si se ha instalado un complemento con el `nombre` dado en el `módulo`.
+     * @method isUsed 
+     * @param module {} The module. - El módulo.
+     * @param name {string} El nombre del complemento. 
+     * @return {boolean} `verdadero` si se ha instalado un complemento con el `nombre` dado en el `módulo`, en caso contrario` falso`.
      */
     Plugin.isUsed = function(module, name) {
         return module.used.indexOf(name) > -1;
     };
 
     /**
-     * Returns `true` if `plugin.for` is applicable to `module` by comparing against `module.name` and `module.version`.
-     * If `plugin.for` is not specified then it is assumed to be applicable.
-     * The value of `plugin.for` is a string of the format `'module-name'` or `'module-name@version'`.
+     * Devuelve `true` si `plugin.for` es aplicable a `module` comparándolo con `module.name` y `module.version`.
+     * Si no se especifica "plugin.for", se asume que es aplicable.
+     * El valor de `plugin.for` es una cadena con el formato `'module-name'` o `'module-name@version'`.
      * @method isFor
      * @param plugin {} The plugin.
-     * @param module {} The module.
-     * @return {boolean} `true` if `plugin.for` is applicable to `module`, otherwise `false`.
+     * @param module {} The module. - El módulo.
+     * @return {boolean} `verdadero` si `plugin.for` es aplicable a `módulo`, en caso contrario,` falso`.
      */
     Plugin.isFor = function(plugin, module) {
         var parsed = plugin.for && Plugin.dependencyParse(plugin.for);
@@ -5697,20 +5697,20 @@ var Common = _dereq_('./Common');
     };
 
     /**
-     * Installs the plugins by calling `plugin.install` on each plugin specified in `plugins` if passed, otherwise `module.uses`.
-     * For installing plugins on `Matter` see the convenience function `Matter.use`.
-     * Plugins may be specified either by their name or a reference to the plugin object.
-     * Plugins themselves may specify further dependencies, but each plugin is installed only once.
-     * Order is important, a topological sort is performed to find the best resulting order of installation.
-     * This sorting attempts to satisfy every dependency's requested ordering, but may not be exact in all cases.
-     * This function logs the resulting status of each dependency in the console, along with any warnings.
-     * - A green tick ✅ indicates a dependency was resolved and installed.
-     * - An orange diamond 🔶 indicates a dependency was resolved but a warning was thrown for it or one if its dependencies.
-     * - A red cross ❌ indicates a dependency could not be resolved.
-     * Avoid calling this function multiple times on the same module unless you intend to manually control installation order.
-     * @method use
-     * @param module {} The module install plugins on.
-     * @param [plugins=module.uses] {} The plugins to install on module (optional, defaults to `module.uses`).
+     * Instala los complementos llamando a `plugin.install` en cada complemento especificado en `complementos` si se pasa, de lo contrario `module.uses`.
+     * Para instalar complementos en `Asunto`, consulte la función de conveniencia `Matter.use`.
+     * Los complementos se pueden especificar por su nombre o una referencia al objeto del complemento.
+     * Los propios complementos pueden especificar más dependencias, pero cada complemento se instala solo una vez.
+     * El orden es importante, se realiza una clasificación topológica para encontrar el mejor orden de instalación resultante.
+     * Esta clasificación intenta satisfacer la orden solicitada de cada dependencia, pero puede no ser exacta en todos los casos.
+     * Esta función registra el estado resultante de cada dependencia en la consola, junto con las advertencias.
+     * - Una marca verde ✅ indica que se resolvió e instaló una dependencia.
+     * - Un rombo naranja 🔶 indica que se resolvió una dependencia, pero se emitió una advertencia para ella o una de sus dependencias.
+     * - Una cruz roja ❌ indica que no se pudo resolver una dependencia.
+     * Evita llamar a esta función varias veces en el mismo módulo a menos que desee controlar manualmente el orden de instalación.
+     * @method use - uso
+     * @param module {} El módulo instala complementos en.
+     * @param [plugins=module.uses] {} Los complementos para instalar en el módulo (opcional, por defecto es `module.uses`).
      */
     Plugin.use = function(module, plugins) {
         module.uses = (module.uses || []).concat(plugins || []);
@@ -5768,10 +5768,10 @@ var Common = _dereq_('./Common');
     };
 
     /**
-     * Recursively finds all of a module's dependencies and returns a flat dependency graph.
-     * @method dependencies
-     * @param module {} The module.
-     * @return {object} A dependency graph.
+     * Encuentra de forma recursiva todas las dependencias de un módulo y devuelve un gráfico de dependencia plano.
+     * @method dependencies - dependencias
+     * @param module {} The module. - El módulo
+     * @return {object} Un gráfico de dependencia
      */
     Plugin.dependencies = function(module, tracked) {
         var parsedBase = Plugin.dependencyParse(module),
@@ -5821,13 +5821,13 @@ var Common = _dereq_('./Common');
     };
 
     /**
-     * Parses a dependency string into its components.
-     * The `dependency` is a string of the format `'module-name'` or `'module-name@version'`.
-     * See documentation for `Plugin.versionParse` for a description of the format.
-     * This function can also handle dependencies that are already resolved (e.g. a module object).
-     * @method dependencyParse
-     * @param dependency {string} The dependency of the format `'module-name'` or `'module-name@version'`.
-     * @return {object} The dependency parsed into its components.
+     * Analiza una cadena de dependencia en sus componentes.
+     * La `dependencia` es una cadena con el formato `'module-name'` o `'module-name@version'`.
+     * Consulte la documentación de `Plugin.versionParse` para obtener una descripción del formato.
+     * Esta función también puede manejar dependencias que ya están resueltas (por ejemplo, un objeto de módulo).
+     * @method dependencyParse 
+     * @param dependency {string} La dependencia del formato `'module-name'` o `'module-name@version'`.
+     * @return {object} La dependencia analizada en sus componentes.
      */
     Plugin.dependencyParse = function(dependency) {
         if (Common.isString(dependency)) {
@@ -5850,18 +5850,18 @@ var Common = _dereq_('./Common');
     };
 
     /**
-     * Parses a version string into its components.  
-     * Versions are strictly of the format `x.y.z` (as in [semver](http://semver.org/)).
-     * Versions may optionally have a prerelease tag in the format `x.y.z-alpha`.
-     * Ranges are a strict subset of [npm ranges](https://docs.npmjs.com/misc/semver#advanced-range-syntax).
-     * Only the following range types are supported:
+     * Analiza una versión de la cadena en sus componentes.  
+     * Las versiones tienen estrictamente el formato `x.y.z` (como en [semver] (http://semver.org/)).
+     * Las versiones pueden tener opcionalmente una etiqueta de prelanzamiento en el formato `x.y.z-alpha`.
+     * Los rangos son un subconjunto estricto de [rangos npm] (https://docs.npmjs.com/misc/semver#advanced-range-syntax).
+     * Solo se admiten los siguientes tipos de rango:
      * - Tilde ranges e.g. `~1.2.3`
      * - Caret ranges e.g. `^1.2.3`
      * - Exact version e.g. `1.2.3`
      * - Any version `*`
      * @method versionParse
-     * @param range {string} The version string.
-     * @return {object} The version range parsed into its components.
+     * @param range {string} La cadena de la versión.
+     * @return {object}  El rango de versiones analizado en sus componentes.
      */
     Plugin.versionParse = function(range) {
         var pattern = /^\*|[\^~]?\d+\.\d+\.\d+(-[0-9A-Za-z-]+)?$/;
@@ -5891,13 +5891,13 @@ var Common = _dereq_('./Common');
     };
 
     /**
-     * Returns `true` if `version` satisfies the given `range`.
-     * See documentation for `Plugin.versionParse` for a description of the format.
-     * If a version or range is not specified, then any version (`*`) is assumed to satisfy.
+     * Devuelve `verdadero` si la `versión` satisface el `rango` dado.
+     * Consulte la documentación de `Plugin.versionParse` para obtener una descripción del formato.
+     * Si no se especifica una versión o rango, se asume que cualquier versión (`*`) cumple.
      * @method versionSatisfies
-     * @param version {string} The version string.
-     * @param range {string} The range string.
-     * @return {boolean} `true` if `version` satisfies `range`, otherwise `false`.
+     * @param version {string} La cadena de versión.
+     * @param range {string} La cadena de rango.
+     * @return {boolean} `verdadero` si` versión` satisface el `rango`, en caso contrario,` falso`.
      */
     Plugin.versionSatisfies = function(version, range) {
         range = range || '*';
@@ -5936,13 +5936,13 @@ var Common = _dereq_('./Common');
 
 },{"./Common":14}],21:[function(_dereq_,module,exports){
 /**
-* The `Matter.Runner` module is an optional utility which provides a game loop, 
-* that handles continuously updating a `Matter.Engine` for you within a browser.
-* It is intended for development and debugging purposes, but may also be suitable for simple games.
-* If you are using your own game loop instead, then you do not need the `Matter.Runner` module.
-* Instead just call `Engine.update(engine, delta)` in your own loop.
+* El módulo `Matter.Runner` es una utilidad opcional que proporciona un bucle de juego,
+* que maneja la actualización continua de un `Matter.Engine` para ti dentro de un navegador.
+* Está diseñado para fines de desarrollo y depuración, pero también puede ser adecuado para juegos simples.
+* Si estás usando tu propio bucle de juego, entonces no necesitas el módulo `Matter.Runner`.
+* En su lugar, simplemente llame a `Engine.update (engine, delta)` en su propio bucle.
 *
-* See the included usage [examples](https://github.com/liabru/matter-js/tree/master/examples).
+* Ve el uso incluido [ejemplos](https://github.com/liabru/matter-js/tree/master/examples).
 *
 * @class Runner
 */
@@ -5983,9 +5983,9 @@ var Common = _dereq_('./Common');
     }
 
     /**
-     * Creates a new Runner. The options parameter is an object that specifies any properties you wish to override the defaults.
-     * @method create
-     * @param {} options
+     * Crea un nuevo corredor. El parámetro de opciones es un objeto que especifica las propiedades que desea anular los valores predeterminados.
+     * @method create - crear
+     * @param {} options - opciones
      */
     Runner.create = function(options) {
         var defaults = {
@@ -6013,12 +6013,12 @@ var Common = _dereq_('./Common');
     };
 
     /**
-     * Continuously ticks a `Matter.Engine` by calling `Runner.tick` on the `requestAnimationFrame` event.
-     * @method run
-     * @param {engine} engine
+     * Marca continuamente un `Matter.Engine` llamando a` Runner.tick `en el evento `requestAnimationFrame`.
+     * @method run - reproducir
+     * @param {engine} engine - motor
      */
     Runner.run = function(runner, engine) {
-        // create runner if engine is first argument
+        // crear corredor si el motor es el primer argumento
         if (typeof runner.positionIterations !== 'undefined') {
             engine = runner;
             runner = Runner.create();
@@ -6036,21 +6036,21 @@ var Common = _dereq_('./Common');
     };
 
     /**
-     * A game loop utility that updates the engine and renderer by one step (a 'tick').
-     * Features delta smoothing, time correction and fixed or dynamic timing.
-     * Triggers `beforeTick`, `tick` and `afterTick` events on the engine.
-     * Consider just `Engine.update(engine, delta)` if you're using your own loop.
+     * Una utilidad de bucle de juego que actualiza el motor y el renderizador en un paso (un 'tick').
+     * Presenta suavizado delta, corrección de tiempo y sincronización fija o dinámica.
+     * Activa los eventos `beforeTick`,` tick` y `afterTick` en el motor.
+     * Considere solo `Engine.update (engine, delta)` si está usando su propio bucle.
      * @method tick
-     * @param {runner} runner
-     * @param {engine} engine
-     * @param {number} time
+     * @param {runner} runner - reproductor
+     * @param {engine} engine - motor
+     * @param {number} time - tiempo
      */
     Runner.tick = function(runner, engine, time) {
         var timing = engine.timing,
             correction = 1,
             delta;
 
-        // create an event object
+        // crea un objeto de evento
         var event = {
             timestamp: timing.timestamp
         };
@@ -6059,30 +6059,30 @@ var Common = _dereq_('./Common');
         Events.trigger(engine, 'beforeTick', event); // @deprecated
 
         if (runner.isFixed) {
-            // fixed timestep
+            // paso de tiempo fijo
             delta = runner.delta;
         } else {
-            // dynamic timestep based on wall clock between calls
+            // intervalo de tiempo dinámico basado en el reloj de pared entre llamadas
             delta = (time - runner.timePrev) || runner.delta;
             runner.timePrev = time;
 
-            // optimistically filter delta over a few frames, to improve stability
+            // Filtrar delta de forma optimista en unos pocos fotogramas para mejorar la estabilidad.
             runner.deltaHistory.push(delta);
             runner.deltaHistory = runner.deltaHistory.slice(-runner.deltaSampleSize);
             delta = Math.min.apply(null, runner.deltaHistory);
             
-            // limit delta
+            // límite delta
             delta = delta < runner.deltaMin ? runner.deltaMin : delta;
             delta = delta > runner.deltaMax ? runner.deltaMax : delta;
 
-            // correction for delta
+            // corrección para delta
             correction = delta / runner.delta;
 
-            // update engine timing object
+            // actualizar el objeto de sincronización del motor
             runner.delta = delta;
         }
 
-        // time correction for time scaling
+        // corrección de tiempo para escalar el tiempo
         if (runner.timeScalePrev !== 0)
             correction *= timing.timeScale / runner.timeScalePrev;
 
@@ -6092,7 +6092,7 @@ var Common = _dereq_('./Common');
         runner.timeScalePrev = timing.timeScale;
         runner.correction = correction;
 
-        // fps counter
+        // contador de fps
         runner.frameCounter += 1;
         if (time - runner.counterTimestamp >= 1000) {
             runner.fps = runner.frameCounter * ((time - runner.counterTimestamp) / 1000);
@@ -6103,7 +6103,7 @@ var Common = _dereq_('./Common');
         Events.trigger(runner, 'tick', event);
         Events.trigger(engine, 'tick', event); // @deprecated
 
-        // if world has been modified, clear the render scene graph
+        // si se ha modificado el mundo, borre el gráfico de escena de renderizado
         if (engine.world.isModified 
             && engine.render
             && engine.render.controller
@@ -6111,12 +6111,12 @@ var Common = _dereq_('./Common');
             engine.render.controller.clear(engine.render); // @deprecated
         }
 
-        // update
+        // actualización
         Events.trigger(runner, 'beforeUpdate', event);
         Engine.update(engine, delta, correction);
         Events.trigger(runner, 'afterUpdate', event);
 
-        // render
+        // renderizar
         // @deprecated
         if (engine.render && engine.render.controller) {
             Events.trigger(runner, 'beforeRender', event);
@@ -6133,20 +6133,20 @@ var Common = _dereq_('./Common');
     };
 
     /**
-     * Ends execution of `Runner.run` on the given `runner`, by canceling the animation frame request event loop.
-     * If you wish to only temporarily pause the engine, see `engine.enabled` instead.
-     * @method stop
-     * @param {runner} runner
+     * Finaliza la ejecución de `Runner.run` en el `runner` dado, cancelando el bucle de evento de solicitud de cuadro de animación.
+     * Si solo deseas pausar el motor temporalmente, consulta `engine.enabled` en su lugar.
+     * @method stop - detener
+     * @param {runner} runner - reproductor
      */
     Runner.stop = function(runner) {
         _cancelAnimationFrame(runner.frameRequestId);
     };
 
     /**
-     * Alias for `Runner.run`.
-     * @method start
-     * @param {runner} runner
-     * @param {engine} engine
+     * Alias de `Runner.run`.
+     * @method start - iniciar
+     * @param {runner} runner - reproductor
+     * @param {engine} engine - motor
      */
     Runner.start = function(runner, engine) {
         Runner.run(runner, engine);
@@ -6154,113 +6154,113 @@ var Common = _dereq_('./Common');
 
     /*
     *
-    *  Events Documentation
+    *  Documentación de eventos
     *
     */
 
     /**
-    * Fired at the start of a tick, before any updates to the engine or timing
+    * Se dispara al inicio de un tick, antes de cualquier actualización del motor o la sincronización
     *
-    * @event beforeTick
-    * @param {} event An event object
-    * @param {number} event.timestamp The engine.timing.timestamp of the event
-    * @param {} event.source The source object of the event
-    * @param {} event.name The name of the event
+    * @event beforeTick - antesdeTick
+    * @param {} event Un objeto de evento
+    * @param {number} event.timestamp El engine.timing.timestamp del evento
+    * @param {} event.source El objeto fuente del evento
+    * @param {} event.name El nombre del evento
     */
 
     /**
-    * Fired after engine timing updated, but just before update
+    * Se dispara después de actualizar la sincronización del motor, pero justo antes de la actualización
     *
     * @event tick
-    * @param {} event An event object
-    * @param {number} event.timestamp The engine.timing.timestamp of the event
-    * @param {} event.source The source object of the event
-    * @param {} event.name The name of the event
+    * @param {} event Un objeto de evento
+    * @param {number} event.timestamp El engine.timing.timestamp del evento
+    * @param {} event.source El objeto fuente del evento
+    * @param {} event.name El nombre del evento
     */
 
     /**
-    * Fired at the end of a tick, after engine update and after rendering
+    * Se activa al final de un tick, después de la actualización del motor y después del renderizado
     *
     * @event afterTick
-    * @param {} event An event object
-    * @param {number} event.timestamp The engine.timing.timestamp of the event
-    * @param {} event.source The source object of the event
-    * @param {} event.name The name of the event
+    * @param {} event Un objeto de evento
+    * @param {number} event.timestamp El engine.timing.timestamp del evento
+    * @param {} event.source El objeto fuente del evento
+    * @param {} event.name El nombre del evento
     */
 
     /**
-    * Fired before update
+    * Disparado antes de la actualización
     *
-    * @event beforeUpdate
-    * @param {} event An event object
-    * @param {number} event.timestamp The engine.timing.timestamp of the event
-    * @param {} event.source The source object of the event
-    * @param {} event.name The name of the event
+    * @event beforeUpdate - antesdelaactualización
+    * @param {} event Un objeto de evento
+    * @param {number} event.timestamp El engine.timing.timestamp del evento
+    * @param {} event.source El objeto fuente del evento
+    * @param {} event.name El nombre del evento
     */
 
     /**
-    * Fired after update
+    * Lanzado después de la actualización
     *
-    * @event afterUpdate
-    * @param {} event An event object
-    * @param {number} event.timestamp The engine.timing.timestamp of the event
-    * @param {} event.source The source object of the event
-    * @param {} event.name The name of the event
+    * @event afterUpdate - despuésdelaactualización
+    * @param {} event Un objeto de evento
+    * @param {number} event.timestamp El engine.timing.timestamp del evento
+    * @param {} event.source El objeto fuente del evento
+    * @param {} event.name El nombre del evento
     */
 
     /**
-    * Fired before rendering
+    * Disparado antes de renderizar
     *
-    * @event beforeRender
-    * @param {} event An event object
-    * @param {number} event.timestamp The engine.timing.timestamp of the event
-    * @param {} event.source The source object of the event
-    * @param {} event.name The name of the event
+    * @event beforeRender - antesdereproducir
+    * @param {} event Un objeto de evento
+    * @param {number} event.timestamp El engine.timing.timestamp del evento
+    * @param {} event.source El objeto fuente del evento
+    * @param {} event.name El nombre del evento
     * @deprecated
     */
 
     /**
-    * Fired after rendering
+    * Disparado después del renderizado
     *
-    * @event afterRender
-    * @param {} event An event object
-    * @param {number} event.timestamp The engine.timing.timestamp of the event
-    * @param {} event.source The source object of the event
-    * @param {} event.name The name of the event
+    * @event afterRender 
+    * @param {} event Un objeto de evento
+    * @param {number} event.timestamp El engine.timing.timestamp del evento
+    * @param {} event.source El objeto fuente del evento
+    * @param {} event.name El nombre del evento
     * @deprecated
     */
 
     /*
     *
-    *  Properties Documentation
+    *  Documentación de propiedades
     *
     */
 
     /**
-     * A flag that specifies whether the runner is running or not.
+     * Una marca que especifica si el corredor está corriendo o no.
      *
-     * @property enabled
-     * @type boolean
-     * @default true
+     * @property enabled -activado
+     * @type boolean - booleano
+     * @default true - verdadero
      */
 
     /**
-     * A `Boolean` that specifies if the runner should use a fixed timestep (otherwise it is variable).
-     * If timing is fixed, then the apparent simulation speed will change depending on the frame rate (but behaviour will be deterministic).
-     * If the timing is variable, then the apparent simulation speed will be constant (approximately, but at the cost of determininism).
+     *Un `Booleano` que especifica si el corredor debe usar un paso de tiempo fijo (de lo contrario, es variable).
+     * Si el tiempo es fijo, la velocidad de simulación aparente cambiará dependiendo de la velocidad de fotogramas (pero el comportamiento será determinista).
+     * Si el tiempo es variable, entonces la velocidad de simulación aparente será constante (aproximadamente, pero a costa del determininismo).
      *
-     * @property isFixed
-     * @type boolean
-     * @default false
+     * @property isFixed 
+     * @type boolean - booleano
+     * @default false - falso
      */
 
     /**
-     * A `Number` that specifies the time step between updates in milliseconds.
-     * If `engine.timing.isFixed` is set to `true`, then `delta` is fixed.
-     * If it is `false`, then `delta` can dynamically change to maintain the correct apparent simulation speed.
+     * Un `Número` que especifica el intervalo de tiempo entre actualizaciones en milisegundos.
+     * Si `engine.timing.isFixed` se establece en `true`, entonces `delta` es fijo.
+     * Si es 'false', entonces 'delta' puede cambiar dinámicamente para mantener la velocidad de simulación aparente correcta.
      *
      * @property delta
-     * @type number
+     * @type number - número
      * @default 1000 / 60
      */
 
@@ -6268,9 +6268,9 @@ var Common = _dereq_('./Common');
 
 },{"./Common":14,"./Engine":15,"./Events":16}],22:[function(_dereq_,module,exports){
 /**
-* The `Matter.Sleeping` module contains methods to manage the sleeping state of bodies.
+* El módulo `Matter.Sleeping` contiene métodos para gestionar el estado de sueño de los cuerpos.
 *
-* @class Sleeping
+* @class Sleeping - Durmiendo
 */
 
 var Sleeping = {};
@@ -6286,20 +6286,20 @@ var Events = _dereq_('./Events');
     Sleeping._minBias = 0.9;
 
     /**
-     * Puts bodies to sleep or wakes them up depending on their motion.
-     * @method update
-     * @param {body[]} bodies
+     * Duerme los cuerpos o los despierta según su movimiento.
+     * @method update - actualización
+     * @param {body[]} bodies - cuerpos
      * @param {number} timeScale
-     */
+     */ 
     Sleeping.update = function(bodies, timeScale) {
         var timeFactor = timeScale * timeScale * timeScale;
 
-        // update bodies sleeping status
+        // actualizar el estado del sueño de los cuerpos
         for (var i = 0; i < bodies.length; i++) {
             var body = bodies[i],
                 motion = body.speed * body.speed + body.angularSpeed * body.angularSpeed;
 
-            // wake up bodies if they have a force applied
+            // Despertar cuerpos si se les aplica una fuerza
             if (body.force.x !== 0 || body.force.y !== 0) {
                 Sleeping.set(body, false);
                 continue;
@@ -6308,7 +6308,7 @@ var Events = _dereq_('./Events');
             var minMotion = Math.min(body.motion, motion),
                 maxMotion = Math.max(body.motion, motion);
         
-            // biased average motion estimation between frames
+            // estimación de movimiento medio sesgada entre fotogramas
             body.motion = Sleeping._minBias * minMotion + (1 - Sleeping._minBias) * maxMotion;
             
             if (body.sleepThreshold > 0 && body.motion < Sleeping._motionSleepThreshold * timeFactor) {
@@ -6323,19 +6323,19 @@ var Events = _dereq_('./Events');
     };
 
     /**
-     * Given a set of colliding pairs, wakes the sleeping bodies involved.
-     * @method afterCollisions
-     * @param {pair[]} pairs
-     * @param {number} timeScale
+     * Dado un conjunto de pares que chocan, despierta los cuerpos dormidos involucrados.
+     * @method afterCollisions 
+     * @param {pair[]} pairs - pares
+     * @param {number} timeScale 
      */
     Sleeping.afterCollisions = function(pairs, timeScale) {
         var timeFactor = timeScale * timeScale * timeScale;
 
-        // wake up bodies involved in collisions
+        // Despertar cuerpos involucrados en colisiones.
         for (var i = 0; i < pairs.length; i++) {
             var pair = pairs[i];
             
-            // don't wake inactive pairs
+            // no despiertes parejas inactivas
             if (!pair.isActive)
                 continue;
 
@@ -6343,7 +6343,7 @@ var Events = _dereq_('./Events');
                 bodyA = collision.bodyA.parent, 
                 bodyB = collision.bodyB.parent;
         
-            // don't wake if at least one body is static
+            // no despiertes si al menos un cuerpo está estático
             if ((bodyA.isSleeping && bodyB.isSleeping) || bodyA.isStatic || bodyB.isStatic)
                 continue;
         
@@ -6359,10 +6359,10 @@ var Events = _dereq_('./Events');
     };
   
     /**
-     * Set a body as sleeping or awake.
-     * @method set
-     * @param {body} body
-     * @param {boolean} isSleeping
+     * Establece un cuerpo como dormido o despierto.
+     * @method set - fijar
+     * @param {body} body - cuerpo
+     * @param {boolean} isSleeping 
      */
     Sleeping.set = function(body, isSleeping) {
         var wasSleeping = body.isSleeping;
@@ -6400,15 +6400,15 @@ var Events = _dereq_('./Events');
 },{"./Events":16}],23:[function(_dereq_,module,exports){
 (function (global){
 /**
-* The `Matter.Bodies` module contains factory methods for creating rigid body models 
-* with commonly used body configurations (such as rectangles, circles and other polygons).
+* El módulo `Matter.Bodies` contiene métodos de fábrica para crear modelos de cuerpos rígidos
+* con configuraciones de cuerpo de uso común (como rectángulos, círculos y otros polígonos).
 *
-* See the included usage [examples](https://github.com/liabru/matter-js/tree/master/examples).
+* Ve el uso incluido [ejemplos](https://github.com/liabru/matter-js/tree/master/examples).
 *
-* @class Bodies
+* @class Bodies - Cuerpos
 */
 
-// TODO: true circle bodies
+// TODO: verdaderos cuerpos circulares
 
 var Bodies = {};
 
@@ -6424,16 +6424,16 @@ var decomp = (typeof window !== "undefined" ? window['decomp'] : typeof global !
 (function() {
 
     /**
-     * Creates a new rigid body model with a rectangle hull. 
-     * The options parameter is an object that specifies any properties you wish to override the defaults.
-     * See the properties section of the `Matter.Body` module for detailed information on what you can pass via the `options` object.
-     * @method rectangle
+     * Crea un nuevo modelo de cuerpo rígido con un envolvente rectangular. 
+     * El parámetro de opciones es un objeto que especifica las propiedades que desea anular los valores predeterminados.
+     * Consulte la sección de propiedades del módulo `Matter.Body` para obtener información detallada sobre lo que puede pasar a través del objeto `options`.
+     * @method rectangle - rectangulo
      * @param {number} x
      * @param {number} y
-     * @param {number} width
-     * @param {number} height
-     * @param {object} [options]
-     * @return {body} A new rectangle body
+     * @param {number} width - ancho
+     * @param {number} height - altura
+     * @param {object} [options] 
+     * @return {body}  Un nuevo cuerpo rectangular
      */
     Bodies.rectangle = function(x, y, width, height, options) {
         options = options || {};
@@ -6455,17 +6455,17 @@ var decomp = (typeof window !== "undefined" ? window['decomp'] : typeof global !
     };
     
     /**
-     * Creates a new rigid body model with a trapezoid hull. 
-     * The options parameter is an object that specifies any properties you wish to override the defaults.
-     * See the properties section of the `Matter.Body` module for detailed information on what you can pass via the `options` object.
-     * @method trapezoid
+     * Crea un nuevo modelo de carrocería rígida con envolvente trapezoidal. 
+     * El parámetro de opciones es un objeto que especifica las propiedades que desea anular los valores predeterminados.
+     * Consulte la sección de propiedades del módulo `Matter.Body` para obtener información detallada sobre lo que puede pasar a través del objeto `options`.
+     * @method trapezoid - trapezoide
      * @param {number} x
      * @param {number} y
-     * @param {number} width
-     * @param {number} height
-     * @param {number} slope
+     * @param {number} width - ancho
+     * @param {number} height - altura
+     * @param {number} slope - inclinación
      * @param {object} [options]
-     * @return {body} A new trapezoid body
+     * @return {body}  Un nuevo cuerpo trapezoidal
      */
     Bodies.trapezoid = function(x, y, width, height, slope, options) {
         options = options || {};
@@ -6501,16 +6501,16 @@ var decomp = (typeof window !== "undefined" ? window['decomp'] : typeof global !
     };
 
     /**
-     * Creates a new rigid body model with a circle hull. 
-     * The options parameter is an object that specifies any properties you wish to override the defaults.
-     * See the properties section of the `Matter.Body` module for detailed information on what you can pass via the `options` object.
-     * @method circle
+     * Crea un nuevo modelo de cuerpo rígido con un envolvente circular.
+     * El parámetro de opciones es un objeto que especifica las propiedades que desea anular los valores predeterminados.
+     * Consulte la sección de propiedades del módulo `Matter.Body` para obtener información detallada sobre lo que puede pasar a través del objeto `options`.
+     * @method circle - circulo
      * @param {number} x
      * @param {number} y
-     * @param {number} radius
+     * @param {number} radius - radio
      * @param {object} [options]
      * @param {number} [maxSides]
-     * @return {body} A new circle body
+     * @return {body} Un nuevo cuerpo circular
      */
     Bodies.circle = function(x, y, radius, options, maxSides) {
         options = options || {};
@@ -6520,11 +6520,11 @@ var decomp = (typeof window !== "undefined" ? window['decomp'] : typeof global !
             circleRadius: radius
         };
         
-        // approximate circles with polygons until true circles implemented in SAT
+        // círculos aproximados con polígonos hasta círculos verdaderos implementados en SAT
         maxSides = maxSides || 25;
         var sides = Math.ceil(Math.max(10, Math.min(maxSides, radius)));
 
-        // optimisation: always use even number of sides (half the number of unique axes)
+        // optimización: utilice siempre un número par de lados (la mitad del número de ejes únicos)
         if (sides % 2 === 1)
             sides += 1;
 
@@ -6532,16 +6532,16 @@ var decomp = (typeof window !== "undefined" ? window['decomp'] : typeof global !
     };
 
     /**
-     * Creates a new rigid body model with a regular polygon hull with the given number of sides. 
-     * The options parameter is an object that specifies any properties you wish to override the defaults.
-     * See the properties section of the `Matter.Body` module for detailed information on what you can pass via the `options` object.
-     * @method polygon
+     * Crea un nuevo modelo de cuerpo rígido con un envolvente poligonal regular con el número dado de lados.
+     * El parámetro de opciones es un objeto que especifica las propiedades que desea anular los valores predeterminados.
+     * Consulte la sección de propiedades del módulo `Matter.Body` para obtener información detallada sobre lo que puede pasar a través del objeto `options`.
+     * @method polygon - polígono
      * @param {number} x
      * @param {number} y
-     * @param {number} sides
-     * @param {number} radius
+     * @param {number} sides - lados
+     * @param {number} radius - radios
      * @param {object} [options]
-     * @return {body} A new regular polygon body
+     * @return {body} Un nuevo cuerpo de polígono regular
      */
     Bodies.polygon = function(x, y, sides, radius, options) {
         options = options || {};
@@ -6578,15 +6578,15 @@ var decomp = (typeof window !== "undefined" ? window['decomp'] : typeof global !
     };
 
     /**
-     * Creates a body using the supplied vertices (or an array containing multiple sets of vertices).
-     * If the vertices are convex, they will pass through as supplied.
-     * Otherwise if the vertices are concave, they will be decomposed if [poly-decomp.js](https://github.com/schteppe/poly-decomp.js) is available.
-     * Note that this process is not guaranteed to support complex sets of vertices (e.g. those with holes may fail).
-     * By default the decomposition will discard collinear edges (to improve performance).
-     * It can also optionally discard any parts that have an area less than `minimumArea`.
-     * If the vertices can not be decomposed, the result will fall back to using the convex hull.
-     * The options parameter is an object that specifies any `Matter.Body` properties you wish to override the defaults.
-     * See the properties section of the `Matter.Body` module for detailed information on what you can pass via the `options` object.
+     * Crea un cuerpo utilizando los vértices proporcionados (o una matriz que contiene varios conjuntos de vértices).
+     * Si los vértices son convexos, pasarán como se vayan suministrando.
+     * De lo contrario, si los vértices son cóncavos, se descompondrán si [poly-decomp.js] (https://github.com/schteppe/poly-decomp.js) está disponible.
+     * Tenga en cuenta que no se garantiza que este proceso admita conjuntos complejos de vértices (por ejemplo, aquellos con agujeros pueden fallar).
+     * De forma predeterminada, la descomposición descartará los bordes colineales (para mejorar el rendimiento).
+     * También puede descartar opcionalmente cualquier parte que tenga un área menor que 'área mínima'.
+     * Si los vértices no se pueden descomponer, el resultado volverá a utilizar el envolvente convexo.
+     * El parámetro de opciones es un objeto que especifica cualquier propiedad de `Matter.Body` que desea anular los valores predeterminados.
+     * Consulte la sección de propiedades del módulo `Matter.Body` para obtener información detallada sobre lo que puede pasar a través del objeto `options`.
      * @method fromVertices
      * @param {number} x
      * @param {number} y
@@ -6619,7 +6619,7 @@ var decomp = (typeof window !== "undefined" ? window['decomp'] : typeof global !
             Common.warn('Bodies.fromVertices: poly-decomp.js required. Could not decompose vertices. Fallback to convex hull.');
         }
 
-        // ensure vertexSets is an array of arrays
+        // asegúrese de que los conjuntos de vértices sean una matriz de matrices
         if (!Common.isArray(vertexSets[0])) {
             vertexSets = [vertexSets];
         }
@@ -6632,7 +6632,7 @@ var decomp = (typeof window !== "undefined" ? window['decomp'] : typeof global !
                 if (isConvex) {
                     vertices = Vertices.clockwiseSort(vertices);
                 } else {
-                    // fallback to convex hull when decomposition is not possible
+                    // retroceso al envolvente convexo cuando la descomposición no es posible
                     vertices = Vertices.hull(vertices);
                 }
 
@@ -6641,24 +6641,24 @@ var decomp = (typeof window !== "undefined" ? window['decomp'] : typeof global !
                     vertices: vertices
                 });
             } else {
-                // initialise a decomposition
+                // inicializar una descomposición
                 var concave = vertices.map(function(vertex) {
                     return [vertex.x, vertex.y];
                 });
 
-                // vertices are concave and simple, we can decompose into parts
+                // los vértices son cóncavos y simples, podemos descomponerlos en partes
                 decomp.makeCCW(concave);
                 if (removeCollinear !== false)
                     decomp.removeCollinearPoints(concave, removeCollinear);
 
-                // use the quick decomposition algorithm (Bayazit)
+                // utilizar el algoritmo de descomposición rápida (Bayazit)
                 var decomposed = decomp.quickDecomp(concave);
 
-                // for each decomposed chunk
+                // por cada trozo descompuesto
                 for (i = 0; i < decomposed.length; i++) {
                     var chunk = decomposed[i];
 
-                    // convert vertices into the correct structure
+                    // convertir vértices en la estructura correcta
                     var chunkVertices = chunk.map(function(vertices) {
                         return {
                             x: vertices[0],
@@ -6666,11 +6666,11 @@ var decomp = (typeof window !== "undefined" ? window['decomp'] : typeof global !
                         };
                     });
 
-                    // skip small chunks
+                    // omitir trozos pequeños
                     if (minimumArea > 0 && Vertices.area(chunkVertices) < minimumArea)
                         continue;
 
-                    // create a compound part
+                    // crea una pieza compuesta
                     parts.push({
                         position: Vertices.centre(chunkVertices),
                         vertices: chunkVertices
@@ -6679,12 +6679,12 @@ var decomp = (typeof window !== "undefined" ? window['decomp'] : typeof global !
             }
         }
 
-        // create body parts
+        // crear partes del cuerpo
         for (i = 0; i < parts.length; i++) {
             parts[i] = Body.create(Common.extend(parts[i], options));
         }
 
-        // flag internal edges (coincident part edges)
+        // marcar bordes internos (bordes de partes coincidentes)
         if (flagInternal) {
             var coincident_max_dist = 5;
 
@@ -6698,14 +6698,14 @@ var decomp = (typeof window !== "undefined" ? window['decomp'] : typeof global !
                         var pav = partA.vertices,
                             pbv = partB.vertices;
 
-                        // iterate vertices of both parts
+                        // iterar vértices de ambas partes
                         for (k = 0; k < partA.vertices.length; k++) {
                             for (z = 0; z < partB.vertices.length; z++) {
                                 // find distances between the vertices
                                 var da = Vector.magnitudeSquared(Vector.sub(pav[(k + 1) % pav.length], pbv[z])),
                                     db = Vector.magnitudeSquared(Vector.sub(pav[k], pbv[(z + 1) % pbv.length]));
 
-                                // if both vertices are very close, consider the edge concident (internal)
+                                // si ambos vértices están muy cerca, considere el borde concidente (interno)
                                 if (da < coincident_max_dist && db < coincident_max_dist) {
                                     pav[k].isInternal = true;
                                     pbv[z].isInternal = true;
@@ -6719,7 +6719,7 @@ var decomp = (typeof window !== "undefined" ? window['decomp'] : typeof global !
         }
 
         if (parts.length > 1) {
-            // create the parent body to be returned, that contains generated compound parts
+            // crear el cuerpo principal que se devolverá, que contiene partes compuestas generadas
             body = Body.create(Common.extend({ parts: parts.slice(0) }, options));
             Body.setPosition(body, { x: x, y: y });
 
@@ -6734,12 +6734,12 @@ var decomp = (typeof window !== "undefined" ? window['decomp'] : typeof global !
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"../body/Body":1,"../core/Common":14,"../geometry/Bounds":26,"../geometry/Vector":28,"../geometry/Vertices":29}],24:[function(_dereq_,module,exports){
 /**
-* The `Matter.Composites` module contains factory methods for creating composite bodies
-* with commonly used configurations (such as stacks and chains).
+* El módulo `Matter.Composites` contiene métodos de fábrica para crear cuerpos compuestos
+* con configuraciones de uso común (como pilas y cadenas).
 *
-* See the included usage [examples](https://github.com/liabru/matter-js/tree/master/examples).
+* Ver el uso incluido [ejemplos](https://github.com/liabru/matter-js/tree/master/examples).
 *
-* @class Composites
+* @class Composites - Composición
 */
 
 var Composites = {};
@@ -6755,17 +6755,17 @@ var Bodies = _dereq_('./Bodies');
 (function() {
 
     /**
-     * Create a new composite containing bodies created in the callback in a grid arrangement.
-     * This function uses the body's bounds to prevent overlaps.
-     * @method stack
+     * Cree un nuevo compuesto que contenga cuerpos creados en la devolución de llamada en una disposición de cuadrícula.
+     * Esta función utiliza los límites del cuerpo para evitar superposiciones.
+     * @method stack - pila
      * @param {number} xx
      * @param {number} yy
-     * @param {number} columns
-     * @param {number} rows
+     * @param {number} columns - columnas
+     * @param {number} rows - filas
      * @param {number} columnGap
-     * @param {number} rowGap
-     * @param {function} callback
-     * @return {composite} A new composite containing objects created in the callback
+     * @param {number} rowGap 
+     * @param {function} callback 
+     * @return {composite} Un nuevo compuesto que contiene objetos creados en la llamada de vuelta.
      */
     Composites.stack = function(xx, yy, columns, rows, columnGap, rowGap, callback) {
         var stack = Composite.create({ label: 'Stack' }),
@@ -6808,15 +6808,15 @@ var Bodies = _dereq_('./Bodies');
     };
     
     /**
-     * Chains all bodies in the given composite together using constraints.
-     * @method chain
-     * @param {composite} composite
+     * Encadena todos los sólidos del compuesto dado mediante restricciones.
+     * @method chain - cadena
+     * @param {composite} composite - compuesto
      * @param {number} xOffsetA
      * @param {number} yOffsetA
      * @param {number} xOffsetB
      * @param {number} yOffsetB
-     * @param {object} options
-     * @return {composite} A new composite containing objects chained together with constraints
+     * @param {object} options - opciones
+     * @return {composite} Un nuevo compuesto que contiene objetos encadenados con restricciones.
      */
     Composites.chain = function(composite, xOffsetA, yOffsetA, xOffsetB, yOffsetB, options) {
         var bodies = composite.bodies;
@@ -6847,14 +6847,14 @@ var Bodies = _dereq_('./Bodies');
     };
 
     /**
-     * Connects bodies in the composite with constraints in a grid pattern, with optional cross braces.
-     * @method mesh
-     * @param {composite} composite
-     * @param {number} columns
-     * @param {number} rows
-     * @param {boolean} crossBrace
-     * @param {object} options
-     * @return {composite} The composite containing objects meshed together with constraints
+     * Conecta sólidos en el compuesto con restricciones en un patrón de cuadrícula, con riostras opcionales.
+     * @method mesh - malla
+     * @param {composite} composite - compuesto
+     * @param {number} columns - columnas
+     * @param {number} rows - filas
+     * @param {boolean} crossBrace 
+     * @param {object} options - opciones
+     * @return {composite} El compuesto que contiene los objetos entrelazados con restricciones.
      */
     Composites.mesh = function(composite, columns, rows, crossBrace, options) {
         var bodies = composite.bodies,
@@ -6896,17 +6896,17 @@ var Bodies = _dereq_('./Bodies');
     };
     
     /**
-     * Create a new composite containing bodies created in the callback in a pyramid arrangement.
-     * This function uses the body's bounds to prevent overlaps.
-     * @method pyramid
+     * Crea un nuevo compuesto que contenga cuerpos creados en la llamada de vuelta en una disposición piramidal.
+     * Esta función utiliza los límites del cuerpo para evitar superposiciones.
+     * @method pyramid - pirámide
      * @param {number} xx
      * @param {number} yy
-     * @param {number} columns
-     * @param {number} rows
-     * @param {number} columnGap
-     * @param {number} rowGap
-     * @param {function} callback
-     * @return {composite} A new composite containing objects created in the callback
+     * @param {number} columns - columnas
+     * @param {number} rows - filas
+     * @param {number} columnGap 
+     * @param {number} rowGap 
+     * @param {function} callback 
+     * @return {composite} Un nuevo compuesto que contiene objetos creados en la llamada de vuelta.
      */
     Composites.pyramid = function(xx, yy, columns, rows, columnGap, rowGap, callback) {
         return Composites.stack(xx, yy, columns, rows, columnGap, rowGap, function(x, y, column, row, lastBody, i) {
@@ -6916,7 +6916,7 @@ var Bodies = _dereq_('./Bodies');
             if (row > actualRows)
                 return;
             
-            // reverse row order
+            // orden inverso de las filas
             row = actualRows - row;
             
             var start = row,
@@ -6925,7 +6925,7 @@ var Bodies = _dereq_('./Bodies');
             if (column < start || column > end)
                 return;
             
-            // retroactively fix the first body's position, since width was unknown
+            // Fijar retroactivamente la posición del primer cuerpo, ya que se desconocía el ancho.
             if (i === 1) {
                 Body.translate(lastBody, { x: (column + (columns % 2 === 1 ? 1 : -1)) * lastBodyWidth, y: 0 });
             }
@@ -6937,14 +6937,14 @@ var Bodies = _dereq_('./Bodies');
     };
 
     /**
-     * Creates a composite with a Newton's Cradle setup of bodies and constraints.
+     * Crea un compuesto con una configuración de Newton's Cradle de cuerpos y restricciones.
      * @method newtonsCradle
      * @param {number} xx
      * @param {number} yy
-     * @param {number} number
-     * @param {number} size
-     * @param {number} length
-     * @return {composite} A new composite newtonsCradle body
+     * @param {number} number - número
+     * @param {number} size - tamaño
+     * @param {number} length - largo
+     * @return {composite} Un nuevo cuerpo compuesto de newtonsCradle
      */
     Composites.newtonsCradle = function(xx, yy, number, size, length) {
         var newtonsCradle = Composite.create({ label: 'Newtons Cradle' });
@@ -6963,14 +6963,14 @@ var Bodies = _dereq_('./Bodies');
     };
     
     /**
-     * Creates a composite with simple car setup of bodies and constraints.
-     * @method car
+     * Crea un compuesto con una configuración simple de carrocerías y restricciones.
+     * @method car - vehículo
      * @param {number} xx
      * @param {number} yy
-     * @param {number} width
-     * @param {number} height
-     * @param {number} wheelSize
-     * @return {composite} A new composite car body
+     * @param {number} width - ancho
+     * @param {number} height - alto
+     * @param {number} wheelSize 
+     * @return {composite} Un nuevo cuerpo compuesto al vehículo
      */
     Composites.car = function(xx, yy, width, height, wheelSize) {
         var group = Body.nextGroup(true),
@@ -7036,19 +7036,19 @@ var Bodies = _dereq_('./Bodies');
     };
 
     /**
-     * Creates a simple soft body like object.
-     * @method softBody
+     * Crea un cuerpo suave simple como un objeto.
+     * @method softBody 
      * @param {number} xx
      * @param {number} yy
-     * @param {number} columns
-     * @param {number} rows
+     * @param {number} columns - columnas
+     * @param {number} rows - filas
      * @param {number} columnGap
-     * @param {number} rowGap
-     * @param {boolean} crossBrace
-     * @param {number} particleRadius
+     * @param {number} rowGap 
+     * @param {boolean} crossBrace 
+     * @param {number} particleRadius 
      * @param {} particleOptions
-     * @param {} constraintOptions
-     * @return {composite} A new composite softBody
+     * @param {} constraintOptions 
+     * @return {composite} Un nuevo cuerpo compuesto blando
      */
     Composites.softBody = function(xx, yy, columns, rows, columnGap, rowGap, crossBrace, particleRadius, particleOptions, constraintOptions) {
         particleOptions = Common.extend({ inertia: Infinity }, particleOptions);
@@ -7069,9 +7069,9 @@ var Bodies = _dereq_('./Bodies');
 
 },{"../body/Body":1,"../body/Composite":2,"../constraint/Constraint":12,"../core/Common":14,"./Bodies":23}],25:[function(_dereq_,module,exports){
 /**
-* The `Matter.Axes` module contains methods for creating and manipulating sets of axes.
+* El módulo `Matter.Axes` contiene métodos para crear y manipular conjuntos de ejes.
 *
-* @class Axes
+* @class Axes - ejes
 */
 
 var Axes = {};
@@ -7084,15 +7084,15 @@ var Common = _dereq_('../core/Common');
 (function() {
 
     /**
-     * Creates a new set of axes from the given vertices.
-     * @method fromVertices
-     * @param {vertices} vertices
-     * @return {axes} A new axes from the given vertices
+     * Crea un nuevo conjunto de ejes a partir de los vértices dados.
+     * @method fromVertices 
+     * @param {vertices} vertices - vértices
+     * @return {axes} Nuevos ejes de los vértices dados.
      */
     Axes.fromVertices = function(vertices) {
         var axes = {};
 
-        // find the unique axes, using edge normal gradients
+        // encuentra los ejes únicos, usando gradientes normales de borde
         for (var i = 0; i < vertices.length; i++) {
             var j = (i + 1) % vertices.length, 
                 normal = Vector.normalise({ 
@@ -7101,7 +7101,7 @@ var Common = _dereq_('../core/Common');
                 }),
                 gradient = (normal.y === 0) ? Infinity : (normal.x / normal.y);
             
-            // limit precision
+            // limitar la precisión
             gradient = gradient.toFixed(3).toString();
             axes[gradient] = normal;
         }
@@ -7110,10 +7110,10 @@ var Common = _dereq_('../core/Common');
     };
 
     /**
-     * Rotates a set of axes by the given angle.
-     * @method rotate
-     * @param {axes} axes
-     * @param {number} angle
+     * Gira un conjunto de ejes según el ángulo dado.
+     * @method rotate - rotar
+     * @param {axes} axes - ejes
+     * @param {number} angle - ángulo
      */
     Axes.rotate = function(axes, angle) {
         if (angle === 0)
@@ -7137,7 +7137,7 @@ var Common = _dereq_('../core/Common');
 /**
 * The `Matter.Bounds` module contains methods for creating and manipulating axis-aligned bounding boxes (AABB).
 *
-* @class Bounds
+* @class Bounds - Límites
 */
 
 var Bounds = {};
@@ -7147,10 +7147,10 @@ module.exports = Bounds;
 (function() {
 
     /**
-     * Creates a new axis-aligned bounding box (AABB) for the given vertices.
-     * @method create
-     * @param {vertices} vertices
-     * @return {bounds} A new bounds object
+     * Crea un nuevo cuadro delimitador alineado con el eje (AABB) para los vértices dados.
+     * @method create - crear
+     * @param {vertices} vertices - vértices
+     * @return {bounds} Un nuevo objeto limites
      */
     Bounds.create = function(vertices) {
         var bounds = { 
@@ -7165,11 +7165,11 @@ module.exports = Bounds;
     };
 
     /**
-     * Updates bounds using the given vertices and extends the bounds given a velocity.
-     * @method update
-     * @param {bounds} bounds
-     * @param {vertices} vertices
-     * @param {vector} velocity
+     * Actualiza los límites usando los vértices dados y extiende los límites dada una velocidad.
+     * @method update - actualización
+     * @param {bounds} bounds - límites
+     * @param {vertices} vertices - vértices
+     * @param {vector} velocity - velocidad
      */
     Bounds.update = function(bounds, vertices, velocity) {
         bounds.min.x = Infinity;
@@ -7201,11 +7201,11 @@ module.exports = Bounds;
     };
 
     /**
-     * Returns true if the bounds contains the given point.
-     * @method contains
-     * @param {bounds} bounds
-     * @param {vector} point
-     * @return {boolean} True if the bounds contain the point, otherwise false
+     * Devuelve verdadero si los límites contienen el punto dado.
+     * @method contains - contiene
+     * @param {bounds} bounds - límites	
+     * @param {vector} point - punto
+     * @return {boolean} Verdadero si los límites contienen el punto; de lo contrario, es falso
      */
     Bounds.contains = function(bounds, point) {
         return point.x >= bounds.min.x && point.x <= bounds.max.x 
@@ -7213,11 +7213,11 @@ module.exports = Bounds;
     };
 
     /**
-     * Returns true if the two bounds intersect.
-     * @method overlaps
-     * @param {bounds} boundsA
-     * @param {bounds} boundsB
-     * @return {boolean} True if the bounds overlap, otherwise false
+     * Devuelve verdadero si los dos límites se cruzan.
+     * @method overlaps - superposición
+     * @param {bounds} boundsA - límiteA 
+     * @param {bounds} boundsB - límiteB
+     * @return {boolean} True if the bounds overlap, otherwise false - Verdadero si los límites se superponen; de lo contrario, es falso
      */
     Bounds.overlaps = function(boundsA, boundsB) {
         return (boundsA.min.x <= boundsB.max.x && boundsA.max.x >= boundsB.min.x
@@ -7225,10 +7225,10 @@ module.exports = Bounds;
     };
 
     /**
-     * Translates the bounds by the given vector.
-     * @method translate
-     * @param {bounds} bounds
-     * @param {vector} vector
+     * Traduce los límites por el vector dado.
+     * @method translate - trasladar
+     * @param {bounds} bounds - límites
+     * @param {vector} vector - vector
      */
     Bounds.translate = function(bounds, vector) {
         bounds.min.x += vector.x;
@@ -7238,10 +7238,10 @@ module.exports = Bounds;
     };
 
     /**
-     * Shifts the bounds to the given position.
-     * @method shift
-     * @param {bounds} bounds
-     * @param {vector} position
+     * Cambia los límites a la posición dada.
+     * @method shift - cambio 
+     * @param {bounds} bounds - límites
+     * @param {vector} position - posición
      */
     Bounds.shift = function(bounds, position) {
         var deltaX = bounds.max.x - bounds.min.x,
@@ -7257,11 +7257,11 @@ module.exports = Bounds;
 
 },{}],27:[function(_dereq_,module,exports){
 /**
-* The `Matter.Svg` module contains methods for converting SVG images into an array of vector points.
+* El módulo `Matter.Svg` contiene métodos para convertir imágenes SVG en una matriz de puntos vectoriales.
 *
-* To use this module you also need the SVGPathSeg polyfill: https://github.com/progers/pathseg
+* Para utilizar este módulo también necesita el SVGPathSeg polyfill: https://github.com/progers/pathseg
 *
-* See the included usage [examples](https://github.com/liabru/matter-js/tree/master/examples).
+* Ver el uso incluido [ejemplos](https://github.com/liabru/matter-js/tree/master/examples).
 *
 * @class Svg
 */
@@ -7275,14 +7275,14 @@ var Bounds = _dereq_('../geometry/Bounds');
 (function() {
 
     /**
-     * Converts an SVG path into an array of vector points.
-     * If the input path forms a concave shape, you must decompose the result into convex parts before use.
-     * See `Bodies.fromVertices` which provides support for this.
-     * Note that this function is not guaranteed to support complex paths (such as those with holes).
-     * @method pathToVertices
-     * @param {SVGPathElement} path
+     * Convierte una ruta SVG en una matriz de puntos vectoriales.
+     * Si la ruta de entrada forma una forma cóncava, debe descomponer el resultado en partes convexas antes de usarlo.
+     * Consulte `Bodies.fromVertices` que proporciona soporte para esto.
+     * Tenga en cuenta que no se garantiza que esta función admita rutas complejas (como las que tienen agujeros).
+     * @method pathToVertices e
+     * @param {SVGPathElement} path - camino
      * @param {Number} [sampleLength=15]
-     * @return {Vector[]} points
+     * @return {Vector[]} points - puntos
      */
     Svg.pathToVertices = function(path, sampleLength) {
         // https://github.com/wout/svg.topoly.js/blob/master/svg.topoly.js
@@ -7294,10 +7294,10 @@ var Bounds = _dereq_('../geometry/Bounds');
         sampleLength = sampleLength || 15;
 
         var addPoint = function(px, py, pathSegType) {
-            // all odd-numbered path types are relative except PATHSEG_CLOSEPATH (1)
+            // todos los tipos de ruta impares son relativos excepto PATHSEG_CLOSEPATH (1)
             var isRelative = pathSegType % 2 === 1 && pathSegType > 1;
 
-            // when the last point doesn't equal the current point add the current point
+            // cuando el último punto no es igual al punto actual, agregue el punto actual
             if (!lastPoint || px != lastPoint.x || py != lastPoint.y) {
                 if (lastPoint && isRelative) {
                     lx = lastPoint.x;
@@ -7312,7 +7312,7 @@ var Bounds = _dereq_('../geometry/Bounds');
                     y: ly + py
                 };
 
-                // set last point
+                // establecer el último punto
                 if (isRelative || !lastPoint) {
                     lastPoint = point;
                 }
@@ -7327,11 +7327,11 @@ var Bounds = _dereq_('../geometry/Bounds');
         var addSegmentPoint = function(segment) {
             var segType = segment.pathSegTypeAsLetter.toUpperCase();
 
-            // skip path ends
+            // saltarse el camino termina
             if (segType === 'Z') 
                 return;
 
-            // map segment to x and y
+            // mapear segmento a x y y
             switch (segType) {
 
             case 'M':
@@ -7354,26 +7354,26 @@ var Bounds = _dereq_('../geometry/Bounds');
             addPoint(x, y, segment.pathSegType);
         };
 
-        // ensure path is absolute
+        // asegúrese de que el camino sea absoluto
         _svgPathToAbsolute(path);
 
-        // get total length
+        // obtener la longitud total
         total = path.getTotalLength();
 
-        // queue segments
+        // segmentos de cola
         segments = [];
         for (i = 0; i < path.pathSegList.numberOfItems; i += 1)
             segments.push(path.pathSegList.getItem(i));
 
         segmentsQueue = segments.concat();
 
-        // sample through path
+        // muestra a través del camino
         while (length < total) {
             // get segment at position
             segmentIndex = path.getPathSegAtLength(length);
             segment = segments[segmentIndex];
 
-            // new segment
+            // nuevo segmento
             if (segment != lastSegment) {
                 while (segmentsQueue.length && segmentsQueue[0] != segment)
                     addSegmentPoint(segmentsQueue.shift());
@@ -7381,8 +7381,8 @@ var Bounds = _dereq_('../geometry/Bounds');
                 lastSegment = segment;
             }
 
-            // add points in between when curving
-            // TODO: adaptive sampling
+            // agregue puntos en el medio al curvar
+            // TODO: muestreo adaptativo
             switch (segment.pathSegTypeAsLetter.toUpperCase()) {
 
             case 'C':
@@ -7396,11 +7396,11 @@ var Bounds = _dereq_('../geometry/Bounds');
 
             }
 
-            // increment by sample value
+            // incremento por valor de muestra
             length += sampleLength;
         }
 
-        // add remaining segments not passed by sampling
+        // agregar segmentos restantes no aprobados por muestreo
         for (i = 0, il = segmentsQueue.length; i < il; ++i)
             addSegmentPoint(segmentsQueue[i]);
 
@@ -7475,16 +7475,16 @@ var Bounds = _dereq_('../geometry/Bounds');
 })();
 },{"../geometry/Bounds":26}],28:[function(_dereq_,module,exports){
 /**
-* The `Matter.Vector` module contains methods for creating and manipulating vectors.
-* Vectors are the basis of all the geometry related operations in the engine.
-* A `Matter.Vector` object is of the form `{ x: 0, y: 0 }`.
+* El módulo `Matter.Vector` contiene métodos para crear y manipular vectores.
+* Los vectores son la base de todas las operaciones relacionadas con la geometría en el motor.
+* Un objeto `Matter.Vector` tiene la forma `{ x: 0, y: 0 }`.
 *
-* See the included usage [examples](https://github.com/liabru/matter-js/tree/master/examples).
+* Ver el uso incluido [ejemplos](https://github.com/liabru/matter-js/tree/master/examples).
 *
-* @class Vector
+* @class Vector - Vector
 */
 
-// TODO: consider params for reusing vector objects
+// TODO: considere parametros para reutilizar objetos vectoriales
 
 var Vector = {};
 
@@ -7493,52 +7493,52 @@ module.exports = Vector;
 (function() {
 
     /**
-     * Creates a new vector.
-     * @method create
+     * Crea un nuevo vector.
+     * @method create - crear
      * @param {number} x
      * @param {number} y
-     * @return {vector} A new vector
+     * @return {vector} Un nuevo vector
      */
     Vector.create = function(x, y) {
         return { x: x || 0, y: y || 0 };
     };
 
     /**
-     * Returns a new vector with `x` and `y` copied from the given `vector`.
-     * @method clone
-     * @param {vector} vector
-     * @return {vector} A new cloned vector
+     * Devuelve un nuevo vector con `x` y `y` copiados del `vector` dado.
+     * @method clone - clon
+     * @param {vector} vector - vector
+     * @return {vector} Un nuevo vector clonado
      */
     Vector.clone = function(vector) {
         return { x: vector.x, y: vector.y };
     };
 
     /**
-     * Returns the magnitude (length) of a vector.
-     * @method magnitude
-     * @param {vector} vector
-     * @return {number} The magnitude of the vector
+     * Devuelve la magnitud (longitud) de un vector.
+     * @method magnitude - magnitud
+     * @param {vector} vector - vector
+     * @return {number} La magnitud del vector
      */
     Vector.magnitude = function(vector) {
         return Math.sqrt((vector.x * vector.x) + (vector.y * vector.y));
     };
 
     /**
-     * Returns the magnitude (length) of a vector (therefore saving a `sqrt` operation).
-     * @method magnitudeSquared
-     * @param {vector} vector
-     * @return {number} The squared magnitude of the vector
+     * Devuelve la magnitud (longitud) de un vector (por lo tanto, se guarda una operación `sqrt`).
+     * @method magnitudeSquared - magnitud al cuadrado
+     * @param {vector} vector - vector
+     * @return {number} La magnitud al cuadrado del vector
      */
     Vector.magnitudeSquared = function(vector) {
         return (vector.x * vector.x) + (vector.y * vector.y);
     };
 
     /**
-     * Rotates the vector about (0, 0) by specified angle.
-     * @method rotate
-     * @param {vector} vector
-     * @param {number} angle
-     * @return {vector} A new vector rotated about (0, 0)
+     * Gira el vector alrededor de (0, 0) en un ángulo especificado.
+     * @method rotate - rotar
+     * @param {vector} vector  - vector
+     * @param {number} angle - ángulo
+     * @return {vector} Un nuevo vector rotó alrededor de (0, 0)
      */
     Vector.rotate = function(vector, angle) {
         var cos = Math.cos(angle), sin = Math.sin(angle);
@@ -7549,13 +7549,13 @@ module.exports = Vector;
     };
 
     /**
-     * Rotates the vector about a specified point by specified angle.
-     * @method rotateAbout
-     * @param {vector} vector
-     * @param {number} angle
-     * @param {vector} point
+     * Gira el vector alrededor de un punto especificado en un ángulo especificado.
+     * @method rotateAbout - rotar
+     * @param {vector} vector - vector 
+     * @param {number} angle - ángulo 
+     * @param {vector} point - punto
      * @param {vector} [output]
-     * @return {vector} A new vector rotated about the point
+     * @return {vector} Un nuevo vector girado sobre el punto
      */
     Vector.rotateAbout = function(vector, angle, point, output) {
         var cos = Math.cos(angle), sin = Math.sin(angle);
@@ -7567,10 +7567,10 @@ module.exports = Vector;
     };
 
     /**
-     * Normalises a vector (such that its magnitude is `1`).
-     * @method normalise
-     * @param {vector} vector
-     * @return {vector} A new vector normalised
+     * Normaliza un vector (tal que su magnitud sea "1").
+     * @method normalise - normaliza
+     * @param {vector} vector - vector
+     * @return {vector} Un nuevo vector normalizado
      */
     Vector.normalise = function(vector) {
         var magnitude = Vector.magnitude(vector);
@@ -7580,46 +7580,46 @@ module.exports = Vector;
     };
 
     /**
-     * Returns the dot-product of two vectors.
-     * @method dot
-     * @param {vector} vectorA
-     * @param {vector} vectorB
-     * @return {number} The dot product of the two vectors
+     * Devuelve el producto escalar de dos vectores.
+     * @method dot - punto
+     * @param {vector} vectorA 
+     * @param {vector} vectorB 
+     * @return {number} El producto escalar de los dos vectores
      */
     Vector.dot = function(vectorA, vectorB) {
         return (vectorA.x * vectorB.x) + (vectorA.y * vectorB.y);
     };
 
     /**
-     * Returns the cross-product of two vectors.
-     * @method cross
-     * @param {vector} vectorA
-     * @param {vector} vectorB
-     * @return {number} The cross product of the two vectors
+     * Devuelve el producto cruzado de dos vectores.
+     * @method cross - cruzar
+     * @param {vector} vectorA 
+     * @param {vector} vectorB 
+     * @return {number} El producto cruzado de los dos vectores
      */
     Vector.cross = function(vectorA, vectorB) {
         return (vectorA.x * vectorB.y) - (vectorA.y * vectorB.x);
     };
 
     /**
-     * Returns the cross-product of three vectors.
-     * @method cross3
-     * @param {vector} vectorA
-     * @param {vector} vectorB
+     * Devuelve el producto cruzado de tres vectores.
+     * @method cross3 - cruzar3
+     * @param {vector} vectorA 
+     * @param {vector} vectorB 
      * @param {vector} vectorC
-     * @return {number} The cross product of the three vectors
+     * @return {number} El producto cruzado de los tres vectores
      */
     Vector.cross3 = function(vectorA, vectorB, vectorC) {
         return (vectorB.x - vectorA.x) * (vectorC.y - vectorA.y) - (vectorB.y - vectorA.y) * (vectorC.x - vectorA.x);
     };
 
     /**
-     * Adds the two vectors.
-     * @method add
+     * Agrega los dos vectores.
+     * @method add - agregar
      * @param {vector} vectorA
-     * @param {vector} vectorB
+     * @param {vector} vectorB 
      * @param {vector} [output]
-     * @return {vector} A new vector of vectorA and vectorB added
+     * @return {vector} Se agregó un nuevo vector de vectorA y vectorB
      */
     Vector.add = function(vectorA, vectorB, output) {
         if (!output) output = {};
@@ -7629,12 +7629,12 @@ module.exports = Vector;
     };
 
     /**
-     * Subtracts the two vectors.
-     * @method sub
-     * @param {vector} vectorA
-     * @param {vector} vectorB
+     * Resta los dos vectores.
+     * @method sub - resta
+     * @param {vector} vectorA 
+     * @param {vector} vectorB 
      * @param {vector} [output]
-     * @return {vector} A new vector of vectorA and vectorB subtracted
+     * @return {vector} Se resta un nuevo vector de vectorA y vectorB
      */
     Vector.sub = function(vectorA, vectorB, output) {
         if (!output) output = {};
@@ -7644,33 +7644,33 @@ module.exports = Vector;
     };
 
     /**
-     * Multiplies a vector and a scalar.
-     * @method mult
-     * @param {vector} vector
-     * @param {number} scalar
-     * @return {vector} A new vector multiplied by scalar
+     * Multiplica un vector y un escalar.
+     * @method mult - multiplicar
+     * @param {vector} vector - vector
+     * @param {number} scalar - escalar
+     * @return {vector} Multiplica un vector y un escalar.
      */
     Vector.mult = function(vector, scalar) {
         return { x: vector.x * scalar, y: vector.y * scalar };
     };
 
     /**
-     * Divides a vector and a scalar.
-     * @method div
-     * @param {vector} vector
-     * @param {number} scalar
-     * @return {vector} A new vector divided by scalar
+     * Divide un vector y un escalar.
+     * @method div - dividir
+     * @param {vector} vector - vector
+     * @param {number} scalar - escalar 
+     * @return {vector} Un nuevo vector dividido por escalar
      */
     Vector.div = function(vector, scalar) {
         return { x: vector.x / scalar, y: vector.y / scalar };
     };
 
     /**
-     * Returns the perpendicular vector. Set `negate` to true for the perpendicular in the opposite direction.
-     * @method perp
-     * @param {vector} vector
+     * Devuelve el vector perpendicular. Establezca `negate` en verdadero para la perpendicular en la dirección opuesta.
+     * @method perp - perpendicular
+     * @param {vector} vector - vector 
      * @param {bool} [negate=false]
-     * @return {vector} The perpendicular vector
+     * @return {vector} El vector perpendicular
      */
     Vector.perp = function(vector, negate) {
         negate = negate === true ? -1 : 1;
@@ -7678,28 +7678,28 @@ module.exports = Vector;
     };
 
     /**
-     * Negates both components of a vector such that it points in the opposite direction.
-     * @method neg
-     * @param {vector} vector
-     * @return {vector} The negated vector
+     * Niega ambos componentes de un vector de modo que apunte en la dirección opuesta.
+     * @method neg - negar
+     * @param {vector} vector - vector
+     * @return {vector} El vector negado
      */
     Vector.neg = function(vector) {
         return { x: -vector.x, y: -vector.y };
     };
 
     /**
-     * Returns the angle in radians between the two vectors relative to the x-axis.
-     * @method angle
-     * @param {vector} vectorA
+     * Devuelve el ángulo en radianes entre los dos vectores en relación con el eje x.
+     * @method angle - ángulo
+     * @param {vector} vectorA 
      * @param {vector} vectorB
-     * @return {number} The angle in radians
+     * @return {number} El ángulo en radianes
      */
     Vector.angle = function(vectorA, vectorB) {
         return Math.atan2(vectorB.y - vectorA.y, vectorB.x - vectorA.x);
     };
 
     /**
-     * Temporary vector pool (not thread-safe).
+     * Grupo de vectores temporal (no seguro para subprocesos).
      * @property _temp
      * @type {vector[]}
      * @private
@@ -7713,13 +7713,13 @@ module.exports = Vector;
 })();
 },{}],29:[function(_dereq_,module,exports){
 /**
-* The `Matter.Vertices` module contains methods for creating and manipulating sets of vertices.
-* A set of vertices is an array of `Matter.Vector` with additional indexing properties inserted by `Vertices.create`.
-* A `Matter.Body` maintains a set of vertices to represent the shape of the object (its convex hull).
+* El módulo `Matter.Vertices` contiene métodos para crear y manipular conjuntos de vértices.
+* Un conjunto de vértices es una matriz de `Matter.Vector` con propiedades de indexación adicionales insertadas por `Vertices.create`.
+* Un `Matter.Body` mantiene un conjunto de vértices para representar la forma del objeto (su envolvente convexo).
 *
-* See the included usage [examples](https://github.com/liabru/matter-js/tree/master/examples).
+* Ver el uso incluido [ejemplos](https://github.com/liabru/matter-js/tree/master/examples).
 *
-* @class Vertices
+* @class Vertices - Vertices
 */
 
 var Vertices = {};
@@ -7732,21 +7732,21 @@ var Common = _dereq_('../core/Common');
 (function() {
 
     /**
-     * Creates a new set of `Matter.Body` compatible vertices.
-     * The `points` argument accepts an array of `Matter.Vector` points orientated around the origin `(0, 0)`, for example:
+     * Crea un nuevo conjunto de vértices compatibles con `Matter.Body`.
+     * El argumento `points` acepta una matriz de puntos `Matter.Vector` orientados alrededor del origen `(0, 0)`, por ejemplo:
      *
      *     [{ x: 0, y: 0 }, { x: 25, y: 50 }, { x: 50, y: 0 }]
      *
-     * The `Vertices.create` method returns a new array of vertices, which are similar to Matter.Vector objects,
-     * but with some additional references required for efficient collision detection routines.
+     * El método `Vertices.create` devuelve una nueva matriz de vértices, que son similares a los objetos Matter.Vector,
+     * pero con algunas referencias adicionales necesarias para rutinas de detección de colisiones eficientes.
      *
-     * Vertices must be specified in clockwise order.
+     * Los vértices deben especificarse en el orden de las agujas del reloj.
      *
-     * Note that the `body` argument is not optional, a `Matter.Body` reference must be provided.
+     * Ten en cuenta que el argumento `body` no es opcional, se debe proporcionar una referencia de` Matter.Body`.
      *
-     * @method create
-     * @param {vector[]} points
-     * @param {body} body
+     * @method create - crear
+     * @param {vector[]} points - puntos 
+     * @param {body} body - cuerpo
      */
     Vertices.create = function(points, body) {
         var vertices = [];
@@ -7768,13 +7768,13 @@ var Common = _dereq_('../core/Common');
     };
 
     /**
-     * Parses a string containing ordered x y pairs separated by spaces (and optionally commas), 
-     * into a `Matter.Vertices` object for the given `Matter.Body`.
-     * For parsing SVG paths, see `Svg.pathToVertices`.
-     * @method fromPath
-     * @param {string} path
-     * @param {body} body
-     * @return {vertices} vertices
+     * Analiza una cadena que contiene pares x y ordenados separados por espacios (y opcionalmente comas),
+     * en un objeto `Matter.Vertices` para el` Matter.Body` dado.
+     * Para analizar las rutas SVG, consulte `Svg.pathToVertices`.
+     * @method fromPath - delaRuta
+     * @param {string} path - ruta
+     * @param {body} body - cuerpo
+     * @return {vertices} vertices - vértices
      */
     Vertices.fromPath = function(path, body) {
         var pathPattern = /L?\s*([\-\d\.e]+)[\s,]*([\-\d\.e]+)*/ig,
@@ -7788,10 +7788,10 @@ var Common = _dereq_('../core/Common');
     };
 
     /**
-     * Returns the centre (centroid) of the set of vertices.
-     * @method centre
-     * @param {vertices} vertices
-     * @return {vector} The centre point
+     * Devuelve el centro (centroide) del conjunto de vértices.
+     * @method centre - centro 
+     * @param {vertices} vertices - vértices
+     * @return {vector} El punto central
      */
     Vertices.centre = function(vertices) {
         var area = Vertices.area(vertices, true),
@@ -7811,10 +7811,10 @@ var Common = _dereq_('../core/Common');
     };
 
     /**
-     * Returns the average (mean) of the set of vertices.
-     * @method mean
-     * @param {vertices} vertices
-     * @return {vector} The average point
+     * Devuelve el promedio (media) del conjunto de vértices.
+     * @method mean - media
+     * @param {vertices} vertices - vértices
+     * @return {vector} El punto promedio
      */
     Vertices.mean = function(vertices) {
         var average = { x: 0, y: 0 };
@@ -7828,11 +7828,11 @@ var Common = _dereq_('../core/Common');
     };
 
     /**
-     * Returns the area of the set of vertices.
-     * @method area
-     * @param {vertices} vertices
-     * @param {bool} signed
-     * @return {number} The area
+     * Devuelve el área del conjunto de vértices.
+     * @method area - área
+     * @param {vertices} vertices - vértices
+     * @param {bool} signed - inscrito
+     * @return {number} The area - El área
      */
     Vertices.area = function(vertices, signed) {
         var area = 0,
@@ -7850,11 +7850,11 @@ var Common = _dereq_('../core/Common');
     };
 
     /**
-     * Returns the moment of inertia (second moment of area) of the set of vertices given the total mass.
-     * @method inertia
-     * @param {vertices} vertices
-     * @param {number} mass
-     * @return {number} The polygon's moment of inertia
+     * Devuelve el momento de inercia (segundo momento de área) del conjunto de vértices dada la masa total.
+     * @method inertia - inercia
+     * @param {vertices} vertices - vértices
+     * @param {number} mass - masa
+     * @return {number} El momento de inercia del polígono
      */
     Vertices.inertia = function(vertices, mass) {
         var numerator = 0,
@@ -7863,7 +7863,7 @@ var Common = _dereq_('../core/Common');
             cross,
             j;
 
-        // find the polygon's moment of inertia, using second moment of area
+        // encontrar el momento de inercia del polígono, usando el segundo momento del área
         // http://www.physicsforums.com/showthread.php?t=25293
         for (var n = 0; n < v.length; n++) {
             j = (n + 1) % v.length;
@@ -7876,11 +7876,11 @@ var Common = _dereq_('../core/Common');
     };
 
     /**
-     * Translates the set of vertices in-place.
-     * @method translate
-     * @param {vertices} vertices
-     * @param {vector} vector
-     * @param {number} scalar
+     * Traslada el conjunto de vértices en el lugar.
+     * @method translate - traslada
+     * @param {vertices} vertices - vértices
+     * @param {vector} vector - vector
+     * @param {number} scalar - escalar
      */
     Vertices.translate = function(vertices, vector, scalar) {
         var i;
@@ -7900,11 +7900,11 @@ var Common = _dereq_('../core/Common');
     };
 
     /**
-     * Rotates the set of vertices in-place.
-     * @method rotate
-     * @param {vertices} vertices
-     * @param {number} angle
-     * @param {vector} point
+     * Gira el conjunto de vértices en el lugar
+     * @method rotate - rotar
+     * @param {vertices} vertices - vértices
+     * @param {number} angle - ángulo
+     * @param {vector} point - punto
      */
     Vertices.rotate = function(vertices, angle, point) {
         if (angle === 0)
@@ -7926,11 +7926,11 @@ var Common = _dereq_('../core/Common');
     };
 
     /**
-     * Returns `true` if the `point` is inside the set of `vertices`.
-     * @method contains
-     * @param {vertices} vertices
-     * @param {vector} point
-     * @return {boolean} True if the vertices contains point, otherwise false
+     * Devuelve 'verdadero' si el "punto" está dentro del conjunto de 'vértices'.
+     * @method contains - contener
+     * @param {vertices} vertices - vértices
+     * @param {vector} point - punto
+     * @return {boolean} Verdadero si los vértices contienen un punto, de lo contrario es falso
      */
     Vertices.contains = function(vertices, point) {
         for (var i = 0; i < vertices.length; i++) {
@@ -7945,12 +7945,12 @@ var Common = _dereq_('../core/Common');
     };
 
     /**
-     * Scales the vertices from a point (default is centre) in-place.
-     * @method scale
-     * @param {vertices} vertices
-     * @param {number} scaleX
-     * @param {number} scaleY
-     * @param {vector} point
+     * Escala los vértices desde un punto (el predeterminado es el centro) en el lugar.
+     * @method scale - Escala
+     * @param {vertices} vertices - vértices
+     * @param {number} scaleX 
+     * @param {number} scaleY 
+     * @param {vector} point - punto
      */
     Vertices.scale = function(vertices, scaleX, scaleY, point) {
         if (scaleX === 1 && scaleY === 1)
@@ -7972,14 +7972,14 @@ var Common = _dereq_('../core/Common');
     };
 
     /**
-     * Chamfers a set of vertices by giving them rounded corners, returns a new set of vertices.
-     * The radius parameter is a single number or an array to specify the radius for each vertex.
-     * @method chamfer
-     * @param {vertices} vertices
-     * @param {number[]} radius
-     * @param {number} quality
-     * @param {number} qualityMin
-     * @param {number} qualityMax
+     * Chaflana un conjunto de vértices dándoles esquinas redondeadas, devuelve un nuevo conjunto de vértices.
+     * El parámetro de radio es un solo número o una matriz para especificar el radio de cada vértice.
+     * @method chamfer - chaflan
+     * @param {vertices} vertices - vértices
+     * @param {number[]} radius - radios
+     * @param {number} quality - calidad
+     * @param {number} qualityMin 
+     * @param {number} qualityMax 
      */
     Vertices.chamfer = function(vertices, radius, quality, qualityMin, qualityMax) {
         radius = radius || [8];
@@ -7987,7 +7987,7 @@ var Common = _dereq_('../core/Common');
         if (!radius.length)
             radius = [radius];
 
-        // quality defaults to -1, which is auto
+        // la calidad tiene un valor predeterminado de -1, que es automático
         quality = (typeof quality !== 'undefined') ? quality : -1;
         qualityMin = qualityMin || 2;
         qualityMax = qualityMax || 14;
@@ -8023,13 +8023,13 @@ var Common = _dereq_('../core/Common');
             var precision = quality;
 
             if (quality === -1) {
-                // automatically decide precision
+                // decidir automáticamente la precisión
                 precision = Math.pow(currentRadius, 0.32) * 1.75;
             }
 
             precision = Common.clamp(precision, qualityMin, qualityMax);
 
-            // use an even value for precision, more likely to reduce axes by using symmetry
+            // use un valor par para la precisión, es más probable que reduzca los ejes mediante el uso de simetría
             if (precision % 2 === 1)
                 precision += 1;
 
@@ -8045,10 +8045,10 @@ var Common = _dereq_('../core/Common');
     };
 
     /**
-     * Sorts the input vertices into clockwise order in place.
-     * @method clockwiseSort
-     * @param {vertices} vertices
-     * @return {vertices} vertices
+     * Ordena los vértices de entrada en el sentido de las manecillas del reloj en su lugar.
+     * @method clockwiseSort 
+     * @param {vertices} vertices - vértices
+     * @return {vertices} vertices - vértices
      */
     Vertices.clockwiseSort = function(vertices) {
         var centre = Vertices.mean(vertices);
@@ -8061,10 +8061,10 @@ var Common = _dereq_('../core/Common');
     };
 
     /**
-     * Returns true if the vertices form a convex shape (vertices must be in clockwise order).
-     * @method isConvex
-     * @param {vertices} vertices
-     * @return {bool} `true` if the `vertices` are convex, `false` if not (or `null` if not computable).
+     * Devuelve verdadero si los vértices forman una forma convexa (los vértices deben estar en el orden de las manecillas del reloj).
+     * @method isConvex 
+     * @param {vertices} vertices - vértices
+     * @return {bool}  `true` si los` vértices` son convexos, `false` si no (o` null` si no es computable).
      */
     Vertices.isConvex = function(vertices) {
         // http://paulbourke.net/geometry/polygonmesh/
@@ -8104,10 +8104,10 @@ var Common = _dereq_('../core/Common');
     };
 
     /**
-     * Returns the convex hull of the input vertices as a new array of points.
-     * @method hull
-     * @param {vertices} vertices
-     * @return [vertex] vertices
+     * Devuelve el envolvente convexo de los vértices de entrada como una nueva matriz de puntos.
+     * @method hull - envolvente
+     * @param {vertices} vertices - vértices
+     * @return [vertex] vertices - vértices
      */
     Vertices.hull = function(vertices) {
         // http://en.wikibooks.org/wiki/Algorithm_Implementation/Geometry/Convex_hull/Monotone_chain
@@ -8117,14 +8117,14 @@ var Common = _dereq_('../core/Common');
             vertex,
             i;
 
-        // sort vertices on x-axis (y-axis for ties)
+        // ordenar vértices en el eje x (eje y para empates)
         vertices = vertices.slice(0);
         vertices.sort(function(vertexA, vertexB) {
             var dx = vertexA.x - vertexB.x;
             return dx !== 0 ? dx : vertexA.y - vertexB.y;
         });
 
-        // build lower hull
+        // construir un envolvente inferior
         for (i = 0; i < vertices.length; i++) {
             vertex = vertices[i];
 
@@ -8136,7 +8136,7 @@ var Common = _dereq_('../core/Common');
             lower.push(vertex);
         }
 
-        // build upper hull
+        // construir un envolvente superior
         for (i = vertices.length - 1; i >= 0; i--) {
             vertex = vertices[i];
 
@@ -8148,8 +8148,8 @@ var Common = _dereq_('../core/Common');
             upper.push(vertex);
         }
 
-        // concatenation of the lower and upper hulls gives the convex hull
-        // omit last points because they are repeated at the beginning of the other list
+        // la concatenación de los envolvente inferior y superior da el casco convexo
+        // omitir los últimos puntos porque se repiten al principio de la otra lista
         upper.pop();
         lower.pop();
 
@@ -8198,7 +8198,7 @@ Matter.Vertices = _dereq_('../geometry/Vertices');
 Matter.Render = _dereq_('../render/Render');
 Matter.RenderPixi = _dereq_('../render/RenderPixi');
 
-// aliases
+// alias
 
 Matter.World.add = Matter.Composite.add;
 Matter.World.remove = Matter.Composite.remove;
@@ -8210,11 +8210,11 @@ Matter.Engine.run = Matter.Runner.run;
 
 },{"../body/Body":1,"../body/Composite":2,"../body/World":3,"../collision/Contact":4,"../collision/Detector":5,"../collision/Grid":6,"../collision/Pair":7,"../collision/Pairs":8,"../collision/Query":9,"../collision/Resolver":10,"../collision/SAT":11,"../constraint/Constraint":12,"../constraint/MouseConstraint":13,"../core/Common":14,"../core/Engine":15,"../core/Events":16,"../core/Matter":17,"../core/Metrics":18,"../core/Mouse":19,"../core/Plugin":20,"../core/Runner":21,"../core/Sleeping":22,"../factory/Bodies":23,"../factory/Composites":24,"../geometry/Axes":25,"../geometry/Bounds":26,"../geometry/Svg":27,"../geometry/Vector":28,"../geometry/Vertices":29,"../render/Render":31,"../render/RenderPixi":32}],31:[function(_dereq_,module,exports){
 /**
-* The `Matter.Render` module is a simple HTML5 canvas based renderer for visualising instances of `Matter.Engine`.
-* It is intended for development and debugging purposes, but may also be suitable for simple games.
-* It includes a number of drawing options including wireframe, vector with support for sprites and viewports.
+* El módulo `Matter.Render` es un sencillo renderizador basado en lienzo HTML5 para visualizar instancias de `Matter.Engine`.
+* Está diseñado para fines de desarrollo y depuración, pero también puede ser adecuado para juegos simples.
+* Incluye una serie de opciones de dibujo que incluyen wireframe, vector con soporte para sprites y viewports.
 *
-* @class Render
+* @class Render - renderizar
 */
 
 var Render = {};
@@ -8244,12 +8244,12 @@ var Mouse = _dereq_('../core/Mouse');
     }
 
     /**
-     * Creates a new renderer. The options parameter is an object that specifies any properties you wish to override the defaults.
-     * All properties have default values, and many are pre-calculated automatically based on other properties.
-     * See the properties section below for detailed information on what you can pass via the `options` object.
-     * @method create
+     * Crea un nuevo renderizador. El parámetro de opciones es un objeto que especifica las propiedades que desea anular los valores predeterminados.
+     * Todas las propiedades tienen valores predeterminados y muchas se precalculan automáticamente en función de otras propiedades.
+     * Consulte la sección de propiedades a continuación para obtener información detallada sobre lo que puede pasar a través del objeto `options`.
+     * @method create - crear
      * @param {object} [options]
-     * @return {render} A new renderer
+     * @return {render} Un nuevo reproducto
      */
     Render.create = function(options) {
         var defaults = {
@@ -8325,9 +8325,9 @@ var Mouse = _dereq_('../core/Mouse');
     };
 
     /**
-     * Continuously updates the render canvas on the `requestAnimationFrame` event.
-     * @method run
-     * @param {render} render
+     * Actualiza continuamente el lienzo de renderizado en el evento `requestAnimationFrame`.
+     * @method run - reproducir
+     * @param {render} render - renderizar
      */
     Render.run = function(render) {
         (function loop(time){
@@ -8337,19 +8337,19 @@ var Mouse = _dereq_('../core/Mouse');
     };
 
     /**
-     * Ends execution of `Render.run` on the given `render`, by canceling the animation frame request event loop.
-     * @method stop
-     * @param {render} render
+     * Finaliza la ejecución de `Render.run` en el `render` dado, cancelando el bucle de evento de solicitud de cuadro de animación.
+     * @method stop - detener
+     * @param {render} render - renderizar
      */
     Render.stop = function(render) {
         _cancelAnimationFrame(render.frameRequestId);
     };
 
     /**
-     * Sets the pixel ratio of the renderer and updates the canvas.
-     * To automatically detect the correct ratio, pass the string `'auto'` for `pixelRatio`.
+     * Establece la proporción de píxeles del renderizador y actualiza el lienzo.
+     * Para detectar automáticamente la proporción correcta, pase la cadena `'auto'` para `pixelRatio`.
      * @method setPixelRatio
-     * @param {render} render
+     * @param {render} render - renderizar
      * @param {number} pixelRatio
      */
     Render.setPixelRatio = function(render, pixelRatio) {
@@ -8370,15 +8370,15 @@ var Mouse = _dereq_('../core/Mouse');
     };
 
     /**
-     * Positions and sizes the viewport around the given object bounds.
-     * Objects must have at least one of the following properties:
+     * Coloca y ajusta el tamaño de la ventana gráfica alrededor de los límites del objeto dado.
+     * Los objetos deben tener al menos una de las siguientes propiedades:
      * - `object.bounds`
      * - `object.position`
-     * - `object.min` and `object.max`
-     * - `object.x` and `object.y`
-     * @method lookAt
-     * @param {render} render
-     * @param {object[]} objects
+     * - `object.min` y `object.max`
+     * - `object.x` y `object.y`
+     * @method lookAt 
+     * @param {render} render - renderizar
+     * @param {object[]} objects - objetos
      * @param {vector} [padding]
      * @param {bool} [center=true]
      */
@@ -8390,7 +8390,7 @@ var Mouse = _dereq_('../core/Mouse');
             y: 0
         };
 
-        // find bounds of all objects
+        // encontrar los límites de todos los objetos
         var bounds = {
             min: { x: Infinity, y: Infinity },
             max: { x: -Infinity, y: -Infinity }
@@ -8416,7 +8416,7 @@ var Mouse = _dereq_('../core/Mouse');
             }
         }
 
-        // find ratios
+        // encontrar proporcion
         var width = (bounds.max.x - bounds.min.x) + 2 * padding.x,
             height = (bounds.max.y - bounds.min.y) + 2 * padding.y,
             viewHeight = render.canvas.height,
@@ -8426,23 +8426,23 @@ var Mouse = _dereq_('../core/Mouse');
             scaleX = 1,
             scaleY = 1;
 
-        // find scale factor
+        // encontrar factor de escala
         if (innerRatio > outerRatio) {
             scaleY = innerRatio / outerRatio;
         } else {
             scaleX = outerRatio / innerRatio;
         }
 
-        // enable bounds
+        // habilitar límites
         render.options.hasBounds = true;
 
-        // position and size
+        // posición y tamaño
         render.bounds.min.x = bounds.min.x;
         render.bounds.max.x = bounds.min.x + width * scaleX;
         render.bounds.min.y = bounds.min.y;
         render.bounds.max.y = bounds.min.y + height * scaleY;
 
-        // center
+        // centro
         if (center) {
             render.bounds.min.x += width * 0.5 - (width * scaleX) * 0.5;
             render.bounds.max.x += width * 0.5 - (width * scaleX) * 0.5;
@@ -8450,13 +8450,13 @@ var Mouse = _dereq_('../core/Mouse');
             render.bounds.max.y += height * 0.5 - (height * scaleY) * 0.5;
         }
 
-        // padding
+        // relleno
         render.bounds.min.x -= padding.x;
         render.bounds.max.x -= padding.x;
         render.bounds.min.y -= padding.y;
         render.bounds.max.y -= padding.y;
 
-        // update mouse
+        // actualizar el ratón
         if (render.mouse) {
             Mouse.setScale(render.mouse, {
                 x: (render.bounds.max.x - render.bounds.min.x) / render.canvas.width,
@@ -8468,9 +8468,9 @@ var Mouse = _dereq_('../core/Mouse');
     };
 
     /**
-     * Applies viewport transforms based on `render.bounds` to a render context.
-     * @method startViewTransform
-     * @param {render} render
+     * Aplica transformaciones de viewport basadas en `render.bounds` a un contexto de render.
+     * @method startViewTransform 
+     * @param {render} render - renderizar
      */
     Render.startViewTransform = function(render) {
         var boundsWidth = render.bounds.max.x - render.bounds.min.x,
@@ -8483,19 +8483,19 @@ var Mouse = _dereq_('../core/Mouse');
     };
 
     /**
-     * Resets all transforms on the render context.
-     * @method endViewTransform
-     * @param {render} render
+     * Restablece todas las transformaciones en el contexto de renderizado.
+     * @method endViewTransform 
+     * @param {render} render - renderizar
      */
     Render.endViewTransform = function(render) {
         render.context.setTransform(render.options.pixelRatio, 0, 0, render.options.pixelRatio, 0, 0);
     };
 
     /**
-     * Renders the given `engine`'s `Matter.World` object.
-     * This is the entry point for all rendering and should be called every time the scene changes.
-     * @method world
-     * @param {render} render
+     * Muestra el objeto `Matter.World` del` engine` dado.
+     * Este es el punto de entrada para todos los renderizados y se debe llamar cada vez que cambia la escena.
+     * @method world - mundo
+     * @param {render} render - renderizar
      */
     Render.world = function(render) {
         var engine = render.engine,
@@ -8516,26 +8516,26 @@ var Mouse = _dereq_('../core/Mouse');
 
         Events.trigger(render, 'beforeRender', event);
 
-        // apply background if it has changed
+        // aplicar fondo si ha cambiado
         if (render.currentBackground !== background)
             _applyBackground(render, background);
 
-        // clear the canvas with a transparent fill, to allow the canvas background to show
+        // limpia el lienzo con un relleno transparente, para permitir que se muestre el fondo del lienzo
         context.globalCompositeOperation = 'source-in';
         context.fillStyle = "transparent";
         context.fillRect(0, 0, canvas.width, canvas.height);
         context.globalCompositeOperation = 'source-over';
 
-        // handle bounds
+        // manejar límites
         if (options.hasBounds) {
-            // filter out bodies that are not in view
+            // filtrar los cuerpos que no están a la vista
             for (i = 0; i < allBodies.length; i++) {
                 var body = allBodies[i];
                 if (Bounds.overlaps(body.bounds, render.bounds))
                     bodies.push(body);
             }
 
-            // filter out constraints that are not in view
+            // filtrar las restricciones que no están a la vista
             for (i = 0; i < allConstraints.length; i++) {
                 var constraint = allConstraints[i],
                     bodyA = constraint.bodyA,
@@ -8553,10 +8553,10 @@ var Mouse = _dereq_('../core/Mouse');
                     constraints.push(constraint);
             }
 
-            // transform the view
+            // transformar la vista
             Render.startViewTransform(render);
 
-            // update mouse
+            // actualizar el ratón
             if (render.mouse) {
                 Mouse.setScale(render.mouse, {
                     x: (render.bounds.max.x - render.bounds.min.x) / render.canvas.width,
@@ -8571,13 +8571,13 @@ var Mouse = _dereq_('../core/Mouse');
         }
 
         if (!options.wireframes || (engine.enableSleeping && options.showSleeping)) {
-            // fully featured rendering of bodies
+            // representación completa de cuerpos
             Render.bodies(render, bodies, context);
         } else {
             if (options.showConvexHulls)
                 Render.bodyConvexHulls(render, bodies, context);
 
-            // optimised method for wireframes only
+            // método optimizado solo para wireframes
             Render.bodyWireframes(render, bodies, context);
         }
 
@@ -8625,11 +8625,11 @@ var Mouse = _dereq_('../core/Mouse');
     };
 
     /**
-     * Description
+     * Descripción
      * @private
-     * @method debug
-     * @param {render} render
-     * @param {RenderingContext} context
+     * @method debug - depurar
+     * @param {render} render - renderizar
+     * @param {RenderingContext} context - contexto
      */
     Render.debug = function(render, context) {
         var c = context,
@@ -8670,11 +8670,11 @@ var Mouse = _dereq_('../core/Mouse');
     };
 
     /**
-     * Description
+     * Descripción
      * @private
-     * @method constraints
-     * @param {constraint[]} constraints
-     * @param {RenderingContext} context
+     * @method constraints - restricciones
+     * @param {constraint[]} constraints - restricciones
+     * @param {RenderingContext} context - contexto 
      */
     Render.constraints = function(constraints, context) {
         var c = context;
@@ -8711,12 +8711,12 @@ var Mouse = _dereq_('../core/Mouse');
     };
     
     /**
-     * Description
+     * Descripción
      * @private
      * @method bodyShadows
-     * @param {render} render
-     * @param {body[]} bodies
-     * @param {RenderingContext} context
+     * @param {render} render - generar
+     * @param {body[]} bodies - cuerpos
+     * @param {RenderingContext} context - contexto 
      */
     Render.bodyShadows = function(render, bodies, context) {
         var c = context,
@@ -8760,12 +8760,12 @@ var Mouse = _dereq_('../core/Mouse');
     };
 
     /**
-     * Description
+     * Descrpición
      * @private
-     * @method bodies
-     * @param {render} render
-     * @param {body[]} bodies
-     * @param {RenderingContext} context
+     * @method bodies - cuerpos
+     * @param {render} render - generar
+     * @param {body[]} bodies - cuerpos
+     * @param {RenderingContext} context - contexto
      */
     Render.bodies = function(render, bodies, context) {
         var c = context,
@@ -8783,7 +8783,7 @@ var Mouse = _dereq_('../core/Mouse');
             if (!body.render.visible)
                 continue;
 
-            // handle compound parts
+            // manejar piezas compuestas
             for (k = body.parts.length > 1 ? 1 : 0; k < body.parts.length; k++) {
                 part = body.parts[k];
 
@@ -8812,11 +8812,11 @@ var Mouse = _dereq_('../core/Mouse');
                         texture.height * sprite.yScale
                     );
 
-                    // revert translation, hopefully faster than save / restore
+                    // revertir la traslación, con suerte más rápido que guardar / restaurar
                     c.rotate(-part.angle);
                     c.translate(-part.position.x, -part.position.y); 
                 } else {
-                    // part polygon
+                    // polígono parcial
                     if (part.circleRadius) {
                         c.beginPath();
                         c.arc(part.position.x, part.position.y, part.circleRadius, 0, 2 * Math.PI);
@@ -8863,12 +8863,12 @@ var Mouse = _dereq_('../core/Mouse');
     };
 
     /**
-     * Optimised method for drawing body wireframes in one pass
+     * Método optimizado para dibujar estructuras alámbricas del cuerpo en una sola pasada
      * @private
-     * @method bodyWireframes
-     * @param {render} render
-     * @param {body[]} bodies
-     * @param {RenderingContext} context
+     * @method bodyWireframes 
+     * @param {render} render - generar
+     * @param {body[]} bodies - cuerpos
+     * @param {RenderingContext} context - contexto
      */
     Render.bodyWireframes = function(render, bodies, context) {
         var c = context,
@@ -8881,14 +8881,14 @@ var Mouse = _dereq_('../core/Mouse');
 
         c.beginPath();
 
-        // render all bodies
+        // generar todos los cuerpos
         for (i = 0; i < bodies.length; i++) {
             body = bodies[i];
 
             if (!body.render.visible)
                 continue;
 
-            // handle compound parts
+            // manejar piezas compuestas
             for (k = body.parts.length > 1 ? 1 : 0; k < body.parts.length; k++) {
                 part = body.parts[k];
 
@@ -8916,12 +8916,12 @@ var Mouse = _dereq_('../core/Mouse');
     };
 
     /**
-     * Optimised method for drawing body convex hull wireframes in one pass
+     * Método optimizado para dibujar estructuras de alambre de envolvente convexo del cuerpo en una sola pasada
      * @private
      * @method bodyConvexHulls
-     * @param {render} render
-     * @param {body[]} bodies
-     * @param {RenderingContext} context
+     * @param {render} render - generar
+     * @param {body[]} bodies - cuerpos
+     * @param {RenderingContext} context - contexto
      */
     Render.bodyConvexHulls = function(render, bodies, context) {
         var c = context,
@@ -8933,7 +8933,7 @@ var Mouse = _dereq_('../core/Mouse');
 
         c.beginPath();
 
-        // render convex hulls
+        // generar envolventes convexos
         for (i = 0; i < bodies.length; i++) {
             body = bodies[i];
 
@@ -8955,12 +8955,12 @@ var Mouse = _dereq_('../core/Mouse');
     };
 
     /**
-     * Renders body vertex numbers.
+     * Representa los números de vértice del cuerpo.
      * @private
      * @method vertexNumbers
-     * @param {render} render
-     * @param {body[]} bodies
-     * @param {RenderingContext} context
+     * @param {render} render - representa
+     * @param {body[]} bodies - cuerpos
+     * @param {RenderingContext} context - contexto
      */
     Render.vertexNumbers = function(render, bodies, context) {
         var c = context,
@@ -8981,12 +8981,12 @@ var Mouse = _dereq_('../core/Mouse');
     };
 
     /**
-     * Renders mouse position.
+     * Representa la posición del ratón.
      * @private
-     * @method mousePosition
-     * @param {render} render
-     * @param {mouse} mouse
-     * @param {RenderingContext} context
+     * @method mousePosition 
+     * @param {render} render - renderizar
+     * @param {mouse} mouse - ratón
+     * @param {RenderingContext} context - contexto
      */
     Render.mousePosition = function(render, mouse, context) {
         var c = context;
@@ -8995,12 +8995,12 @@ var Mouse = _dereq_('../core/Mouse');
     };
 
     /**
-     * Draws body bounds
+     * Dibuja los límites del cuerpo
      * @private
-     * @method bodyBounds
-     * @param {render} render
-     * @param {body[]} bodies
-     * @param {RenderingContext} context
+     * @method bodyBounds 
+     * @param {render} render - renderizar
+     * @param {body[]} bodies - cuerpos
+     * @param {RenderingContext} context - contexto
      */
     Render.bodyBounds = function(render, bodies, context) {
         var c = context,
@@ -9032,12 +9032,12 @@ var Mouse = _dereq_('../core/Mouse');
     };
 
     /**
-     * Draws body angle indicators and axes
+     * Dibuja ejes e indicadores de ángulo del cuerpo
      * @private
-     * @method bodyAxes
-     * @param {render} render
-     * @param {body[]} bodies
-     * @param {RenderingContext} context
+     * @method bodyAxes 
+     * @param {render} render - representar
+     * @param {body[]} bodies - cuerpos
+     * @param {RenderingContext} context - contexto 
      */
     Render.bodyAxes = function(render, bodies, context) {
         var c = context,
@@ -9058,7 +9058,7 @@ var Mouse = _dereq_('../core/Mouse');
                 continue;
 
             if (options.showAxes) {
-                // render all axes
+                // representar todos los ejes
                 for (j = parts.length > 1 ? 1 : 0; j < parts.length; j++) {
                     part = parts[j];
                     for (k = 0; k < part.axes.length; k++) {
@@ -9094,12 +9094,12 @@ var Mouse = _dereq_('../core/Mouse');
     };
 
     /**
-     * Draws body positions
+     *Dibuja posiciones corporales
      * @private
-     * @method bodyPositions
-     * @param {render} render
-     * @param {body[]} bodies
-     * @param {RenderingContext} context
+     * @method bodyPositions 
+     * @param {render} render - representar
+     * @param {body[]} bodies - cuerpos
+     * @param {RenderingContext} context - contexto
      */
     Render.bodyPositions = function(render, bodies, context) {
         var c = context,
@@ -9112,14 +9112,14 @@ var Mouse = _dereq_('../core/Mouse');
 
         c.beginPath();
 
-        // render current positions
+        // representar posiciones actuales
         for (i = 0; i < bodies.length; i++) {
             body = bodies[i];
 
             if (!body.render.visible)
                 continue;
 
-            // handle compound parts
+            // manejar piezas compuestas
             for (k = 0; k < body.parts.length; k++) {
                 part = body.parts[k];
                 c.arc(part.position.x, part.position.y, 3, 0, 2 * Math.PI, false);
@@ -9136,7 +9136,7 @@ var Mouse = _dereq_('../core/Mouse');
 
         c.beginPath();
 
-        // render previous positions
+        // representar posiciones anteriores
         for (i = 0; i < bodies.length; i++) {
             body = bodies[i];
             if (body.render.visible) {
@@ -9150,12 +9150,12 @@ var Mouse = _dereq_('../core/Mouse');
     };
 
     /**
-     * Draws body velocity
+     * Dibuja la velocidad del cuerpo
      * @private
      * @method bodyVelocity
-     * @param {render} render
-     * @param {body[]} bodies
-     * @param {RenderingContext} context
+     * @param {render} render - renderizar
+     * @param {body[]} bodies - cuerpos
+     * @param {RenderingContext} context - contexto
      */
     Render.bodyVelocity = function(render, bodies, context) {
         var c = context;
@@ -9178,12 +9178,12 @@ var Mouse = _dereq_('../core/Mouse');
     };
 
     /**
-     * Draws body ids
+     * Dibuja identificaciones corporales
      * @private
-     * @method bodyIds
-     * @param {render} render
-     * @param {body[]} bodies
-     * @param {RenderingContext} context
+     * @method bodyIds 
+     * @param {render} render - representar
+     * @param {body[]} bodies - cuerpos
+     * @param {RenderingContext} context - contexto
      */
     Render.bodyIds = function(render, bodies, context) {
         var c = context,
@@ -9205,12 +9205,12 @@ var Mouse = _dereq_('../core/Mouse');
     };
 
     /**
-     * Description
+     * Descripción
      * @private
-     * @method collisions
-     * @param {render} render
-     * @param {pair[]} pairs
-     * @param {RenderingContext} context
+     * @method collisions - colisiones
+     * @param {render} render - representar
+     * @param {pair[]} pairs - pares
+     * @param {RenderingContext} context - contexto
      */
     Render.collisions = function(render, pairs, context) {
         var c = context,
@@ -9225,7 +9225,7 @@ var Mouse = _dereq_('../core/Mouse');
 
         c.beginPath();
 
-        // render collision positions
+        // representar posiciones de colisión
         for (i = 0; i < pairs.length; i++) {
             pair = pairs[i];
 
@@ -9249,7 +9249,7 @@ var Mouse = _dereq_('../core/Mouse');
 
         c.beginPath();
             
-        // render collision normals
+        // representarar normales de colisión
         for (i = 0; i < pairs.length; i++) {
             pair = pairs[i];
 
@@ -9290,10 +9290,10 @@ var Mouse = _dereq_('../core/Mouse');
     /**
      * Description
      * @private
-     * @method separations
-     * @param {render} render
-     * @param {pair[]} pairs
-     * @param {RenderingContext} context
+     * @method separations - separaciones
+     * @param {render} render - representar
+     * @param {pair[]} pairs - pares
+     * @param {RenderingContext} context - contexto
      */
     Render.separations = function(render, pairs, context) {
         var c = context,
@@ -9308,7 +9308,7 @@ var Mouse = _dereq_('../core/Mouse');
 
         c.beginPath();
 
-        // render separations
+        // representar separaciones
         for (i = 0; i < pairs.length; i++) {
             pair = pairs[i];
 
@@ -9345,12 +9345,12 @@ var Mouse = _dereq_('../core/Mouse');
     };
 
     /**
-     * Description
+     * Descripción
      * @private
-     * @method grid
-     * @param {render} render
-     * @param {grid} grid
-     * @param {RenderingContext} context
+     * @method grid - cuadricula
+     * @param {render} render - renderizar
+     * @param {grid} grid - cuadricula
+     * @param {RenderingContext} context - contexto
      */
     Render.grid = function(render, grid, context) {
         var c = context,
@@ -9384,11 +9384,11 @@ var Mouse = _dereq_('../core/Mouse');
     };
 
     /**
-     * Description
+     * Descripción
      * @private
-     * @method inspector
-     * @param {inspector} inspector
-     * @param {RenderingContext} context
+     * @method inspector - inspector
+     * @param {inspector} inspector - inspector
+     * @param {RenderingContext} context - contexto 
      */
     Render.inspector = function(inspector, context) {
         var engine = inspector.engine,
@@ -9419,7 +9419,7 @@ var Mouse = _dereq_('../core/Mouse');
 
             case 'body':
 
-                // render body selections
+                // renderizar selecciones de cuerpo
                 bounds = item.bounds;
                 context.beginPath();
                 context.rect(Math.floor(bounds.min.x - 3), Math.floor(bounds.min.y - 3), 
@@ -9431,7 +9431,7 @@ var Mouse = _dereq_('../core/Mouse');
 
             case 'constraint':
 
-                // render constraint selections
+                // representar selecciones de restricciones
                 var point = item.pointA;
                 if (item.bodyA)
                     point = item.pointB;
@@ -9448,7 +9448,7 @@ var Mouse = _dereq_('../core/Mouse');
             context.translate(-0.5, -0.5);
         }
 
-        // render selection region
+        // representar región de selección
         if (inspector.selectStart !== null) {
             context.translate(0.5, 0.5);
             context.lineWidth = 1;
@@ -9469,12 +9469,12 @@ var Mouse = _dereq_('../core/Mouse');
     };
 
     /**
-     * Description
+     * Descripción
      * @method _createCanvas
      * @private
-     * @param {} width
-     * @param {} height
-     * @return canvas
+     * @param {} width - ancho
+     * @param {} height - alto
+     * @return canvas - lienzo
      */
     var _createCanvas = function(width, height) {
         var canvas = document.createElement('canvas');
@@ -9486,11 +9486,11 @@ var Mouse = _dereq_('../core/Mouse');
     };
 
     /**
-     * Gets the pixel ratio of the canvas.
+     * Obten la proporción de píxeles del lienzo.
      * @method _getPixelRatio
      * @private
-     * @param {HTMLElement} canvas
-     * @return {Number} pixel ratio
+     * @param {HTMLElement} canvas - lienzo
+     * @return {Number} pixel ratio - proporción del pixel
      */
     var _getPixelRatio = function(canvas) {
         var context = canvas.getContext('2d'),
@@ -9503,12 +9503,12 @@ var Mouse = _dereq_('../core/Mouse');
     };
 
     /**
-     * Gets the requested texture (an Image) via its path
+     * Obten la textura solicitada (una imagen) a través de su ruta
      * @method _getTexture
      * @private
-     * @param {render} render
-     * @param {string} imagePath
-     * @return {Image} texture
+     * @param {render} render - renderizar
+     * @param {string} imagePath 
+     * @return {Image} texture - textura
      */
     var _getTexture = function(render, imagePath) {
         var image = render.textures[imagePath];
@@ -9523,11 +9523,11 @@ var Mouse = _dereq_('../core/Mouse');
     };
 
     /**
-     * Applies the background to the canvas using CSS.
+     * Aplica el fondo al lienzo mediante CSS.
      * @method applyBackground
      * @private
-     * @param {render} render
-     * @param {string} background
+     * @param {render} render - renderizar
+     * @param {string} background - fondo
      */
     var _applyBackground = function(render, background) {
         var cssBackground = background;
@@ -9542,118 +9542,118 @@ var Mouse = _dereq_('../core/Mouse');
 
     /*
     *
-    *  Events Documentation
+    *  Documentación de eventos
     *
     */
 
     /**
-    * Fired before rendering
+    * Disparado antes de representar
     *
     * @event beforeRender
-    * @param {} event An event object
-    * @param {number} event.timestamp The engine.timing.timestamp of the event
-    * @param {} event.source The source object of the event
-    * @param {} event.name The name of the event
+    * @param {} event Un objeto de evento
+    * @param {number} event.timestamp El engine.timing.timestamp del evento
+    * @param {} event.source El objeto fuente del evento
+    * @param {} event.name El nombre del evento
     */
 
     /**
-    * Fired after rendering
+    * Disparado después de representar
     *
     * @event afterRender
-    * @param {} event An event object
-    * @param {number} event.timestamp The engine.timing.timestamp of the event
-    * @param {} event.source The source object of the event
-    * @param {} event.name The name of the event
+    * @param {} event Un objeto de evento
+    * @param {number} event.timestamp El engine.timing.timestamp del evento
+    * @param {} event.source El objeto fuente del evento
+    * @param {} event.name El nombre del evento
     */
 
     /*
     *
-    *  Properties Documentation
+    *  Documentación de propiedades
     *
     */
 
     /**
-     * A back-reference to the `Matter.Render` module.
+     * Una referencia al módulo `Matter.Render`.
      *
-     * @property controller
-     * @type render
+     * @property controller - controlador
+     * @type render - renderizar
      */
 
     /**
-     * A reference to the `Matter.Engine` instance to be used.
+     * Una referencia a la instancia de `Matter.Engine` que se utilizará.
      *
-     * @property engine
-     * @type engine
+     * @property engine - motor
+     * @type engine - motor
      */
 
     /**
-     * A reference to the element where the canvas is to be inserted (if `render.canvas` has not been specified)
+     * Una referencia al elemento donde se insertará el lienzo (si no se ha especificado `render.canvas`)
      *
-     * @property element
+     * @property element - elemento
      * @type HTMLElement
-     * @default null
+     * @default null - nulo
      */
 
     /**
-     * The canvas element to render to. If not specified, one will be created if `render.element` has been specified.
+     * El elemento de lienzo al que se va a renderizar. Si no se especifica, se creará uno si se ha especificado `render.element`.
      *
-     * @property canvas
-     * @type HTMLCanvasElement
-     * @default null
+     * @property canvas - lienzo
+     * @type HTMLCanvasElement 
+     * @default null - nulo
      */
 
     /**
-     * The configuration options of the renderer.
+     * Las opciones de configuración del representador.
      *
-     * @property options
+     * @property options - opciones
      * @type {}
      */
 
     /**
-     * The target width in pixels of the `render.canvas` to be created.
+     * El ancho deseado en píxeles del `render.canvas` que se va a crear.
      *
      * @property options.width
-     * @type number
+     * @type number - número
      * @default 800
      */
 
     /**
-     * The target height in pixels of the `render.canvas` to be created.
+     * La altura deseada en píxeles del `render.canvas` que se va a crear.
      *
      * @property options.height
-     * @type number
+     * @type number - número
      * @default 600
      */
 
     /**
-     * A flag that specifies if `render.bounds` should be used when rendering.
+     * Una marcaa que especifica si se debe usar `render.bounds` al representar.
      *
      * @property options.hasBounds
-     * @type boolean
-     * @default false
+     * @type boolean - booleano
+     * @default false - falso
      */
 
     /**
-     * A `Bounds` object that specifies the drawing view region. 
-     * Rendering will be automatically transformed and scaled to fit within the canvas size (`render.options.width` and `render.options.height`).
-     * This allows for creating views that can pan or zoom around the scene.
-     * You must also set `render.options.hasBounds` to `true` to enable bounded rendering.
+     * Un objeto "Límites" que especifica la región de la vista de dibujo. 
+     * El renderizado se transformará y escalará automáticamente para ajustarse al tamaño del lienzo (`render.options.width` y `render.options.height`).
+     * Esto permite crear vistas que pueden desplazarse o hacer zoom alrededor de la escena.
+     * También debe establecer `render.options.hasBounds` en` true` para habilitar la representación limitada.
      *
-     * @property bounds
-     * @type bounds
+     * @property bounds - límites
+     * @type bounds - límites
      */
 
     /**
-     * The 2d rendering context from the `render.canvas` element.
+     * El contexto de renderizado 2d del elemento `render.canvas`.
      *
-     * @property context
+     * @property context - contexto
      * @type CanvasRenderingContext2D
      */
 
     /**
-     * The sprite texture cache.
+     * El caché de texturas de sprites.
      *
-     * @property textures
+     * @property textures - texturas
      * @type {}
      */
 
@@ -9661,12 +9661,12 @@ var Mouse = _dereq_('../core/Mouse');
 
 },{"../body/Composite":2,"../collision/Grid":6,"../core/Common":14,"../core/Events":16,"../core/Mouse":19,"../geometry/Bounds":26,"../geometry/Vector":28}],32:[function(_dereq_,module,exports){
 /**
-* The `Matter.RenderPixi` module is an example renderer using pixi.js.
-* See also `Matter.Render` for a canvas based renderer.
+* El módulo `Matter.RenderPixi` es un representador de ejemplo que utiliza pixi.js.
+* Ve también `Matter.Render` para un representador basado en lienzo.
 *
 * @class RenderPixi
-* @deprecated the Matter.RenderPixi module will soon be removed from the Matter.js core.
-* It will likely be moved to its own repository (but maintenance will be limited).
+* @deprecated the Matter.RenderPixi module will soon be removed from the Matter.js core. - el módulo Matter.RenderPixi pronto se eliminará del núcleo de Matter.js.
+* Es probable que se mueva a su propio repositorio (pero el mantenimiento será limitado).
 */
 
 var RenderPixi = {};
@@ -9694,10 +9694,10 @@ var Vector = _dereq_('../geometry/Vector');
     }
     
     /**
-     * Creates a new Pixi.js WebGL renderer
-     * @method create
-     * @param {object} options
-     * @return {RenderPixi} A new renderer
+     * Crea un nuevo renderizador Pixi.js WebGL
+     * @method create - crear
+     * @param {object} options - opciones
+     * @return {RenderPixi} A new renderer - un nuevo renderizador
      * @deprecated
      */
     RenderPixi.create = function(options) {
@@ -9763,7 +9763,7 @@ var Vector = _dereq_('../geometry/Vector');
             }
         };
 
-        // event listeners
+        // oyentes de eventos
         Events.on(render.engine, 'beforeUpdate', function() {
             RenderPixi.clear(render);
         });
@@ -9773,17 +9773,17 @@ var Vector = _dereq_('../geometry/Vector');
         render.sprites = {};
         render.primitives = {};
 
-        // use a sprite batch for performance
+        // usar un lote de sprites para el rendimiento
         render.container.addChild(render.spriteContainer);
 
-        // insert canvas
+        // insertar lienzo
         if (Common.isElement(render.element)) {
             render.element.appendChild(render.canvas);
         } else {
             Common.warn('No "render.element" passed, "render.canvas" was not inserted into document.');
         }
 
-        // prevent menus on canvas
+        // evitar menús en lienzo
         render.canvas.oncontextmenu = function() { return false; };
         render.canvas.onselectstart = function() { return false; };
 
@@ -9791,9 +9791,9 @@ var Vector = _dereq_('../geometry/Vector');
     };
 
     /**
-     * Continuously updates the render canvas on the `requestAnimationFrame` event.
-     * @method run
-     * @param {render} render
+     * Actualiza continuamente el lienzo de renderizado en el evento `requestAnimationFrame`.
+     * @method run - reproducir
+     * @param {render} render - renderizar
      * @deprecated
      */
     RenderPixi.run = function(render) {
@@ -9804,9 +9804,9 @@ var Vector = _dereq_('../geometry/Vector');
     };
 
     /**
-     * Ends execution of `Render.run` on the given `render`, by canceling the animation frame request event loop.
-     * @method stop
-     * @param {render} render
+     * Finaliza la ejecución de `Render.run` en el `render` dado, cancelando el bucle de evento de solicitud de cuadro de animación.
+     * @method stop - parar
+     * @param {render} render - renderizar
      * @deprecated
      */
     RenderPixi.stop = function(render) {
@@ -9814,53 +9814,53 @@ var Vector = _dereq_('../geometry/Vector');
     };
 
     /**
-     * Clears the scene graph
-     * @method clear
-     * @param {RenderPixi} render
+     * Borra el gráfico de la escena
+     * @method clear - despejar
+     * @param {RenderPixi} render - renderrizar
      * @deprecated
      */
     RenderPixi.clear = function(render) {
         var container = render.container,
             spriteContainer = render.spriteContainer;
 
-        // clear stage container
+        // contenedor de escenario transparente
         while (container.children[0]) { 
             container.removeChild(container.children[0]); 
         }
 
-        // clear sprite batch
+        // lote de sprites despejado
         while (spriteContainer.children[0]) { 
             spriteContainer.removeChild(spriteContainer.children[0]); 
         }
 
         var bgSprite = render.sprites['bg-0'];
 
-        // clear caches
+        // despejar caches
         render.textures = {};
         render.sprites = {};
         render.primitives = {};
 
-        // set background sprite
+        // establecer sprite de fondo
         render.sprites['bg-0'] = bgSprite;
         if (bgSprite)
             container.addChildAt(bgSprite, 0);
 
-        // add sprite batch back into container
+        // agregue el lote de sprites nuevamente en el contenedor
         render.container.addChild(render.spriteContainer);
 
-        // reset background state
+        // restablecer el estado de fondo
         render.currentBackground = null;
 
-        // reset bounds transforms
+        // restablecer las transformaciones de límites
         container.scale.set(1, 1);
         container.position.set(0, 0);
     };
 
     /**
-     * Sets the background of the canvas 
-     * @method setBackground
-     * @param {RenderPixi} render
-     * @param {string} background
+     *Establece el fondo del lienzo. 
+     * @method setBackground 
+     * @param {RenderPixi} render - renderizar
+     * @param {string} background - fondo
      * @deprecated
      */
     RenderPixi.setBackground = function(render, background) {
@@ -9869,15 +9869,15 @@ var Vector = _dereq_('../geometry/Vector');
                 bgSprite = render.sprites['bg-0'];
 
             if (isColor) {
-                // if solid background color
+                // si el color de fondo es sólido
                 var color = Common.colorToNumber(background);
                 render.renderer.backgroundColor = color;
 
-                // remove background sprite if existing
+                // eliminar sprite de fondo si existe
                 if (bgSprite)
                     render.container.removeChild(bgSprite); 
             } else {
-                // initialise background sprite if needed
+                // inicializar el sprite de fondo si es necesario
                 if (!bgSprite) {
                     var texture = _getTexture(render, background);
 
@@ -9893,9 +9893,9 @@ var Vector = _dereq_('../geometry/Vector');
     };
 
     /**
-     * Description
-     * @method world
-     * @param {engine} engine
+     * Descripción
+     * @method world - mundo
+     * @param {engine} engine - motor
      * @deprecated
      */
     RenderPixi.world = function(render) {
@@ -9915,20 +9915,20 @@ var Vector = _dereq_('../geometry/Vector');
             RenderPixi.setBackground(render, options.background);
         }
 
-        // handle bounds
+        // manejar límites
         var boundsWidth = render.bounds.max.x - render.bounds.min.x,
             boundsHeight = render.bounds.max.y - render.bounds.min.y,
             boundsScaleX = boundsWidth / render.options.width,
             boundsScaleY = boundsHeight / render.options.height;
 
         if (options.hasBounds) {
-            // Hide bodies that are not in view
+            // Ocultar cuerpos que no están a la vista
             for (i = 0; i < bodies.length; i++) {
                 var body = bodies[i];
                 body.render.sprite.visible = Bounds.overlaps(body.bounds, render.bounds);
             }
 
-            // filter out constraints that are not in view
+            // filtrar las restricciones que no están a la vista
             for (i = 0; i < allConstraints.length; i++) {
                 var constraint = allConstraints[i],
                     bodyA = constraint.bodyA,
@@ -9946,7 +9946,7 @@ var Vector = _dereq_('../geometry/Vector');
                     constraints.push(constraint);
             }
 
-            // transform the view
+            // transformar la vista
             container.scale.set(1 / boundsScaleX, 1 / boundsScaleY);
             container.position.set(-render.bounds.min.x * (1 / boundsScaleX), -render.bounds.min.y * (1 / boundsScaleY));
         } else {
@@ -9964,10 +9964,10 @@ var Vector = _dereq_('../geometry/Vector');
 
 
     /**
-     * Description
-     * @method constraint
-     * @param {engine} engine
-     * @param {constraint} constraint
+     * Descripción
+     * @method constraint - restricción
+     * @param {engine} engine - motor
+     * @param {constraint} constraint - restricción
      * @deprecated
      */
     RenderPixi.constraint = function(render, constraint) {
@@ -9981,21 +9981,21 @@ var Vector = _dereq_('../geometry/Vector');
             primitiveId = 'c-' + constraint.id,
             primitive = render.primitives[primitiveId];
 
-        // initialise constraint primitive if not existing
+        // inicializar la primitiva de restricción si no existe
         if (!primitive)
             primitive = render.primitives[primitiveId] = new PIXI.Graphics();
 
-        // don't render if constraint does not have two end points
+        // no renderizar si la restricción no tiene dos puntos finales
         if (!constraintRender.visible || !constraint.pointA || !constraint.pointB) {
             primitive.clear();
             return;
         }
 
-        // add to scene graph if not already there
+        // agregar al gráfico de escena si aún no está allí
         if (Common.indexOf(container.children, primitive) === -1)
             container.addChild(primitive);
 
-        // render the constraint on every update, since they can change dynamically
+        // representar la restricción en cada actualización, ya que pueden cambiar dinámicamente
         primitive.clear();
         primitive.beginFill(0, 0);
         primitive.lineStyle(constraintRender.lineWidth, Common.colorToNumber(constraintRender.strokeStyle), 1);
@@ -10016,10 +10016,10 @@ var Vector = _dereq_('../geometry/Vector');
     };
     
     /**
-     * Description
-     * @method body
-     * @param {engine} engine
-     * @param {body} body
+     * Descripción
+     * @method body - cuerpo
+     * @param {engine} engine - motor
+     * @param {body} body - cuerpo
      * @deprecated
      */
     RenderPixi.body = function(render, body) {
@@ -10034,15 +10034,15 @@ var Vector = _dereq_('../geometry/Vector');
                 sprite = render.sprites[spriteId],
                 spriteContainer = render.spriteContainer;
 
-            // initialise body sprite if not existing
+            // inicializar cuerpo sprite si no existe
             if (!sprite)
                 sprite = render.sprites[spriteId] = _createBodySprite(render, body);
 
-            // add to scene graph if not already there
+            // agregar al gráfico de escena si aún no está allí
             if (Common.indexOf(spriteContainer.children, sprite) === -1)
                 spriteContainer.addChild(sprite);
 
-            // update body sprite
+            // actualizar cuerpo sprite
             sprite.position.x = body.position.x;
             sprite.position.y = body.position.y;
             sprite.rotation = body.angle;
@@ -10053,17 +10053,17 @@ var Vector = _dereq_('../geometry/Vector');
                 primitive = render.primitives[primitiveId],
                 container = render.container;
 
-            // initialise body primitive if not existing
+            // inicializar cuerpo primitivo si no existe
             if (!primitive) {
                 primitive = render.primitives[primitiveId] = _createBodyPrimitive(render, body);
                 primitive.initialAngle = body.angle;
             }
 
-            // add to scene graph if not already there
+            // agregar al gráfico de escena si aún no está allí
             if (Common.indexOf(container.children, primitive) === -1)
                 container.addChild(primitive);
 
-            // update body primitive
+            // actualizar cuerpo primitivo
             primitive.position.x = body.position.x;
             primitive.position.y = body.position.y;
             primitive.rotation = body.angle - primitive.initialAngle;
@@ -10071,11 +10071,11 @@ var Vector = _dereq_('../geometry/Vector');
     };
 
     /**
-     * Creates a body sprite
+     * Crea un sprite corporal
      * @method _createBodySprite
      * @private
-     * @param {RenderPixi} render
-     * @param {body} body
+     * @param {RenderPixi} render - renderizar
+     * @param {body} body - cuerpo
      * @return {PIXI.Sprite} sprite
      * @deprecated
      */
@@ -10092,12 +10092,12 @@ var Vector = _dereq_('../geometry/Vector');
     };
 
     /**
-     * Creates a body primitive
+     * Crea un cuerpo primitivo
      * @method _createBodyPrimitive
      * @private
-     * @param {RenderPixi} render
-     * @param {body} body
-     * @return {PIXI.Graphics} graphics
+     * @param {RenderPixi} render - renderizar
+     * @param {body} body - cuerpo
+     * @return {PIXI.Graphics} graphics - graficos
      * @deprecated
      */
     var _createBodyPrimitive = function(render, body) {
@@ -10113,7 +10113,7 @@ var Vector = _dereq_('../geometry/Vector');
 
         primitive.clear();
 
-        // handle compound parts
+        // manejar piezas compuestas
         for (var k = body.parts.length > 1 ? 1 : 0; k < body.parts.length; k++) {
             part = body.parts[k];
 
@@ -10135,7 +10135,7 @@ var Vector = _dereq_('../geometry/Vector');
 
             primitive.endFill();
 
-            // angle indicator
+            // indicador de ángulo
             if (options.showAngleIndicator || options.showAxes) {
                 primitive.beginFill(0, 0);
 
@@ -10157,13 +10157,13 @@ var Vector = _dereq_('../geometry/Vector');
     };
 
     /**
-     * Gets the requested texture (a PIXI.Texture) via its path
+     * Obten la textura solicitada (una PIXI.Texture) a través de su ruta
      * @method _getTexture
      * @private
-     * @param {RenderPixi} render
-     * @param {string} imagePath
-     * @return {PIXI.Texture} texture
-     * @deprecated
+     * @param {RenderPixi} render - renderizar
+     * @param {string} imagePath 
+     * @return {PIXI.Texture} texture - textura
+     * @deprecated	
      */
     var _getTexture = function(render, imagePath) {
         var texture = render.textures[imagePath];
